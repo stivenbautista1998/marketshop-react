@@ -1,0 +1,100 @@
+@use '../variables';
+
+.wrapper-login, .wrapper-my-account {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.login-section, .header-section-login, .wrapper-recovery, .main-my-account {
+    text-align: center;
+}
+
+.header-section-login {
+    margin-top: 10em;
+    margin-bottom: 4em;
+}
+
+.login-section__label {
+    float: left;
+    margin-left: 1.5em;
+    font-size: 1.2rem;
+    font-weight: 700;
+    /* display: inline-block; */
+    margin-bottom: 0.5em;
+}
+
+.general-input {
+    width: 90%;
+    background-color: var(--text-input);
+    color: #797979;
+    font-size: 1.4rem;
+    font-weight: 400;
+    padding: 0.8em 0.7em;
+    border-radius: 7px;
+    border: none;
+}
+
+.login-section__input {
+    margin-bottom: 1em;
+}
+
+.general-input:focus-visible {
+    outline: none;
+}
+
+.section-down {
+    width: 100%;
+    text-align: center;
+}
+
+.general-button {
+    width: 90%;
+    min-width: 288px;
+    padding: 1em;
+    border-radius: 10px;
+    font-size: 1.4rem;
+    border: 1px solid var(--hospital-green);
+    cursor: pointer;
+}
+
+.green--btn {
+    background-color: var(--hospital-green);
+    color: var(--white);
+}
+
+.white--btn {
+    background-color: var(--white);
+    color: var(--hospital-green);
+}
+
+.general-message-link {
+    display: inline-block;
+    text-decoration: none;
+    font-size: 1.2rem;
+    margin-top: 3em;
+}
+
+.green__message {
+    color: var(--hospital-green);
+}
+
+.grey__message {
+    color: #797979;
+}
+
+a.grey__message:hover, a.green__message:hover {
+    text-decoration: underline;
+    color: var(--soft-blue);
+}
+
+.login-section .green--btn, .main-my-account .green--btn {
+    margin-top: 2em;
+}
+
+.section-down .white--btn, .section-down .green--btn {
+    margin-bottom: 3em;
+}

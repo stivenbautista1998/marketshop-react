@@ -1,7 +1,10 @@
-$base-color: skyblue;
-$main-color: rgba(black, 0.88);
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-body {
-    background-color: $base-color;
-    color: $main-color;
+html {
+    font-size: 62.5%;
+    font-family: 'Quicksand', sans-serif;
 }
