@@ -4,6 +4,7 @@
   "description": "A react project to master all the basis of react and work with a real environment.",
   "main": "src/index.js",
   "scripts": {
+    "clean": "rm dist/bundle.js",
     "start": "webpack serve --open",
     "build": "webpack --mode production"
   },
@@ -12,7 +13,8 @@
   "license": "MIT",
   "dependencies": {
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.18.5",
