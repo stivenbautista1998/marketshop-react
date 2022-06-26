@@ -336,13 +336,13 @@ a.grey__message:hover, a.green__message:hover {
     font-weight: 300;
 }
 
-.menu-tab__loggin {
+.menu-tab__logging {
     font-weight: 500;
     text-decoration: none;
     color: var(--hospital-green);
 }
 
-.menu-tab__loggin, .menu-tab__email {
+.menu-tab__logging, .menu-tab__email {
     font-size: 1.2rem;
     display: block;
     margin-bottom: .5em;
@@ -523,6 +523,7 @@ a.grey__message:hover, a.green__message:hover {
     background-position-x: center;
     background-position-y: center;
     background-size: cover;
+    background-color: #CCC;
 }
 
 .menu-active + .header-home-section .header-home-nav {
@@ -558,12 +559,12 @@ a.grey__message:hover, a.green__message:hover {
     max-height: 90px;
 }
 
-.product-detail-buttom {
+.product-detail-button {
     text-align: center;
     padding: 1.5em;
 }
 
-.product-detail-buttom__text {
+.product-detail-button__text {
     font-size: 1.5rem;
 }
 
