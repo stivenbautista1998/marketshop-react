@@ -5,6 +5,7 @@ function changeFilterSinceNav(value) {
 }
 
 const MenuTab = ({ showMenuTab, setShowMenuTab, setCanScrollHome }) => {
+    console.log("showing menu tab");
     function hideMenu() {
         setShowMenuTab(false);
         setCanScrollHome(true);

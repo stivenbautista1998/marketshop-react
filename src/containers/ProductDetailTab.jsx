@@ -5,6 +5,7 @@ function hideProductDetail() {
 }
 
 const ProductDetailTab = ({ pDetailRightPosition }) => {
+    console.log("showing ProductDetailTab");
     const addedToCard = false;
 
     function addToShop() {

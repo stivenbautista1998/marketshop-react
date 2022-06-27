@@ -12,8 +12,9 @@ const Home = () => {
 
     const [ searchLeftPosition, setSearchLeftPosition ] = React.useState("5%");
     const [ rightPosition, setRightPosition ] = React.useState("0px");
+    const refHeader = React.useRef();
     
-    function calcShoppingTabRightMargin() {
+    function gettingResizedMargin() {
         if(window.innerWidth < 500) {
             setRightPosition("0px"); // js-product-detail  js-shopping-card-tab
             setSearchLeftPosition("5%"); // .search-home-section
@@ -21,28 +22,32 @@ const Home = () => {
             setRightPosition("5px"); // productDetailWrapper.style.right = "5px";  btnShowShoppingCard.style.right = "5px";
             setSearchLeftPosition("5%"); // searchInputElement.style.left = "5%";
         } else {
-            /* const shoppingTabMarginRight = (window.innerWidth - headerHomeNav.offsetWidth) / 2;
+            const shoppingTabMarginRight = (window.innerWidth - refHeader.current.offsetWidth) / 2;
             setRightPosition(shoppingTabMarginRight + "px");
-            setSearchLeftPosition(shoppingTabMarginRight + 15 + "px"); */
+            setSearchLeftPosition(shoppingTabMarginRight + 15 + "px");
         }
+        console.log("checking resize!!");
     }
 
     React.useEffect(() => {
-        const checkWhenResizing = () => {
-            calcShoppingTabRightMargin();
-        }
-
-        window.addEventListener("resize", checkWhenResizing);
+        window.addEventListener("resize", gettingResizedMargin);
 
         return () => {
-            window.removeEventListener("resize", checkWhenResizing);
+            window.removeEventListener("resize", gettingResizedMargin);
         }
     }, []);
 
 
-
     return (
         <section id="body-home" className={canScroll ? "" : "no-scroll"}>
+            <Header 
+                setShowMenuTab={setShowMenuTab} 
+                setCanScrollHome={setCanScroll} 
+                showShoppingCardTab={showShoppingCardTab}
+                setShowShoppingCardTab={setShowShoppingCardTab}
+                searchLeftPosition={searchLeftPosition}
+                refHeader={refHeader}
+            />
             <MenuTab 
                 showMenuTab={showMenuTab} 
                 setShowMenuTab={setShowMenuTab}
@@ -54,15 +59,9 @@ const Home = () => {
             <ShoppingCardTab
                 showShoppingCardTab={showShoppingCardTab}
                 shoppingCardRightPosition={rightPosition}
+                refHeader={refHeader}
             />
-            <Header 
-                setShowMenuTab={setShowMenuTab} 
-                setCanScrollHome={setCanScroll} 
-                showShoppingCardTab={showShoppingCardTab}
-                setShowShoppingCardTab={setShowShoppingCardTab}
-                searchLeftPosition={searchLeftPosition}
-            />
-
+        
             <div className="wrapper-home">
                 <main id="js-products-container" className="article-section">
                     <ProductItem />
