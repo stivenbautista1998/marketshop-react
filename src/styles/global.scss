@@ -772,6 +772,7 @@ a.grey__message:hover, a.green__message:hover {
         right: 0px;
         visibility: hidden;
         transition: transform .2s;
+        min-width: 140px;
     }
 
     .email-list-ul {

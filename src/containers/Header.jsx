@@ -1,16 +1,35 @@
 import React, { Component } from 'react';
+import { SearchProducts } from '../components/SearchProducts';
+import { ListMenu } from '../components/ListMenu';
+import { ListMenuItem } from '../components/ListMenuItem';
+import { UserMenu } from '../components/UserMenu';
+
+import logoSvg from "@icons/logo.svg";
+import menuSvg from "@icons/menu-icon.svg";
+import shopeCartSvg from "@icons/shopping-cart.svg";
 
 function searchHandler(event) {
     console.log(event);
 }
 
 function handleHomeList(event) {
-    console.log(event);
+    console.log(event.target.classList);
 }
 
 function cleanSearchInput() {
     console.log("something clicked!");
 }
+
+const navListItems = [
+	{selected: true, name: 'all'},
+	{selected: false, name: 'closes'},
+	{selected: false, name: 'electronics'},
+	{selected: false, name: 'furnitures'},
+	{selected: false, name: 'toys'},
+	{selected: false, name: 'others'}
+];
+
+const userEmail = "stivenb1994@gmail.com";
 
 
 class Header extends Component {
@@ -101,8 +120,6 @@ class Header extends Component {
     }
 
     render() {
-        console.log("showing header!");
-
         // making sure the right position for larger devices is provided when the component is completely loaded.
         let leftPosition = ((!this.isCorrectPosition() && this.state.hasLoaded) ?  
         this.getLeftPosition() : 
@@ -112,53 +129,41 @@ class Header extends Component {
             <header className="header-home-section">
                 <nav className="nav-section">
                     <div ref={this.props.refHeader} className="header-home-nav">
-                        <img className="menu-icon" onClick={this.showMenu} src="../assets/icons/menu-icon.svg" alt="menu icon" />
+                        <img className="menu-icon" onClick={this.showMenu} src={menuSvg} alt="menu icon" />
                         <div id="js-left-nav" className={`left-nav ${this.state.showLogoApp ? "" : "hide-logo"}`}>
-                            <img id="js-link-logo" className="logo-icon-small" src="../assets/icons/logo.svg" alt="logo of the webpage" />
-                            <ul id="home-nav-desk" className="header-home-section__list hide-section">
-                                <li id="js-all-desk" onClick={handleHomeList} className="header-home-section__list-option selected-item-desk">All</li>
-                                <li id="js-clothes-desk" onClick={handleHomeList} className="header-home-section__list-option">Clothes</li>
-                                <li id="js-electronics-desk" onClick={handleHomeList} className="header-home-section__list-option">Electronics</li>
-                                <li id="js-furnitures-desk" onClick={handleHomeList} className="header-home-section__list-option">Furnitures</li>
-                                <li id="js-toys-desk" onClick={handleHomeList} className="header-home-section__list-option">Toys</li>
-                                <li id="js-others-desk" onClick={handleHomeList} className="header-home-section__list-option">Others</li>
-                            </ul>
+                            <img id="js-link-logo" className="logo-icon-small" src={logoSvg} alt="logo of the webpage" />
+                            <ListMenu
+                                mobile={false}
+                                listInfo={navListItems}
+                                render={(item, index) => (
+                                    <ListMenuItem key={index} {...item} mobile={false} handleHomeList={handleHomeList} />
+                                )}
+                            />
                         </div>
-                        <h2 id="js-tittle-logo" className={/* showLogo */ this.state.showLogoApp ? "hide-logo" : ""}>Shopping cart</h2>
+                        <h2 id="js-tittle-logo" className={this.state.showLogoApp ? "hide-logo" : ""}>Shopping cart</h2>
                         <div className="right-nav">
-                            <div className="email-menu">
-                                <div onClick={this.handleMenuNav} className="email-menu__front">
-                                    <span className="email-menu__text">stivenb1994@gmail.com</span>
-                                    <img className="arrow-down-icon" src="../assets/icons/arrow-down.svg" alt="arrow down image" />
-                                </div>
-                                <div id="js-menu-nav" className={`email-menu__list ${this.state.showNav ? "show-section" : ""}` }>
-                                    <ul className="email-list-ul">
-                                        <li className="email-list-ul__item"><a className="style-no-link" href="./my-orders.html">My orders</a></li>
-                                        <li className="email-list-ul__item"><a className="style-no-link" href="./my-account.html">My account</a></li>
-                                        <a href="../" className="email-list-ul__item menu-tab__logging">Sign out</a>
-                                    </ul>
-                                </div>
-                            </div>
+                            <UserMenu
+                                userEmail={userEmail}
+                                showNav={this.state.showNav}
+                                handleMenuNav={this.handleMenuNav}
+                            />
                             <div id="js-counter-circle" className="counter-circle">0</div>
-                            <img className="shopping-cart" onClick={this.showShoppingCard} src="../assets/icons/shopping-cart.svg" alt="icon of a shopping cart" />
+                            <img className="shopping-cart" onClick={this.showShoppingCard} src={shopeCartSvg} alt="icon of a shopping cart" />
                         </div>
                     </div>
                 </nav>
-                <div className="search-wrapper">
-                    <div className="general-input center-search search-home-section" style={{ left: leftPosition }}>
-                        <img className="search-home-icon search-icon" src="../assets/icons/search-icon.svg" alt="search icon" />
-                        <input id="search-input" onKeyUp={searchHandler} className="header-home-section__search" type="text" placeholder="Search product" />
-                        <img id="js-clean-search" onClick={cleanSearchInput} className="search-home-icon clean-search" src="../assets/icons/x-icon.svg" alt="close icon" />
-                    </div>
-                </div>
-                <ul id="home-nav-mobile" className="header-home-section__list">
-                    <li id="js-all-mobile" onClick={handleHomeList} className="header-home-section__list-option selected-item-mobile">All</li>
-                    <li id="js-clothes-mobile" onClick={handleHomeList} className="header-home-section__list-option">Clothes</li>
-                    <li id="js-electronics-mobile" onClick={handleHomeList} className="header-home-section__list-option">Electronics</li>
-                    <li id="js-furnitures-mobile" onClick={handleHomeList} className="header-home-section__list-option">Furnitures</li>
-                    <li id="js-toys-mobile" onClick={handleHomeList} className="header-home-section__list-option">Toys</li>
-                    <li id="js-others-mobile" onClick={handleHomeList} className="header-home-section__list-option">Others</li>
-                </ul>
+                <SearchProducts 
+                    leftPosition={leftPosition} 
+                    searchHandler={searchHandler} 
+                    cleanSearchInput={cleanSearchInput} 
+                />
+                <ListMenu 
+                    mobile={true}
+                    listInfo={navListItems}
+                    render={(item, index) => (
+                        <ListMenuItem key={index} {...item} mobile={true} handleHomeList={handleHomeList} />
+                    )}
+                />
             </header>
         );
     }

@@ -1,5 +1,7 @@
 import React from 'react';
 
+import closeIconSvg from "@icons/x-icon.svg";
+
 function changeFilterSinceNav(value) {
     console.log("changeFilterSinceNav is clicked!" + value);
 }
@@ -13,7 +15,7 @@ const MenuTab = ({ showMenuTab, setShowMenuTab, setCanScrollHome }) => {
 
     return (
         <div id="js-menu-tab" className={`menu-tab ${showMenuTab ? "menu-active" : ""}`}>
-            <img onClick={hideMenu} className="close-icon" src="../assets/icons/x-icon.svg" alt="close icon" />
+            <img onClick={hideMenu} className="close-icon" src={closeIconSvg} alt="close icon" />
             <div>
                 <h2 className="menu-tab__tittle">CATEGORIES</h2>
                 <ul className="menu-tab__main-list">

@@ -5,6 +5,8 @@ import { ProductDetailTab } from '../containers/ProductDetailTab';
 import { ShoppingCardTab } from "../containers/ShoppingCardTab";
 import { ProductItem } from "../components/ProductItem";
 
+import product1 from '@img/clothes5.jpeg';
+
 const Home = () => {
     const [ showMenuTab, setShowMenuTab ] = React.useState(false);
     const [ canScroll, setCanScroll ] = React.useState(true);
@@ -64,7 +66,7 @@ const Home = () => {
         
             <div className="wrapper-home">
                 <main id="js-products-container" className="article-section">
-                    <ProductItem />
+                    <ProductItem imgProduct={product1} />
                 </main>
             </div>
         </section>

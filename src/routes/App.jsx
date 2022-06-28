@@ -9,8 +9,8 @@ import { MyOrder } from "../pages/MyOrder";
 import { MyOrders } from "../pages/MyOrders";
 import { SuccessEmail } from "../pages/SuccessEmail";
 import { NotFound } from "../pages/NotFound";
-import '../styles/global.scss';
-import '../styles/icon-styles.scss';
+import '@styles/global.scss';
+import '@styles/icon-styles.scss';
 
 const App = () => {
     return (

@@ -12,7 +12,14 @@ module.exports = {
     },
     mode: "development",
     resolve: {
-        extensions: ['.js', '.jsx']
+        extensions: ['.js', '.jsx'],
+        alias: {
+            '@components': path.resolve(__dirname, 'src/components/'),
+            '@containers': path.resolve(__dirname, 'src/containers/'),
+            '@styles': path.resolve(__dirname, 'src/styles/'),
+            '@icons': path.resolve(__dirname, 'src/assets/icons/'),
+            '@img': path.resolve(__dirname, '/src/assets/img/')
+        }
     },
     module: {
         // ... Lista de reglas respecto a los loaders	
@@ -39,6 +46,10 @@ module.exports = {
                 use: {
                     loader: 'html-loader'
                 }
+            },
+            {
+                test: /\.(png|jp(e*)g|svg|gif)$/,
+                type: 'asset'
             }
         ]
     },

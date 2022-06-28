@@ -1,5 +1,8 @@
 import React from 'react';
 
+import addToCartSvg from "@icons/add_to_cart.svg";
+import selectedCartSvg from "@icons/selected-to-buy.svg";
+
 function showProductDetails(id) {
     console.log("The Id is: " + id);
 }
@@ -21,14 +24,14 @@ function becomeDollar(value) {
     return formatter.format(value);  
 }
 
-const ProductItem = () => {
+const ProductItem = ({ imgProduct }) => {
     let isSelected = true;
     let infoProduct = "345";
-    let imgUrl = (isSelected ? "../assets/icons/selected-to-buy.svg" : "../assets/icons/add_to_cart.svg");
+    let imgUrl = (isSelected ? selectedCartSvg : addToCartSvg);
 
     return (
         <article data-product={infoProduct} className="article-section-item">
-            <div onClick={() => showProductDetails(infoProduct)} className="article-section-item__img new-img" style={{backgroundImage: "url(https://github.com/stivenbautista1998/marketshop/blob/main/assets/img/camera1.jpeg)"}}>
+            <div onClick={() => showProductDetails(infoProduct)} className="article-section-item__img new-img" style={{backgroundImage: `url(${imgProduct})`}}>
             </div>
             <div className={`article-section-item__content ${isSelected ? 'clickedBtn' : ''}`}>
                 <div className="card-text">
