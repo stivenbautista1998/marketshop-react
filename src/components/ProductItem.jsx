@@ -24,8 +24,7 @@ function becomeDollar(value) {
     return formatter.format(value);  
 }
 
-const ProductItem = ({ imgProduct }) => {
-    let isSelected = true;
+const ProductItem = ({ imgProduct, isSelected, setIsSelected }) => {
     let infoProduct = "345";
     let imgUrl = (isSelected ? selectedCartSvg : addToCartSvg);
 
@@ -39,7 +38,7 @@ const ProductItem = ({ imgProduct }) => {
                     <span className="green__message name-product">{capitalizeAll("product name")}</span>
                 </div>
                 <div className="circle-border"></div>
-                <img id={infoProduct} className="add_to_card" onClick={() => addToCardBtn(infoProduct)} src={imgUrl} alt="image of a shopping car" />
+                <img id={infoProduct} className="add_to_card" onClick={setIsSelected} src={imgUrl} alt="image of a shopping car" />
             </div>
         </article>
     );

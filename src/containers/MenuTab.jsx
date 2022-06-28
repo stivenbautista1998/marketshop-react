@@ -1,12 +1,23 @@
 import React from 'react';
+import { ListMenu } from '../components/ListMenu';
+import { ListMenuItem } from '../components/ListMenuItem';
 
 import closeIconSvg from "@icons/x-icon.svg";
 
-function changeFilterSinceNav(value) {
-    console.log("changeFilterSinceNav is clicked!" + value);
+function changeFilterSinceNav(event) {
+    console.log(event.target.innerText);
 }
 
-const MenuTab = ({ showMenuTab, setShowMenuTab, setCanScrollHome }) => {
+const navListItems = [
+	{selected: true, name: 'all'},
+	{selected: false, name: 'closes'},
+	{selected: false, name: 'electronics'},
+	{selected: false, name: 'furnitures'},
+	{selected: false, name: 'toys'},
+	{selected: false, name: 'others'}
+];
+
+const MenuTab = ({ userEmail, showMenuTab, setShowMenuTab, setCanScrollHome }) => {
     console.log("showing menu tab");
     function hideMenu() {
         setShowMenuTab(false);
@@ -18,21 +29,25 @@ const MenuTab = ({ showMenuTab, setShowMenuTab, setCanScrollHome }) => {
             <img onClick={hideMenu} className="close-icon" src={closeIconSvg} alt="close icon" />
             <div>
                 <h2 className="menu-tab__tittle">CATEGORIES</h2>
-                <ul className="menu-tab__main-list">
-                    <li onClick={() => changeFilterSinceNav('all')} className="menu-tab__main-list__item">All</li>
-                    <li onClick={() => changeFilterSinceNav('clothes')} className="menu-tab__main-list__item">Clothes</li>
-                    <li onClick={() => changeFilterSinceNav('electronics')} className="menu-tab__main-list__item">Electronics</li>
-                    <li onClick={() => changeFilterSinceNav('furnitures')} className="menu-tab__main-list__item">Furnitures</li>
-                    <li onClick={() => changeFilterSinceNav('toys')} className="menu-tab__main-list__item">Toys</li>
-                    <li onClick={() => changeFilterSinceNav('others')} className="menu-tab__main-list__item">Others</li>
-                </ul>
+                <ListMenu
+                    menuTab={true}
+                    listInfo={navListItems}
+                    render={(item, index) => (
+                        <ListMenuItem
+                            key={index}
+                            menuTab={true}
+                            {...item}
+                            handleHomeList={changeFilterSinceNav}
+                        />
+                    )}
+                />
                 <ul className="menu-tab__logged">
                     <li className="menu-tab__logged__item"><a className="style-no-link" href="./my-orders.html">My orders</a></li>
                     <li className="menu-tab__logged__item"><a className="style-no-link" href="./my-account.html">My account</a></li>
                 </ul>
             </div>
             <div>
-                <span className="menu-tab__email">stivenb1994@gmail.com</span>
+                <span className="menu-tab__email">{userEmail}</span>
                 <a href="../" className="menu-tab__logging">Sign out</a>
             </div>
         </div>

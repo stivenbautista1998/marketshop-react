@@ -8,6 +8,8 @@ import logoSvg from "@icons/logo.svg";
 import menuSvg from "@icons/menu-icon.svg";
 import shopeCartSvg from "@icons/shopping-cart.svg";
 
+const userEmail = "stivenb1994@gmail.com";
+
 function searchHandler(event) {
     console.log(event);
 }
@@ -28,8 +30,6 @@ const navListItems = [
 	{selected: false, name: 'toys'},
 	{selected: false, name: 'others'}
 ];
-
-const userEmail = "stivenb1994@gmail.com";
 
 
 class Header extends Component {
@@ -134,9 +134,16 @@ class Header extends Component {
                             <img id="js-link-logo" className="logo-icon-small" src={logoSvg} alt="logo of the webpage" />
                             <ListMenu
                                 mobile={false}
+                                menuTab={false}
                                 listInfo={navListItems}
                                 render={(item, index) => (
-                                    <ListMenuItem key={index} {...item} mobile={false} handleHomeList={handleHomeList} />
+                                    <ListMenuItem 
+                                        key={index} 
+                                        {...item} 
+                                        mobile={false} 
+                                        menuTab={false} 
+                                        handleHomeList={handleHomeList} 
+                                    />
                                 )}
                             />
                         </div>
@@ -159,9 +166,16 @@ class Header extends Component {
                 />
                 <ListMenu 
                     mobile={true}
+                    menuTab={false}
                     listInfo={navListItems}
                     render={(item, index) => (
-                        <ListMenuItem key={index} {...item} mobile={true} handleHomeList={handleHomeList} />
+                        <ListMenuItem 
+                            key={index} 
+                            {...item} 
+                            mobile={true}
+                            menuTab={false}
+                            handleHomeList={handleHomeList} 
+                        />
                     )}
                 />
             </header>

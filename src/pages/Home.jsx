@@ -6,6 +6,7 @@ import { ShoppingCardTab } from "../containers/ShoppingCardTab";
 import { ProductItem } from "../components/ProductItem";
 
 import product1 from '@img/clothes5.jpeg';
+const userEmail = "stivenb1994@gmail.com";
 
 const Home = () => {
     const [ showMenuTab, setShowMenuTab ] = React.useState(false);
@@ -15,6 +16,8 @@ const Home = () => {
     const [ searchLeftPosition, setSearchLeftPosition ] = React.useState("5%");
     const [ rightPosition, setRightPosition ] = React.useState("0px");
     const refHeader = React.useRef();
+
+    const [ isSelected, setIsSelected ] = React.useState(false);
     
     function gettingResizedMargin() {
         if(window.innerWidth < 500) {
@@ -39,6 +42,10 @@ const Home = () => {
         }
     }, []);
 
+    function handleSelectedProduct() {
+        setIsSelected(!isSelected);
+    }
+
 
     return (
         <section id="body-home" className={canScroll ? "" : "no-scroll"}>
@@ -51,6 +58,7 @@ const Home = () => {
                 refHeader={refHeader}
             />
             <MenuTab 
+                userEmail={userEmail}
                 showMenuTab={showMenuTab} 
                 setShowMenuTab={setShowMenuTab}
                 setCanScrollHome={setCanScroll}
@@ -66,7 +74,11 @@ const Home = () => {
         
             <div className="wrapper-home">
                 <main id="js-products-container" className="article-section">
-                    <ProductItem imgProduct={product1} />
+                    <ProductItem 
+                        imgProduct={product1} 
+                        isSelected={isSelected} 
+                        setIsSelected={handleSelectedProduct}
+                    />
                 </main>
             </div>
         </section>
