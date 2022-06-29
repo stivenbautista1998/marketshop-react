@@ -1,9 +1,5 @@
 import React from 'react';
-
-function capitalize(str) {
-    const lower = str.toLowerCase();
-    return str.charAt(0).toUpperCase() + lower.slice(1);
-}
+import { capitalize } from '@helpers/format';
 
 const ListMenuItem = ({ name, selected, mobile, menuTab, handleHomeList }) => {
     let isMobile, isFrontTab;

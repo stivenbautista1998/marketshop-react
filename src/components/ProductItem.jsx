@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import AppContext from '@context/AppContext';
+import { capitalizeAll, becomeDollar } from '@helpers/format';
 
 import addToCartSvg from "@icons/add_to_cart.svg";
 import selectedCartSvg from "@icons/selected-to-buy.svg";
@@ -8,25 +9,7 @@ function showProductDetails(id) {
     console.log("The Id is: " + id);
 }
 
-function capitalizeAll(str) {
-    let arrWords = str.split(" "), result = "";
-    for(let i in arrWords) {
-        const lower = arrWords[i].toLowerCase();
-        result += arrWords[i].charAt(0).toUpperCase() + lower.slice(1) + (arrWords.length - 1 != i ? " " : "");
-    }
-    return result;
-}
-
-function becomeDollar(value) {
-    var formatter = new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'USD',
-    });
-    return formatter.format(value);  
-}
-
 const ProductItem = ({ product }) => {
-    //  name, price, imgProduct
     const [ isSelected, setIsSelected ] = React.useState(false);
     const { addToCart } = useContext(AppContext);
 
@@ -36,6 +19,8 @@ const ProductItem = ({ product }) => {
         addToCart(product);
         setIsSelected(!isSelected);
     }
+
+    console.log(product.images[0] ? product.images[0] : 'do not have image', product.title);
 
     return (
         <article className="article-section-item">

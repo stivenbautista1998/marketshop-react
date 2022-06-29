@@ -21,7 +21,8 @@ module.exports = {
             '@img': path.resolve(__dirname, 'src/assets/img/'),
             '@pages': path.resolve(__dirname, 'src/pages/'),
             '@hooks': path.resolve(__dirname, 'src/hooks/'),
-            '@context': path.resolve(__dirname, 'src/context/')
+            '@context': path.resolve(__dirname, 'src/context/'),
+            '@helpers': path.resolve(__dirname, 'src/helpers/')
         }
     },
     module: {

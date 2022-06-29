@@ -1,7 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import AppContext from '../context/AppContext';
+import { ProductOrdered } from '../components/ProductOrdered';
+import { becomeDollar } from '@helpers/format';
+
 
 const ShoppingCardTab = ({ showShoppingCardTab, shoppingCardRightPosition, refHeader }) => {
     console.log("showing ShoppingCardTab!");
+    const { state, removeFromCart } = useContext(AppContext);
 
     // checking if the rightPosition given is correct or just a wrong value.
     function isCorrectPosition() {
@@ -28,19 +33,39 @@ const ShoppingCardTab = ({ showShoppingCardTab, shoppingCardRightPosition, refHe
         }
     }
 
+    function deleteItem() {
+        console.log("this will be eliminated");
+    }
+
+    function totalSelectedProducts() {
+        const reducerFunction = (accumulator, currentValue) => accumulator + currentValue.price;
+        const total = state.cart.reduce(reducerFunction, 0);
+        return becomeDollar(total);
+    }
+
     return (
         <div 
             id="js-shopping-card-tab" 
             className={`shopping-card-tab ${showShoppingCardTab ? "menu-active" : ""}`} 
             style={{ right: (isCorrectPosition() ? shoppingCardRightPosition : getRightPosition()) }}>
-            <div id="js-shopping-container-items" className="shopping-card-top"></div> {/* section where insert the items */}
+
+            <div id="js-shopping-container-items" className="shopping-card-top">
+                {state.cart.map((product) => (
+                    <ProductOrdered
+                        key={product.id}
+                        productInfo={product}
+                        deleteItem={() => removeFromCart(product)}
+                    />
+                ))}
+            </div>
+
             <div className="shopping-card-bottom">
                 <div className="shopping-card-total">
                     <span className="login-section__label shopping-card-total__text">Total</span>
                     <span 
                         id="js-shopping-total" 
                         className="price-product shopping-card-total__price">
-                        $ 0.00
+                        {totalSelectedProducts()}
                     </span>
                 </div>
                 <button id="checkout-btn" className="general-button green--btn">

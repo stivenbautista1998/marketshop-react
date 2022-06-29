@@ -3,7 +3,7 @@ import { SearchProducts } from '@components/SearchProducts';
 import { ListMenu } from '@components/ListMenu';
 import { ListMenuItem } from '@components/ListMenuItem';
 import { UserMenu } from '@components/UserMenu';
-import AppContext from '@context/AppContext'; // clases do not use react hooks, that is why I used AppContext.Consumer
+import { CartCircle } from "@components/CartCircle";
 
 import logoSvg from "@icons/logo.svg";
 import menuSvg from "@icons/menu-icon.svg";
@@ -126,67 +126,63 @@ class Header extends Component {
         this.props.searchLeftPosition);
 
         return (
-            <AppContext.Consumer>
-                {({ state }) => (
-                    <header className="header-home-section">
-                        <nav className="nav-section">
-                            <div ref={this.props.refHeader} className="header-home-nav">
-                                <img className="menu-icon" onClick={this.showMenu} src={menuSvg} alt="menu icon" />
-                                <div id="js-left-nav" className={`left-nav ${this.state.showLogoApp ? "" : "hide-logo"}`}>
-                                    <img id="js-link-logo" className="logo-icon-small" src={logoSvg} alt="logo of the webpage" />
-                                    <ListMenu
-                                        mobile={false}
-                                        menuTab={false}
-                                        listInfo={navListItems}
-                                        render={(item, index) => (
-                                            <ListMenuItem 
-                                                key={index} 
-                                                {...item} 
-                                                mobile={false} 
-                                                menuTab={false} 
-                                                handleHomeList={handleHomeList} 
-                                            />
-                                        )}
+            <header className="header-home-section">
+                <nav className="nav-section">
+                    <div ref={this.props.refHeader} className="header-home-nav">
+                        <img className="menu-icon" onClick={this.showMenu} src={menuSvg} alt="menu icon" />
+                        <div id="js-left-nav" className={`left-nav ${this.state.showLogoApp ? "" : "hide-logo"}`}>
+                            <img id="js-link-logo" className="logo-icon-small" src={logoSvg} alt="logo of the webpage" />
+                            <ListMenu
+                                mobile={false}
+                                menuTab={false}
+                                listInfo={navListItems}
+                                render={(item, index) => (
+                                    <ListMenuItem 
+                                        key={index} 
+                                        {...item} 
+                                        mobile={false} 
+                                        menuTab={false} 
+                                        handleHomeList={handleHomeList} 
                                     />
-                                </div>
-                                <h2 id="js-tittle-logo" className={this.state.showLogoApp ? "hide-logo" : ""}>Shopping cart</h2>
-                                <div className="right-nav">
-                                    <UserMenu
-                                        userEmail={userEmail}
-                                        showNav={this.state.showNav}
-                                        handleMenuNav={this.handleMenuNav}
-                                    />
-                                    {state.cart.length > 0 ? <div className="counter-circle">{state.cart.length}</div> : null}
-                                    <img className="shopping-cart" 
-                                        onClick={this.showShoppingCard} 
-                                        src={shopeCartSvg} 
-                                        alt="shopping's cart icon" 
-                                    />
-                                </div>
-                            </div>
-                        </nav>
-                        <SearchProducts 
-                            leftPosition={leftPosition} 
-                            searchHandler={searchHandler} 
-                            cleanSearchInput={cleanSearchInput} 
-                        />
-                        <ListMenu 
+                                )}
+                            />
+                        </div>
+                        <h2 id="js-tittle-logo" className={this.state.showLogoApp ? "hide-logo" : ""}>Shopping cart</h2>
+                        <div className="right-nav">
+                            <UserMenu
+                                userEmail={userEmail}
+                                showNav={this.state.showNav}
+                                handleMenuNav={this.handleMenuNav}
+                            />
+                            <CartCircle />
+                            <img className="shopping-cart" 
+                                onClick={this.showShoppingCard} 
+                                src={shopeCartSvg} 
+                                alt="shopping's cart icon" 
+                            />
+                        </div>
+                    </div>
+                </nav>
+                <SearchProducts 
+                    leftPosition={leftPosition} 
+                    searchHandler={searchHandler} 
+                    cleanSearchInput={cleanSearchInput} 
+                />
+                <ListMenu 
+                    mobile={true}
+                    menuTab={false}
+                    listInfo={navListItems}
+                    render={(item, index) => (
+                        <ListMenuItem 
+                            key={index} 
+                            {...item} 
                             mobile={true}
                             menuTab={false}
-                            listInfo={navListItems}
-                            render={(item, index) => (
-                                <ListMenuItem 
-                                    key={index} 
-                                    {...item} 
-                                    mobile={true}
-                                    menuTab={false}
-                                    handleHomeList={handleHomeList} 
-                                />
-                            )}
+                            handleHomeList={handleHomeList} 
                         />
-                    </header>
-                )}
-            </AppContext.Consumer>
+                    )}
+                />
+            </header>
         );
     }
 }

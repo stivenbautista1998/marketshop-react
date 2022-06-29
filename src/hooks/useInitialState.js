@@ -7,7 +7,9 @@ const initialState = {
 const useInitialState = () => {
     const [ state, setState ] = useState(initialState);
 
+    console.log('############################################');
     console.log(state.cart);
+    console.log('############################################');
 
     const addToCart = (product) => {
         setState({
@@ -19,9 +21,17 @@ const useInitialState = () => {
         });
     };
 
+    const removeFromCart = ( productToDelete ) => {
+        setState({
+            ...state,
+            cart: state.cart.filter((product) => product.id !== productToDelete.id) // filter returns an array already
+        });
+    }
+
     return {
         state, 
-        addToCart 
+        addToCart,
+        removeFromCart
     };
 }
 
