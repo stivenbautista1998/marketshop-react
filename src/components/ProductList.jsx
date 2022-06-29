@@ -1,19 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { ProductItem } from './ProductItem';
-import axios from 'axios';
+import { useProducts } from '@hooks/useProducts';
 
 const endpoint = "https://api.escuelajs.co/api/v1/products";
 
 const ProductList = () => {
-    const [ products, setProducts ] = useState([]);
-    
-    useEffect(() => {
-        const productRequest = async () => {
-            const response = await axios(endpoint);
-            setProducts(response.data);
-        };
-        productRequest();
-    }, []);
+    // before it had a problem with the destructuring { products } = useProducts
+    const products = useProducts(endpoint); // using custom hooks
     
     return (
         <div className="wrapper-home">
@@ -21,9 +14,10 @@ const ProductList = () => {
                 {products.map((product) => (
                     <ProductItem 
                         key={product.id}
-                        name={product.title}
+                        product={product}
+                        /* name={product.title}
                         price={product.price}
-                        imgProduct={product.images[0]} 
+                        imgProduct={product.images[0]}  */
                     />
                 ))}                
             </main>

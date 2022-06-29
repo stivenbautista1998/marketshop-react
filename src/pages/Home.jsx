@@ -1,11 +1,10 @@
 import React from "react";
-import { Header } from "../containers/Header";
-import { MenuTab } from '../containers/MenuTab';
-import { ProductDetailTab } from '../containers/ProductDetailTab';
-import { ShoppingCardTab } from "../containers/ShoppingCardTab";
-import { ProductList } from "../components/ProductList";
+import { Header } from "@containers/Header";
+import { MenuTab } from '@containers/MenuTab';
+import { ProductDetailTab } from '@containers/ProductDetailTab';
+import { ShoppingCardTab } from "@containers/ShoppingCardTab";
+import { ProductList } from "@components/ProductList";
 
-import product1 from '@img/clothes5.jpeg';
 const userEmail = "stivenb1994@gmail.com";
 
 const Home = () => {

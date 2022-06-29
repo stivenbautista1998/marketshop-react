@@ -1,36 +1,46 @@
-import React from "react";
-import '../styles/components/Login.scss';
+import React, { useRef } from "react";
+import { LoginForm } from "@containers/LoginForm";
+import { GeneralButton } from "@components/GeneralButton";
+import '@styles/components/Login.scss';
+
+import logoSvg from '@icons/logo.svg';
 
 function showMyAccount() {
-    console.log("just a test");
+    console.log("just showMyAccount");
 }
 
 const Login = () => {
+    const formRef = useRef(null);
+
+    const handlerSubmit = (event) => {
+        event.preventDefault();
+        const formData = new FormData(formRef.current); // FormData: native object used to get info from forms easily.
+        const data = {
+            user: formData.get('user-txt'),
+            password: formData.get('password-txt')
+        };
+        console.log(data);
+    };
+
     return (
         <div className="wrapper-login">
             <div className="section-up">
                 <header className="header-section-login">
                     <nav>
-                        <img className="close-icon" src="./assets/icons/x-icon.svg" alt="close icon" />
-                        <img className="logo-icon" src="./assets/icons/logo.svg" alt="logo of the webpage" />
+                        <img className="logo-icon" src={logoSvg} alt="logo of the webpage" />
                     </nav>
                 </header>
-                <main className="login-section">
-                        <label className="login-section__label" htmlFor="user-txt">Email address</label>
-                        <input className="general-input login-section__input" id="js-user-txt" type="text" />
-                        <label className="login-section__label" htmlFor="password-txt">Password</label>
-                        <input className="general-input login-section__input" id="js-password-txt" type="password" />
-                        <div id="js-error-message" className="error-message">Invalid user ID and password combination</div>
-                        <button id="login-btn" className="general-button green--btn">
-                            Log in
-                        </button>
-                        <a href="./views/pass-recovery.html" className="general-message-link green__message">Forgot my password</a>
-                </main>
+                <LoginForm 
+                    formRef={formRef} 
+                    handlerSubmit={handlerSubmit} 
+                />
             </div>
             <div className="section-down">
-                <button id="singup-btn" onClick={() => showMyAccount()} className="general-button white--btn">
-                    Sign up
-                </button>
+                <GeneralButton 
+                    buttonText="Sign up" 
+                    color="white" 
+                    clickHandler={showMyAccount} 
+                />
             </div>
         </div>
     );
