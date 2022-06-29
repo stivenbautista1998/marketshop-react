@@ -24,7 +24,8 @@ function becomeDollar(value) {
     return formatter.format(value);  
 }
 
-const ProductItem = ({ imgProduct, isSelected, setIsSelected }) => {
+const ProductItem = ({ name, price, imgProduct }) => {
+    const [ isSelected, setIsSelected ] = React.useState(false);
     let infoProduct = "345";
     let imgUrl = (isSelected ? selectedCartSvg : addToCartSvg);
 
@@ -34,11 +35,15 @@ const ProductItem = ({ imgProduct, isSelected, setIsSelected }) => {
             </div>
             <div className={`article-section-item__content ${isSelected ? 'clickedBtn' : ''}`}>
                 <div className="card-text">
-                    <span className="grey__message price-product">{becomeDollar(38.25)}</span>
-                    <span className="green__message name-product">{capitalizeAll("product name")}</span>
+                    <span className="grey__message price-product">
+                        {becomeDollar(price)}
+                    </span>
+                    <span className="green__message name-product">
+                        {capitalizeAll(name)}
+                    </span>
                 </div>
                 <div className="circle-border"></div>
-                <img id={infoProduct} className="add_to_card" onClick={setIsSelected} src={imgUrl} alt="image of a shopping car" />
+                <img id={infoProduct} className="add_to_card" onClick={() => setIsSelected(!isSelected)} src={imgUrl} alt="image of a shopping car" />
             </div>
         </article>
     );
