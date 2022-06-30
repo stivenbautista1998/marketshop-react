@@ -4,6 +4,7 @@ import { MenuTab } from '@containers/MenuTab';
 import { ProductDetailTab } from '@containers/ProductDetailTab';
 import { ShoppingCardTab } from "@containers/ShoppingCardTab";
 import { ProductList } from "@components/ProductList";
+import { useProducts } from '@hooks/useProducts';
 
 const userEmail = "stivenb1994@gmail.com";
 
@@ -15,6 +16,8 @@ const Home = () => {
     const [ searchLeftPosition, setSearchLeftPosition ] = React.useState("5%");
     const [ rightPosition, setRightPosition ] = React.useState("0px");
     const refHeader = React.useRef();
+
+    const { products, updateProducts } = useProducts(); // using custom hooks
 
     
     function gettingResizedMargin() {
@@ -40,10 +43,6 @@ const Home = () => {
         }
     }, []);
 
-    function unselectProduct() {
-        console.log("handling with unselectProduct!!")
-    }
-
 
     return (
         <section id="body-home" className={canScroll ? "" : "no-scroll"}>
@@ -53,6 +52,7 @@ const Home = () => {
                 showShoppingCardTab={showShoppingCardTab}
                 setShowShoppingCardTab={setShowShoppingCardTab}
                 searchLeftPosition={searchLeftPosition}
+                updateProducts={updateProducts}
                 refHeader={refHeader}
             />
             <MenuTab 
@@ -67,11 +67,10 @@ const Home = () => {
             <ShoppingCardTab
                 showShoppingCardTab={showShoppingCardTab}
                 shoppingCardRightPosition={rightPosition}
-                /* unselectProduct={unselectProduct} */
                 refHeader={refHeader}
             />
         
-            <ProductList />
+            <ProductList products={products} />
         </section>
     );
 }

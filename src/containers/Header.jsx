@@ -9,27 +9,24 @@ import logoSvg from "@icons/logo.svg";
 import menuSvg from "@icons/menu-icon.svg";
 import shopeCartSvg from "@icons/shopping-cart.svg";
 
+
 const userEmail = "stivenb1994@gmail.com";
 
 function searchHandler(event) {
     console.log(event);
 }
 
-function handleHomeList(event) {
-    console.log(event.target.classList);
-}
-
 function cleanSearchInput() {
     console.log("something clicked!");
 }
 
-const navListItems = [
-	{selected: true, name: 'all'},
-	{selected: false, name: 'closes'},
-	{selected: false, name: 'electronics'},
-	{selected: false, name: 'furnitures'},
-	{selected: false, name: 'shoes'},
-	{selected: false, name: 'others'}
+const initialNavItems = [
+	{ selected: true, name: 'all', categoryId: 0 },
+	{ selected: false, name: 'closes', categoryId: 1 },
+	{ selected: false, name: 'electronics', categoryId: 2 },
+	{ selected: false, name: 'furnitures', categoryId: 3 },
+	{ selected: false, name: 'shoes', categoryId: 4 },
+	{ selected: false, name: 'others', categoryId: 5 }
 ];
 
 class Header extends Component {
@@ -39,9 +36,11 @@ class Header extends Component {
         this.state = {
             showNav: false,
             showLogoApp: true,
-            hasLoaded: false
+            headerLoaded: false,
+            navListItems: initialNavItems
         };
 
+        this.handleHomeList = this.handleHomeList.bind(this);
         this.isCorrectPosition = this.isCorrectPosition.bind(this);
         this.getLeftPosition = this.getLeftPosition.bind(this);
         this.showMenu = this.showMenu.bind(this);
@@ -52,7 +51,24 @@ class Header extends Component {
     }
 
     componentDidMount() {
-        this.setState({ hasLoaded: true });        
+        this.setState({ headerLoaded: true });        
+    }
+
+    handleHomeList(event) {
+        if(event.target.classList[1] !== "selected-item-desk") {
+            const itemToSelect = event.target.innerText.toLowerCase();
+            let idCategory;
+            const newNavListState = this.state.navListItems.map((item) => {
+                if(item.name === itemToSelect) idCategory = item.categoryId;
+                return {
+                    selected: (item.selected === true || item.name !== itemToSelect ? false : true),
+                    name: item.name,
+                    categoryId: item.categoryId
+                };
+            });
+            this.setState({ navListItems: newNavListState });
+            this.props.updateProducts(idCategory);
+        }
     }
 
     isCorrectPosition() {
@@ -110,10 +126,8 @@ class Header extends Component {
         } else { // if screen size >= 500px then work with the menu class for larger devices.
             if(this.props.showShoppingCardTab === true) {
                 this.removeShoppingTabStyle();
-                /* calcShoppingTabRightMargin(); */
             } else {
                 this.props.setShowShoppingCardTab(true);
-                /* calcShoppingTabRightMargin(); */
                 this.showProductsSelected();
             }
         }
@@ -121,7 +135,7 @@ class Header extends Component {
 
     render() {
         // making sure the right position for larger devices is provided when the component is completely loaded.
-        let leftPosition = ((!this.isCorrectPosition() && this.state.hasLoaded) ?  
+        let leftPosition = ((!this.isCorrectPosition() && this.state.headerLoaded) ?  
         this.getLeftPosition() : 
         this.props.searchLeftPosition);
 
@@ -135,14 +149,14 @@ class Header extends Component {
                             <ListMenu
                                 mobile={false}
                                 menuTab={false}
-                                listInfo={navListItems}
+                                listInfo={this.state.navListItems}
                                 render={(item, index) => (
                                     <ListMenuItem 
                                         key={index} 
                                         {...item} 
                                         mobile={false} 
                                         menuTab={false} 
-                                        handleHomeList={handleHomeList} 
+                                        handleHomeList={this.handleHomeList} 
                                     />
                                 )}
                             />
@@ -171,14 +185,14 @@ class Header extends Component {
                 <ListMenu 
                     mobile={true}
                     menuTab={false}
-                    listInfo={navListItems}
+                    listInfo={this.state.navListItems}
                     render={(item, index) => (
                         <ListMenuItem 
                             key={index} 
                             {...item} 
                             mobile={true}
                             menuTab={false}
-                            handleHomeList={handleHomeList} 
+                            handleHomeList={this.handleHomeList} 
                         />
                     )}
                 />

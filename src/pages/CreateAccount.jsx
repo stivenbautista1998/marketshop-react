@@ -16,7 +16,7 @@ const CreateAccount = () => {
                 <header>
                     <nav className="header-home-nav no-fixed">
                         <img className="menu-icon" src={menuSvg} alt="menu icon" />
-                        <Link to="/"><img className="logo-icon-small" src={logoSvg} alt="logo of the webpage" /></Link>
+                        <Link to="/login"><img className="logo-icon-small" src={logoSvg} alt="logo of the webpage" /></Link>
                         <img className="shopping-cart" src={shoppingCartSvg} alt="icon of a shopping cart" />
                     </nav>
                 </header>

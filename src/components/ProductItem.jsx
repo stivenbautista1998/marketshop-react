@@ -15,11 +15,21 @@ const ProductItem = ({ product }) => {
 
     let imgUrl = (isSelected ? selectedCartSvg : addToCartSvg);
 
+
+    // when the page is loaded then we check if this product is one of the selected products on the shopping cart tab.
     useEffect(() => {
-        if(state.lastRemoved?.id === product.id) { // the first time state.lastRemoved is equal to null .id doesn't exist
-            setIsSelected(false);
-        }
+        state.cart.forEach((productItem) => {
+            if(productItem.id === product.id) setIsSelected(true);
+        });
+    }, []);
+
+
+    // if lastRemoved is equal to this product id then the product has be unselected.
+    useEffect(() => {
+        // the first time state.lastRemoved is equal to null .id doesn't exist that's why I use the sign "?."
+        if(state.lastRemoved?.id === product.id) setIsSelected(false);
     }, [state.lastRemoved]);
+
 
     function handleProduct() {
         if(isSelected) {
