@@ -3,8 +3,13 @@ import AppContext from '../context/AppContext';
 import { ProductOrdered } from '../components/ProductOrdered';
 import { becomeDollar } from '@helpers/format';
 
+import noShopSvg from '@icons/no-shop.svg';
 
-const ShoppingCardTab = ({ showShoppingCardTab, shoppingCardRightPosition, unselectProduct, refHeader }) => {
+const NoProductSelected = () => (
+    <img className="no-shop-icon" src={noShopSvg} alt="image of shopping car" />
+);
+
+const ShoppingCardTab = ({ showShoppingCardTab, shoppingCardRightPosition, refHeader }) => {
     console.log("showing ShoppingCardTab!");
     const { state, removeFromCart } = useContext(AppContext);
 
@@ -53,6 +58,7 @@ const ShoppingCardTab = ({ showShoppingCardTab, shoppingCardRightPosition, unsel
                         deleteItem={() => removeFromCart(product)}
                     />
                 ))}
+                {state.cart.length === 0 && <NoProductSelected />}
             </div>
 
             <div className="shopping-card-bottom">
