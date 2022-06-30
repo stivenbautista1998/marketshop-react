@@ -15,9 +15,6 @@ const ProductList = () => {
                     <ProductItem 
                         key={product.id}
                         product={product}
-                        /* name={product.title}
-                        price={product.price}
-                        imgProduct={product.images[0]}  */
                     />
                 ))}                
             </main>

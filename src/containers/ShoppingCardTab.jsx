@@ -4,7 +4,7 @@ import { ProductOrdered } from '../components/ProductOrdered';
 import { becomeDollar } from '@helpers/format';
 
 
-const ShoppingCardTab = ({ showShoppingCardTab, shoppingCardRightPosition, refHeader }) => {
+const ShoppingCardTab = ({ showShoppingCardTab, shoppingCardRightPosition, unselectProduct, refHeader }) => {
     console.log("showing ShoppingCardTab!");
     const { state, removeFromCart } = useContext(AppContext);
 
@@ -31,10 +31,6 @@ const ShoppingCardTab = ({ showShoppingCardTab, shoppingCardRightPosition, refHe
         } else {
             return "0px";
         }
-    }
-
-    function deleteItem() {
-        console.log("this will be eliminated");
     }
 
     function totalSelectedProducts() {

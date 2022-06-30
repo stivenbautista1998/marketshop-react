@@ -40,8 +40,8 @@ const Home = () => {
         }
     }, []);
 
-    function handleSelectedProduct() {
-        setIsSelected(!isSelected);
+    function unselectProduct() {
+        console.log("handling with unselectProduct!!")
     }
 
 
@@ -67,6 +67,7 @@ const Home = () => {
             <ShoppingCardTab
                 showShoppingCardTab={showShoppingCardTab}
                 shoppingCardRightPosition={rightPosition}
+                /* unselectProduct={unselectProduct} */
                 refHeader={refHeader}
             />
         

@@ -11,20 +11,23 @@ function showProductDetails(id) {
 
 const ProductItem = ({ product }) => {
     const [ isSelected, setIsSelected ] = React.useState(false);
-    const { addToCart } = useContext(AppContext);
+    const { addToCart, removeFromCart } = useContext(AppContext);
 
     let imgUrl = (isSelected ? selectedCartSvg : addToCartSvg);
 
     function handleProduct() {
-        addToCart(product);
-        setIsSelected(!isSelected);
+        if(isSelected) {
+            removeFromCart(product);
+            setIsSelected(false);
+        } else {
+            addToCart(product);
+            setIsSelected(true);
+        }
     }
-
-    console.log(product.images[0] ? product.images[0] : 'do not have image', product.title);
 
     return (
         <article className="article-section-item">
-            <div onClick={() => showProductDetails(infoProduct)} className="article-section-item__img new-img" style={{backgroundImage: `url(${product.images[0]})`}}>
+            <div onClick={() => showProductDetails(product)} className="article-section-item__img new-img" style={{backgroundImage: `url(${product.images[0]})`}}>
             </div>
             <div className={`article-section-item__content ${isSelected ? 'clickedBtn' : ''}`}>
                 <div className="card-text">
