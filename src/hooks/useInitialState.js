@@ -11,6 +11,7 @@ const useInitialState = () => {
     const addToCart = (product) => {
         setState({
             ...state,
+            lastRemoved: null,
             cart: [
                 ...state.cart,
                 product
