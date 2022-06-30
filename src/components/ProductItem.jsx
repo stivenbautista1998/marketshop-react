@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import AppContext from '@context/AppContext';
 import { capitalizeAll, becomeDollar } from '@helpers/format';
 
@@ -11,9 +11,15 @@ function showProductDetails(id) {
 
 const ProductItem = ({ product }) => {
     const [ isSelected, setIsSelected ] = React.useState(false);
-    const { addToCart, removeFromCart } = useContext(AppContext);
+    const { state, addToCart, removeFromCart } = useContext(AppContext);
 
     let imgUrl = (isSelected ? selectedCartSvg : addToCartSvg);
+
+    useEffect(() => {
+        if(state.lastRemoved?.id === product.id) { // the first time state.lastRemoved is equal to null .id doesn't exist
+            setIsSelected(false);
+        }
+    }, [state.lastRemoved]);
 
     function handleProduct() {
         if(isSelected) {

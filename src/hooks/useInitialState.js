@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 
 const initialState = {
-    cart: []
+    cart: [],
+    lastRemoved: null
 }
 
 const useInitialState = () => {
     const [ state, setState ] = useState(initialState);
-
-    console.log(state.cart);
 
     const addToCart = (product) => {
         setState({
@@ -22,6 +21,7 @@ const useInitialState = () => {
     const removeFromCart = ( productToDelete ) => {
         setState({
             ...state,
+            lastRemoved: productToDelete,
             cart: state.cart.filter((product) => product.id !== productToDelete.id) // filter returns an array already
         });
     }
