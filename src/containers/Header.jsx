@@ -28,7 +28,7 @@ const navListItems = [
 	{selected: false, name: 'closes'},
 	{selected: false, name: 'electronics'},
 	{selected: false, name: 'furnitures'},
-	{selected: false, name: 'toys'},
+	{selected: false, name: 'shoes'},
 	{selected: false, name: 'others'}
 ];
 

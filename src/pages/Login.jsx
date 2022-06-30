@@ -1,4 +1,5 @@
 import React, { useRef } from "react";
+import { Link } from "react-router-dom";
 import { LoginForm } from "@containers/LoginForm";
 import { GeneralButton } from "@components/GeneralButton";
 import '@styles/components/Login.scss';
@@ -36,11 +37,13 @@ const Login = () => {
                 />
             </div>
             <div className="section-down">
-                <GeneralButton 
-                    buttonText="Sign up" 
-                    color="white" 
-                    clickHandler={showMyAccount} 
-                />
+                <Link to="/create-account">
+                    <GeneralButton 
+                        buttonText="Sign up" 
+                        color="white" 
+                        clickHandler={showMyAccount} 
+                    />
+                </Link>
             </div>
         </div>
     );

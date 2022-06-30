@@ -1,4 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
+import menuSvg from "@icons/menu-icon.svg";
+import shoppingCartSvg from "@icons/shopping-cart.svg";
+import arrowRightSvg from "@icons/arrow-right.svg";
 
 function showDetails() {
     console.log("showDetails has been clicked!!");
@@ -9,9 +14,9 @@ const MyOrders = () => {
         <div className="wrapper-login">
             <header className="header-my-orders">
                 <nav className="header-home-nav nav--my-orders">
-                    <img className="menu-icon" src="../assets/icons/menu-icon.svg" alt="menu icon" />
-                    <a className="style-no-link" href="/"><h2>My orders</h2></a>
-                    <img className="shopping-cart" src="../assets/icons/shopping-cart.svg" alt="icon of a shopping cart" />
+                    <img className="menu-icon" src={menuSvg} alt="menu icon" />
+                    <Link className="style-no-link" to="/"><h2>My orders</h2></Link>
+                    <img className="shopping-cart" src={shoppingCartSvg} alt="icon of a shopping cart" />
                 </nav>
             </header>
             <main className="my-orders-section">
@@ -22,7 +27,7 @@ const MyOrders = () => {
                     </div>
                     <div className="back-container part-down">
                         <span className="price-product">$ 120,00</span>
-                        <img onClick={showDetails} className="close-icon close-item" src="../assets/icons/arrow-right.svg" alt="arrow right icon" />
+                        <Link to="/my-order"><img onClick={showDetails} className="close-icon close-item" src={arrowRightSvg} alt="arrow right icon" /></Link>
                     </div>
                 </article>
                 <article className="shopping-card-item my-orders__item">
@@ -32,7 +37,7 @@ const MyOrders = () => {
                     </div>
                     <div className="back-container part-down">
                         <span className="price-product">$ 235,00</span>
-                        <img onClick={showDetails} className="close-icon close-item" src="../assets/icons/arrow-right.svg" alt="arrow right icon" />
+                        <Link to="/my-order"><img onClick={showDetails} className="close-icon close-item" src={arrowRightSvg} alt="arrow right icon" /></Link>
                     </div>
                 </article>
                 <article className="shopping-card-item my-orders__item">
@@ -42,7 +47,7 @@ const MyOrders = () => {
                     </div>
                     <div className="back-container part-down">
                         <span className="price-product">$ 112,00</span>
-                        <img onClick={showDetails} className="close-icon close-item" src="../assets/icons/arrow-right.svg" alt="arrow right icon" />
+                        <Link to="/my-order"><img onClick={showDetails} className="close-icon close-item" src={arrowRightSvg} alt="arrow right icon" /></Link>
                     </div>
                 </article>
                 <article className="shopping-card-item my-orders__item">
@@ -52,7 +57,7 @@ const MyOrders = () => {
                     </div>
                     <div className="back-container part-down">
                         <span className="price-product">$ 210,00</span>
-                        <img onClick={showDetails} className="close-icon close-item" src="../assets/icons/arrow-right.svg" alt="arrow right icon" />
+                        <Link to="/my-order"><img onClick={showDetails} className="close-icon close-item" src={arrowRightSvg} alt="arrow right icon" /></Link>
                     </div>
                 </article>
                 <article className="shopping-card-item my-orders__item">
@@ -62,7 +67,7 @@ const MyOrders = () => {
                     </div>
                     <div className="back-container part-down">
                         <span className="price-product">$ 551,00</span>
-                        <img onClick={showDetails} className="close-icon close-item" src="../assets/icons/arrow-right.svg" alt="arrow right icon" />
+                        <Link to="/my-order"><img onClick={showDetails} className="close-icon close-item" src={arrowRightSvg} alt="arrow right icon" /></Link>
                     </div>
                 </article>
             </main>

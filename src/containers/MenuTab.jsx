@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { ListMenu } from '../components/ListMenu';
 import { ListMenuItem } from '../components/ListMenuItem';
 
@@ -13,7 +14,7 @@ const navListItems = [
 	{selected: false, name: 'closes'},
 	{selected: false, name: 'electronics'},
 	{selected: false, name: 'furnitures'},
-	{selected: false, name: 'toys'},
+	{selected: false, name: 'shoes'},
 	{selected: false, name: 'others'}
 ];
 
@@ -42,13 +43,13 @@ const MenuTab = ({ userEmail, showMenuTab, setShowMenuTab, setCanScrollHome }) =
                     )}
                 />
                 <ul className="menu-tab__logged">
-                    <li className="menu-tab__logged__item"><a className="style-no-link" href="./my-orders.html">My orders</a></li>
-                    <li className="menu-tab__logged__item"><a className="style-no-link" href="./my-account.html">My account</a></li>
+                    <li className="menu-tab__logged__item"><Link className="style-no-link" to="/my-orders">My orders</Link></li>
+                    <li className="menu-tab__logged__item"><Link className="style-no-link" to="/my-account">My account</Link></li>
                 </ul>
             </div>
             <div>
                 <span className="menu-tab__email">{userEmail}</span>
-                <a href="../" className="menu-tab__logging">Sign out</a>
+                <Link to="/" className="menu-tab__logging">Sign out</Link>
             </div>
         </div>
     );

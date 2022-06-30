@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { GeneralButton } from "@components/GeneralButton";
 
 const LoginForm = ({ formRef, handlerSubmit }) => {
@@ -15,7 +16,7 @@ const LoginForm = ({ formRef, handlerSubmit }) => {
                     color="green" 
                     clickHandler={handlerSubmit} 
                 />
-                <a href="./views/pass-recovery.html" className="general-message-link green__message">Forgot my password</a>
+                <Link to="/password-recovery" className="general-message-link green__message">Forgot my password</Link>
             </form>
         </main>
     );
