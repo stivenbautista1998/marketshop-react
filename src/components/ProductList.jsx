@@ -1,7 +1,7 @@
 import React from 'react';
 import { ProductItem } from './ProductItem';
 
-const ProductList = ({ products }) => {    
+const ProductList = ({ products, setProductDetailTab }) => {    
     return (
         <div className="wrapper-home">
             <main id="js-products-container" className="article-section">
@@ -9,6 +9,7 @@ const ProductList = ({ products }) => {
                     <ProductItem 
                         key={product.id}
                         product={product}
+                        setProductDetailTab={setProductDetailTab}
                     />
                 ))}                
             </main>

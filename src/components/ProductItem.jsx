@@ -5,11 +5,8 @@ import { capitalizeAll, becomeDollar } from '@helpers/format';
 import addToCartSvg from "@icons/add_to_cart.svg";
 import selectedCartSvg from "@icons/selected-to-buy.svg";
 
-function showProductDetails(id) {
-    console.log("The Id is: " + id);
-}
 
-const ProductItem = ({ product }) => {
+const ProductItem = ({ product, setProductDetailTab }) => {
     const [ isSelected, setIsSelected ] = React.useState(false);
     const { state, addToCart, removeFromCart } = useContext(AppContext);
 
@@ -43,7 +40,7 @@ const ProductItem = ({ product }) => {
 
     return (
         <article className="article-section-item">
-            <div onClick={() => showProductDetails(product)} className="article-section-item__img new-img" style={{backgroundImage: `url(${product.images[0]})`}}>
+            <div onClick={() => setProductDetailTab(product)} className="article-section-item__img new-img" style={{backgroundImage: `url(${product.images[0]})`}}>
             </div>
             <div className={`article-section-item__content ${isSelected ? 'clickedBtn' : ''}`}>
                 <div className="card-text">

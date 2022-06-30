@@ -12,12 +12,14 @@ const Home = () => {
     const [ showMenuTab, setShowMenuTab ] = React.useState(false);
     const [ canScroll, setCanScroll ] = React.useState(true);
     const [ showShoppingCardTab, setShowShoppingCardTab ] = React.useState(false);
+    const [ showProductDetail, setShowProductDetail ] = React.useState(false);
+    const [ productSelectedInfo, setProductSelectedInfo ] = React.useState({});
 
     const [ searchLeftPosition, setSearchLeftPosition ] = React.useState("5%");
     const [ rightPosition, setRightPosition ] = React.useState("0px");
     const refHeader = React.useRef();
 
-    const { products, updateProducts } = useProducts(); // using custom hooks
+    const { products, updateProducts } = useProducts(); // using custom hooks    
 
     
     function gettingResizedMargin() {
@@ -43,6 +45,20 @@ const Home = () => {
         }
     }, []);
 
+    // this receives the product info from ProductItem to then pass it to productDetail, and also it show it.
+    function getProductDetailInfo( productInfo ) {
+        setShowProductDetail(true);
+        setProductSelectedInfo(productInfo);
+    }
+
+    // this receives from productDetail the setState to remove the visibility class, and then it close the element after 200s
+    function closeProductDetailTab( showTab ) {
+        showTab(false);
+        setTimeout(() => {
+            setShowProductDetail(false);
+        }, 200);
+    }
+
 
     return (
         <section id="body-home" className={canScroll ? "" : "no-scroll"}>
@@ -61,16 +77,22 @@ const Home = () => {
                 setShowMenuTab={setShowMenuTab}
                 setCanScrollHome={setCanScroll}
             />
-            <ProductDetailTab 
+            {showProductDetail && <ProductDetailTab
+                closeProductDetailTab={closeProductDetailTab}
                 pDetailRightPosition={rightPosition}
-            />
+                productInfo={productSelectedInfo}
+                refHeader={refHeader}
+            />}
             <ShoppingCardTab
                 showShoppingCardTab={showShoppingCardTab}
                 shoppingCardRightPosition={rightPosition}
                 refHeader={refHeader}
             />
         
-            <ProductList products={products} />
+            <ProductList 
+                products={products} 
+                setProductDetailTab={getProductDetailInfo}
+            />
         </section>
     );
 }
