@@ -12,7 +12,6 @@ const ProductItem = ({ product, setProductDetailTab }) => {
 
     let imgUrl = (isSelected ? selectedCartSvg : addToCartSvg);
 
-
     // when the page is loaded then we check if this product is one of the selected products on the shopping cart tab.
     useEffect(() => {
         state.cart.forEach((productItem) => {
@@ -27,8 +26,25 @@ const ProductItem = ({ product, setProductDetailTab }) => {
         if(state.lastRemoved?.id === product.id) setIsSelected(false);
     }, [state.lastRemoved]);
 
+    function updateProductDetailState( newValue ) {
+        console.log("updateProductDetailState entrada: ");
+        console.log(state.cart);
+        if(newValue) { // become true
+            addToCart(product);
+            setIsSelected( newValue );
+        } else { // become false
+            removeFromCart(product);
+            setIsSelected(newValue);
+        }
+        setProductDetailTab({ product, isSelected: newValue, updateProductDetailState, showDetailTab: false });
+        console.log("updateProductDetailState salida: ");
+        console.log(state.cart);
+    }
+
 
     function handleProduct() {
+        console.log("handleProduct entrada: ");
+        console.log(state.cart);
         if(isSelected) {
             removeFromCart(product);
             setIsSelected(false);
@@ -36,11 +52,16 @@ const ProductItem = ({ product, setProductDetailTab }) => {
             addToCart(product);
             setIsSelected(true);
         }
+        setProductDetailTab({ product, isSelected: !isSelected, updateProductDetailState, showDetailTab: false });
+        console.log("handleProduct salida: ");
+        console.log(state.cart);
     }
 
     return (
         <article className="article-section-item">
-            <div onClick={() => setProductDetailTab(product)} className="article-section-item__img new-img" style={{backgroundImage: `url(${product.images[0]})`}}>
+            <div onClick={() => setProductDetailTab({ product, isSelected, updateProductDetailState, showDetailTab: true })} 
+                className="article-section-item__img new-img" 
+                style={{backgroundImage: `url(${product.images[0]})`}}>
             </div>
             <div className={`article-section-item__content ${isSelected ? 'clickedBtn' : ''}`}>
                 <div className="card-text">

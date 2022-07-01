@@ -19,7 +19,6 @@ const navListItems = [
 ];
 
 const MenuTab = ({ userEmail, showMenuTab, setShowMenuTab, setCanScrollHome }) => {
-    console.log("showing menu tab");
     function hideMenu() {
         setShowMenuTab(false);
         setCanScrollHome(true);

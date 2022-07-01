@@ -7,6 +7,8 @@ const initialState = {
 
 const useInitialState = () => {
     const [ state, setState ] = useState(initialState);
+    
+    console.log(state.cart);
 
     const addToCart = (product) => {
         setState({

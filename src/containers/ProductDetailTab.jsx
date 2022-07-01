@@ -5,9 +5,7 @@ import shoppingIconSvg from "@icons/shopping-icon.svg";
 import xIconSvg from "@icons/x-icon.svg";
 
 const ProductDetailTab = ({ productInfo, closeProductDetailTab, pDetailRightPosition, refHeader }) => {
-    console.log("showing ProductDetailTab");
     const [ showTab, setShowTab ] = React.useState(false);
-    const addedToCard = false;
 
     React.useEffect(() => {
         console.log(productInfo);
@@ -40,15 +38,11 @@ const ProductDetailTab = ({ productInfo, closeProductDetailTab, pDetailRightPosi
         }
     }
 
-    function addToShop() {
-        addedToCard = !addedToCard;
-    }
-
     return (
         <div className={`product-detail-tab ${showTab ? 'show-product-detail' : ''}`} 
             style={{ right: (isCorrectPosition() ? pDetailRightPosition : getRightPosition()) }} >
             <div>
-                <div className="new-img product-detail-img" style={{ backgroundImage: `url(${productInfo.images[0]})` }}>
+                <div className="new-img product-detail-img" style={{ backgroundImage: `url(${productInfo.product.images[0]})` }}>
                     <div className="wrapper-close-btn"></div>
                     <img onClick={() => closeProductDetailTab(setShowTab)} className="close-icon" src={xIconSvg} alt="close icon" />
                     <div className="points-wrapper">
@@ -59,15 +53,15 @@ const ProductDetailTab = ({ productInfo, closeProductDetailTab, pDetailRightPosi
                 </div>
                 
                 <div className="product-detail-info">
-                    <span id="js-detail-price" className="price-product">{becomeDollar(productInfo.price)}</span>
-                    <h3 id="js-detail-tittle" className="recovery-text">{productInfo.title}</h3>
-                    <p id="js-detail-descrip" className="recovery-text">{productInfo.description}</p>
+                    <span className="price-product">{becomeDollar(productInfo.product.price)}</span>
+                    <h3 className="recovery-text">{productInfo.product.title}</h3>
+                    <p className="recovery-text">{productInfo.product.description}</p>
                 </div>
             </div>
             <div className="product-detail-button">
-                <button data-product="" id="js-detail-btn" onClick={addToShop} className="general-button green--btn">
+                <button onClick={() => productInfo.updateProductDetailState(!productInfo.isSelected)} className="general-button green--btn">
                     <img className="normal--size" src={shoppingIconSvg} alt="image of shopping car" />
-                    <span id="js-detail-btn-text" className="product-detail-button__text">{addedToCard ? "Remove from cart" : "Add to cart" }</span>
+                    <span className="product-detail-button__text">{productInfo.isSelected ? "Remove from cart" : "Add to cart" }</span>
                 </button>
             </div>
         </div>

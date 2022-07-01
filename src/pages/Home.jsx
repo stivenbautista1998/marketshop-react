@@ -34,7 +34,6 @@ const Home = () => {
             setRightPosition(shoppingTabMarginRight + "px");
             setSearchLeftPosition(shoppingTabMarginRight + 15 + "px");
         }
-        console.log("checking resize!!");
     }
 
     React.useEffect(() => {
@@ -47,7 +46,9 @@ const Home = () => {
 
     // this receives the product info from ProductItem to then pass it to productDetail, and also it show it.
     function getProductDetailInfo( productInfo ) {
-        setShowProductDetail(true);
+        if(productInfo.showDetailTab) {
+            setShowProductDetail(true);        
+        }
         setProductSelectedInfo(productInfo);
     }
 

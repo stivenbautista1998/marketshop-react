@@ -10,7 +10,6 @@ const NoProductSelected = () => (
 );
 
 const ShoppingCardTab = ({ showShoppingCardTab, shoppingCardRightPosition, refHeader }) => {
-    console.log("showing ShoppingCardTab!");
     const { state, removeFromCart } = useContext(AppContext);
 
     // checking if the rightPosition given is correct or just a wrong value.
