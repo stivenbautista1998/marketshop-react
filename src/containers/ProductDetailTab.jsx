@@ -1,11 +1,16 @@
 import React from 'react';
 import { becomeDollar } from '../helpers/format';
 
-import shoppingIconSvg from "@icons/shopping-icon.svg";
+// import shoppingIconSvg from "@icons/shopping-icon.svg";
+
+import addShopCartSvg from "@icons/add-cart.svg";
+import removeShopCartSvg from "@icons/remove-cart.svg";
 import xIconSvg from "@icons/x-icon.svg";
 
 const ProductDetailTab = ({ productInfo, closeProductDetailTab, pDetailRightPosition, refHeader }) => {
     const [ showTab, setShowTab ] = React.useState(false);
+
+    const iconSelected = (productInfo.isSelected ? removeShopCartSvg : addShopCartSvg);
 
     React.useEffect(() => {
         console.log(productInfo);
@@ -60,7 +65,7 @@ const ProductDetailTab = ({ productInfo, closeProductDetailTab, pDetailRightPosi
             </div>
             <div className="product-detail-button">
                 <button onClick={() => productInfo.updateProductDetailState(!productInfo.isSelected)} className="general-button green--btn">
-                    <img className="normal--size" src={shoppingIconSvg} alt="image of shopping car" />
+                    <img className="normal--size" src={iconSelected} alt="image of shopping car" />
                     <span className="product-detail-button__text">{productInfo.isSelected ? "Remove from cart" : "Add to cart" }</span>
                 </button>
             </div>

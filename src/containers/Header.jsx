@@ -7,7 +7,8 @@ import { CartCircle } from "@components/CartCircle";
 
 import logoSvg from "@icons/logo.svg";
 import menuSvg from "@icons/menu-icon.svg";
-import shopeCartSvg from "@icons/shopping-cart.svg";
+// import shopeCartSvg from "@icons/shopping-cart.svg";
+import shoppingIconSvg from "@icons/shopping-icon.svg";
 
 
 const userEmail = "stivenb1994@gmail.com";
@@ -171,8 +172,8 @@ class Header extends Component {
                             <CartCircle />
                             <img className="shopping-cart" 
                                 onClick={this.showShoppingCard} 
-                                src={shopeCartSvg} 
-                                alt="shopping's cart icon" 
+                                src={shoppingIconSvg} 
+                                alt="shopping cart icon" 
                             />
                         </div>
                     </div>
