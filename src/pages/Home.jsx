@@ -19,7 +19,7 @@ const Home = () => {
     const [ rightPosition, setRightPosition ] = React.useState("0px");
     const refHeader = React.useRef();
 
-    const { products, updateProducts } = useProducts(); // using custom hooks    
+    const { products, setProducts, updateProducts } = useProducts(); // using custom hooks    
 
     
     function gettingResizedMargin() {
@@ -60,6 +60,11 @@ const Home = () => {
         }, 200);
     }
 
+    function filterProductsBySearch( filterPhrase ) {
+        const result = products.filter(productItem => productItem.title.toLowerCase().includes(filterPhrase));
+        setProducts(result);
+    }
+
 
     return (
         <section id="body-home" className={canScroll ? "" : "no-scroll"}>
@@ -70,6 +75,7 @@ const Home = () => {
                 setShowShoppingCardTab={setShowShoppingCardTab}
                 searchLeftPosition={searchLeftPosition}
                 updateProducts={updateProducts}
+                filterBySearch={filterProductsBySearch}
                 refHeader={refHeader}
             />
             <MenuTab 

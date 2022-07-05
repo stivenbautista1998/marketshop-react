@@ -28,7 +28,7 @@ const useProducts = () => {
         productRequest();
     }
 
-    return { products, updateProducts};
+    return { products, setProducts, updateProducts};
 }
 
 export { useProducts };

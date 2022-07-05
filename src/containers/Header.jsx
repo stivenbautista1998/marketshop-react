@@ -13,14 +13,6 @@ import shoppingIconSvg from "@icons/shopping-icon.svg";
 
 const userEmail = "stivenb1994@gmail.com";
 
-function searchHandler(event) {
-    console.log(event);
-}
-
-function cleanSearchInput() {
-    console.log("something clicked!");
-}
-
 const initialNavItems = [
 	{ selected: true, name: 'all', categoryId: 0 },
 	{ selected: false, name: 'closes', categoryId: 1 },
@@ -38,6 +30,7 @@ class Header extends Component {
             showNav: false,
             showLogoApp: true,
             headerLoaded: false,
+            searchValue: '',
             navListItems: initialNavItems
         };
 
@@ -68,6 +61,7 @@ class Header extends Component {
                 };
             });
             this.setState({ navListItems: newNavListState });
+            this.setState({ searchValue: '' });
             this.props.updateProducts(idCategory);
         }
     }
@@ -179,9 +173,10 @@ class Header extends Component {
                     </div>
                 </nav>
                 <SearchProducts 
-                    leftPosition={leftPosition} 
-                    searchHandler={searchHandler} 
-                    cleanSearchInput={cleanSearchInput} 
+                    leftPosition={leftPosition}
+                    searchValue={this.state.searchValue}
+                    setSearchValue={(newValue) => this.setState({ searchValue: newValue })}
+                    filterBySearch={this.props.filterBySearch}
                 />
                 <ListMenu 
                     mobile={true}
