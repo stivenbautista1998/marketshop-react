@@ -45,7 +45,6 @@ const SearchProducts = ({ leftPosition = null, searchValue, setSearchValue, filt
         if(event.type === "keyup") {
             if(value.length > 3) {
                 if(event.keyCode === 13) { // enter key code
-                    // console.log("has been more than 3");
                     filterBySearch(value);
                 }
             }

@@ -265,6 +265,11 @@ a.grey__message:hover, a.green__message:hover {
     position: relative;
 }
 
+.name-product, .price-product {
+    margin-top: .4em;
+    display: block;
+}
+
 .price-product {
     font-family: 'Roboto', sans-serif;
     font-size: 1.4rem;
@@ -277,11 +282,11 @@ a.grey__message:hover, a.green__message:hover {
     font-size: 1.1rem;
     color: #797979;
     font-weight: 300;
-}
-
-.name-product, .price-product {
-    margin-top: .4em;
-    display: block;
+    max-width: 100px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
 }
 
 .clickedBtn .circle-border {
@@ -832,8 +837,10 @@ a.grey__message:hover, a.green__message:hover {
     }
 }
 
-@media (min-width: 600px) {
-    
+@media (min-width: 415px) {
+    .name-product {
+        max-width: 133px;
+    }
 }
 
 
@@ -846,6 +853,10 @@ a.grey__message:hover, a.green__message:hover {
     .filler {
         margin: 0 0.5em 0px 0.5em;
         flex: 0 0 208px;
+    }
+
+    .name-product {
+        max-width: 155px;
     }
 }
 
