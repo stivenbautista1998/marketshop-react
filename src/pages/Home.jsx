@@ -26,11 +26,11 @@ const Home = () => {
     
     function gettingResizedMargin() {
         if(window.innerWidth < 500) {
-            setRightPosition("0px"); // js-product-detail  js-shopping-card-tab
-            setSearchLeftPosition("5%"); // .search-home-section
+            setRightPosition("0px");
+            setSearchLeftPosition("5%");
         } else if(window.innerWidth < 1187) {
-            setRightPosition("5px"); // productDetailWrapper.style.right = "5px";  btnShowShoppingCard.style.right = "5px";
-            setSearchLeftPosition("5%"); // searchInputElement.style.left = "5%";
+            setRightPosition("5px");
+            setSearchLeftPosition("5%");
         } else {
             const shoppingTabMarginRight = (window.innerWidth - refHeader.current.offsetWidth) / 2;
             setRightPosition(shoppingTabMarginRight + "px");
@@ -92,7 +92,6 @@ const Home = () => {
                 shoppingCardRightPosition={rightPosition}
                 refHeader={refHeader}
             />
-        
             <ProductList 
                 products={filteredProducts === null ? products : filteredProducts} 
                 setProductDetailTab={getProductDetailInfo}
