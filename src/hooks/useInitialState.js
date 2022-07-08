@@ -2,13 +2,12 @@ import React, { useState } from 'react';
 
 const initialState = {
     cart: [],
-    lastRemoved: null
+    lastRemoved: null,
+    productDetailOpen: null
 }
 
 const useInitialState = () => {
     const [ state, setState ] = useState(initialState);
-    
-    console.log(state.cart);
 
     const addToCart = (product) => {
         setState({
@@ -29,10 +28,18 @@ const useInitialState = () => {
         });
     }
 
+    const updateProductDetailOpen = ( productInfo ) => {
+        setState({
+            ...state,
+            productDetailOpen: productInfo
+        });
+    }
+
     return {
         state, 
         addToCart,
-        removeFromCart
+        removeFromCart,
+        updateProductDetailOpen
     };
 }
 

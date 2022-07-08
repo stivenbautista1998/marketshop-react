@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import AppContext from '@context/AppContext';
 import { capitalizeAll, becomeDollar } from '@helpers/format';
 
@@ -7,8 +7,9 @@ import selectedCartSvg from "@icons/selected-to-buy.svg";
 
 
 const ProductItem = ({ product, setProductDetailTab }) => {
-    const [ isSelected, setIsSelected ] = React.useState(false);
-    const { state, addToCart, removeFromCart } = useContext(AppContext);
+    const [ isSelected, setIsSelected ] = useState(false);
+    const { state, addToCart } = useContext(AppContext); // removeFromCart
+
 
     let imgUrl = (isSelected ? selectedCartSvg : addToCartSvg);
 
@@ -17,7 +18,7 @@ const ProductItem = ({ product, setProductDetailTab }) => {
         state.cart.forEach((productItem) => {
             if(productItem.id === product.id) setIsSelected(true);
         });
-    }, []);
+    }, [state.cart]);
 
 
     // if lastRemoved is equal to this product id then the product has be unselected.
@@ -26,40 +27,27 @@ const ProductItem = ({ product, setProductDetailTab }) => {
         if(state.lastRemoved?.id === product.id) setIsSelected(false);
     }, [state.lastRemoved]);
 
-    function updateProductDetailState( newValue ) {
-        console.log("updateProductDetailState entrada: ");
-        console.log(state.cart);
-        if(newValue) { // become true
-            addToCart(product);
-            setIsSelected( newValue );
-        } else { // become false
-            removeFromCart(product);
-            setIsSelected(newValue);
+
+    // it updates the product selection state, receiving the new selection value 
+    // and the info about if the it comes from the component or outside.
+    function selectProduct() {
+        if(isSelected !== true) { // become true
+            if(state.productDetailOpen?.id !== product.id) {
+                addToCart(product);
+                setProductDetailTab({ product, isSelected: true, showDetailTab: false, wrongSelection: false });
+            } else {
+                setProductDetailTab({ product, isSelected: true, showDetailTab: false, wrongSelection: true });
+            }
         }
-        setProductDetailTab({ product, isSelected: newValue, updateProductDetailState, showDetailTab: false });
-        console.log("updateProductDetailState salida: ");
-        console.log(state.cart);
     }
 
-
-    function handleProduct() {
-        console.log("handleProduct entrada: ");
-        console.log(state.cart);
-        if(isSelected) {
-            removeFromCart(product);
-            setIsSelected(false);
-        } else {
-            addToCart(product);
-            setIsSelected(true);
-        }
-        setProductDetailTab({ product, isSelected: !isSelected, updateProductDetailState, showDetailTab: false });
-        console.log("handleProduct salida: ");
-        console.log(state.cart);
+    function openDetailTab() {
+        setProductDetailTab({ product, isSelected, showDetailTab: true, wrongSelection: false });
     }
 
     return (
         <article className="article-section-item">
-            <div onClick={() => setProductDetailTab({ product, isSelected, updateProductDetailState, showDetailTab: true })} 
+            <div onClick={openDetailTab} 
                 className="article-section-item__img new-img" 
                 style={{backgroundImage: `url(${product.images[0]})`}}>
             </div>
@@ -73,7 +61,7 @@ const ProductItem = ({ product, setProductDetailTab }) => {
                     </span>
                 </div>
                 <div className="circle-border"></div>
-                <img className="add_to_card" onClick={handleProduct} src={imgUrl} alt="image of a shopping car" />
+                <img className="add_to_card" onClick={selectProduct} src={imgUrl} alt="image of a shopping car" />
             </div>
         </article>
     );

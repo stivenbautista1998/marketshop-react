@@ -1,22 +1,30 @@
-import React from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import AppContext from '@context/AppContext';
 import { becomeDollar } from '../helpers/format';
-
-// import shoppingIconSvg from "@icons/shopping-icon.svg";
 
 import addShopCartSvg from "@icons/add-cart.svg";
 import removeShopCartSvg from "@icons/remove-cart.svg";
 import xIconSvg from "@icons/x-icon.svg";
 
 const ProductDetailTab = ({ productInfo, closeProductDetailTab, pDetailRightPosition, refHeader }) => {
-    const [ showTab, setShowTab ] = React.useState(false);
+    const [ showTab, setShowTab ] = useState(false);    
+    const [ productSelected, setProductSelected ] = useState(productInfo.isSelected);
+    const { addToCart, removeFromCart, updateProductDetailOpen } = useContext(AppContext);
 
-    const iconSelected = (productInfo.isSelected ? removeShopCartSvg : addShopCartSvg);
+    const iconSelected = (productSelected ? removeShopCartSvg : addShopCartSvg);
 
-    React.useEffect(() => {
+    useEffect(() => {
         setTimeout(() => {
             setShowTab(true);
         }, 100);
     }, []);
+
+    // every time the a new product is selected and the ProductDetailTab is active, then update the product selection
+    useEffect(() => {
+        setProductSelected(productInfo.isSelected);
+        updateProductDetailOpen(productInfo.product);
+    }, [productInfo.product.id]);
+
 
     function isCorrectPosition() {
         if(pDetailRightPosition === "0px") {
@@ -42,13 +50,23 @@ const ProductDetailTab = ({ productInfo, closeProductDetailTab, pDetailRightPosi
         }
     }
 
+    function updateProductSelection() {
+        if(productSelected) {
+            removeFromCart(productInfo.product);
+            setProductSelected(false);
+        } else {
+            addToCart(productInfo.product);
+            setProductSelected(true);
+        }
+    }
+
     return (
         <div className={`product-detail-tab ${showTab ? 'show-product-detail' : ''}`} 
             style={{ right: (isCorrectPosition() ? pDetailRightPosition : getRightPosition()) }} >
             <div>
                 <div className="new-img product-detail-img" style={{ backgroundImage: `url(${productInfo.product.images[0]})` }}>
                     <div className="wrapper-close-btn"></div>
-                    <img onClick={() => closeProductDetailTab(setShowTab)} className="close-icon" src={xIconSvg} alt="close icon" />
+                    <img onClick={() => closeProductDetailTab(setShowTab, updateProductDetailOpen)} className="close-icon" src={xIconSvg} alt="close icon" />
                     <div className="points-wrapper">
                         <div className="point selected-point"></div>
                         <div className="point"></div>
@@ -61,11 +79,14 @@ const ProductDetailTab = ({ productInfo, closeProductDetailTab, pDetailRightPosi
                     <h3 className="recovery-text">{productInfo.product.title}</h3>
                     <p className="recovery-text">{productInfo.product.description}</p>
                 </div>
+                <div>
+                    {productInfo.wrongSelection ? 'The tab is open' : ''}
+                </div>
             </div>
             <div className="product-detail-button">
-                <button onClick={() => productInfo.updateProductDetailState(!productInfo.isSelected)} className="general-button green--btn">
+                <button onClick={updateProductSelection} className="general-button green--btn">
                     <img className="normal--size" src={iconSelected} alt="image of shopping car" />
-                    <span className="product-detail-button__text">{productInfo.isSelected ? "Remove from cart" : "Add to cart" }</span>
+                    <span className="product-detail-button__text">{productSelected ? "Remove from cart" : "Add to cart" }</span>
                 </button>
             </div>
         </div>

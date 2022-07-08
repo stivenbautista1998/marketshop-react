@@ -19,9 +19,7 @@ const Home = () => {
     const [ rightPosition, setRightPosition ] = React.useState("0px");
     const refHeader = React.useRef();
 
-    const { products, updateProducts, filteredProducts, updateFilteredProducts, loadingProducts } = useProducts(); // using custom hooks   
-    
-    console.log(products);
+    const { products, updateProducts, filteredProducts, updateFilteredProducts, loadingProducts } = useProducts(); // using custom hooks
 
     
     function gettingResizedMargin() {
@@ -47,16 +45,18 @@ const Home = () => {
     }, []);
 
     // this receives the product info from ProductItem to then pass it to productDetail, and also it show it.
-    function getProductDetailInfo( productInfo ) {
+    function getProductDetailInfo( productInfo ) {        
         if(productInfo.showDetailTab) {
-            setShowProductDetail(true);        
+            setShowProductDetail(true);
         }
         setProductSelectedInfo(productInfo);
     }
 
     // this receives from productDetail the setState to remove the visibility class, and then it close the element after 200s
-    function closeProductDetailTab( showTab ) {
+    function closeProductDetailTab( showTab, updateProductDetailOpen ) {
         showTab(false);
+        // setting to null the global state that indicates if the current product detail tab is open.
+        updateProductDetailOpen(null);
         setTimeout(() => {
             setShowProductDetail(false);
         }, 200);
