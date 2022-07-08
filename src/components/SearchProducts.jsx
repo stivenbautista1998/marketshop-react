@@ -46,6 +46,7 @@ const SearchProducts = ({ leftPosition = null, searchValue, setSearchValue, filt
             if(value.length > 3) {
                 if(event.keyCode === 13) { // enter key code
                     filterBySearch(value);
+                    console.log(value);
                 }
             }
         }

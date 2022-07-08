@@ -16,9 +16,6 @@ state.cart.forEach(item => {
 const CartCircle = () => {
     const { state } = useContext(AppContext);
 
-    console.log("CartCircle Log: ");
-    console.log(state.cart);
-
     if(state.cart.length > 0) {
         return (
             <div className="counter-circle">{state.cart.length}</div>

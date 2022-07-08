@@ -13,7 +13,6 @@ const ProductDetailTab = ({ productInfo, closeProductDetailTab, pDetailRightPosi
     const iconSelected = (productInfo.isSelected ? removeShopCartSvg : addShopCartSvg);
 
     React.useEffect(() => {
-        console.log(productInfo);
         setTimeout(() => {
             setShowTab(true);
         }, 100);

@@ -13,13 +13,15 @@ const Home = () => {
     const [ canScroll, setCanScroll ] = React.useState(true);
     const [ showShoppingCardTab, setShowShoppingCardTab ] = React.useState(false);
     const [ showProductDetail, setShowProductDetail ] = React.useState(false);
-    const [ productSelectedInfo, setProductSelectedInfo ] = React.useState({});
+    const [ productSelectedInfo, setProductSelectedInfo ] = React.useState({});    
 
     const [ searchLeftPosition, setSearchLeftPosition ] = React.useState("5%");
     const [ rightPosition, setRightPosition ] = React.useState("0px");
     const refHeader = React.useRef();
 
-    const { products, setProducts, updateProducts } = useProducts(); // using custom hooks    
+    const { products, updateProducts, filteredProducts, updateFilteredProducts, loadingProducts } = useProducts(); // using custom hooks   
+    
+    console.log(products);
 
     
     function gettingResizedMargin() {
@@ -60,11 +62,6 @@ const Home = () => {
         }, 200);
     }
 
-    function filterProductsBySearch( filterPhrase ) {
-        const result = products.filter(productItem => productItem.title.toLowerCase().includes(filterPhrase));
-        setProducts(result);
-    }
-
 
     return (
         <section id="body-home" className={canScroll ? "" : "no-scroll"}>
@@ -75,7 +72,7 @@ const Home = () => {
                 setShowShoppingCardTab={setShowShoppingCardTab}
                 searchLeftPosition={searchLeftPosition}
                 updateProducts={updateProducts}
-                filterBySearch={filterProductsBySearch}
+                filterBySearch={updateFilteredProducts}
                 refHeader={refHeader}
             />
             <MenuTab 
@@ -97,8 +94,9 @@ const Home = () => {
             />
         
             <ProductList 
-                products={products} 
+                products={filteredProducts === null ? products : filteredProducts} 
                 setProductDetailTab={getProductDetailInfo}
+                loadingProducts={loadingProducts}
             />
         </section>
     );
