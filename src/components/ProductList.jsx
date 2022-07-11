@@ -1,5 +1,6 @@
 import React from 'react';
 import { ProductItem } from './ProductItem';
+import { LoadingSkeleton } from './LoadingSkeleton';
 
 import notFoundImg from '@img/no-results.png';
 
@@ -11,6 +12,13 @@ const ProductList = ({ products, setProductDetailTab, loadingProducts }) => {
             <div className="filler"></div>
             <div className="filler"></div>
             <div className="filler"></div>
+        </>
+    );
+
+    const CompleteLoadingSkeleton = () => (
+        <>
+            <LoadingSkeleton />
+            {fiveTails}
         </>
     );
 
@@ -30,7 +38,7 @@ const ProductList = ({ products, setProductDetailTab, loadingProducts }) => {
         <div className="wrapper-home">
             <main className="article-section">
                 {productItems}
-                {!loadingProducts && productItemsSection}
+                {!!loadingProducts ? <CompleteLoadingSkeleton /> : productItemsSection }
             </main>
         </div>
     );
