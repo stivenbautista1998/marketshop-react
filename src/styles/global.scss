@@ -661,6 +661,42 @@ a.grey__message:hover, a.green__message:hover {
     width: 100%;
 }
 
+.error-detail-message {
+    width: fit-content;
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: .5em;
+    border-radius: 5px;
+    background-color: red;
+    color: var(--white);
+    margin: 0 auto;
+    visibility: hidden;
+}
+
+.show-detail-error-message {
+    visibility: visible;
+    animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+    transform: translate3d(0, 0, 0);
+}
+
+@keyframes shake {
+    10%, 90% {
+      transform: translate3d(-1px, 0, 0);
+    }
+    
+    20%, 80% {
+      transform: translate3d(2px, 0, 0);
+    }
+  
+    30%, 50%, 70% {
+      transform: translate3d(-4px, 0, 0);
+    }
+  
+    40%, 60% {
+      transform: translate3d(4px, 0, 0);
+    }
+}
+
 @media (min-width: 415px) {
     .header-home-section__list-option:first-child.selected, .header-home-section__list-option:first-child {
         margin-left: 0;

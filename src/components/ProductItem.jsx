@@ -8,6 +8,7 @@ import selectedCartSvg from "@icons/selected-to-buy.svg";
 
 const ProductItem = ({ product, setProductDetailTab }) => {
     const [ isSelected, setIsSelected ] = useState(false);
+    const [ wrongSelectionCounter, setWrongSelectionCounter ] = useState(0);
     const { state, addToCart } = useContext(AppContext); // removeFromCart
 
 
@@ -31,18 +32,21 @@ const ProductItem = ({ product, setProductDetailTab }) => {
     // it updates the product selection state, receiving the new selection value 
     // and the info about if the it comes from the component or outside.
     function selectProduct() {
-        if(isSelected !== true) { // become true
+        if(isSelected !== true) {
             if(state.productDetailOpen?.id !== product.id) {
                 addToCart(product);
-                setProductDetailTab({ product, isSelected: true, showDetailTab: false, wrongSelection: false });
+                setProductDetailTab({ product, isSelected: true, showDetailTab: false, wrongSelectionCounter: 0 });
+                if(wrongSelectionCounter !== 0) setWrongSelectionCounter(0);
             } else {
-                setProductDetailTab({ product, isSelected: true, showDetailTab: false, wrongSelection: true });
+                setProductDetailTab({ product, isSelected: true, showDetailTab: false, wrongSelectionCounter: wrongSelectionCounter + 1 });
+                setWrongSelectionCounter(wrongSelectionCounter + 1);
             }
         }
     }
 
-    function openDetailTab() {
-        setProductDetailTab({ product, isSelected, showDetailTab: true, wrongSelection: false });
+    function openDetailTab() {        
+        setProductDetailTab({ product, isSelected, showDetailTab: true, wrongSelectionCounter: 0 });
+        if(wrongSelectionCounter !== 0) setWrongSelectionCounter(0);
     }
 
     return (

@@ -9,6 +9,7 @@ import xIconSvg from "@icons/x-icon.svg";
 const ProductDetailTab = ({ productInfo, closeProductDetailTab, pDetailRightPosition, refHeader }) => {
     const [ showTab, setShowTab ] = useState(false);    
     const [ productSelected, setProductSelected ] = useState(productInfo.isSelected);
+    const [ showErrorMessage, setShowErrorMessage ] = useState(false);
     const { addToCart, removeFromCart, updateProductDetailOpen } = useContext(AppContext);
 
     const iconSelected = (productSelected ? removeShopCartSvg : addShopCartSvg);
@@ -24,6 +25,16 @@ const ProductDetailTab = ({ productInfo, closeProductDetailTab, pDetailRightPosi
         setProductSelected(productInfo.isSelected);
         updateProductDetailOpen(productInfo.product);
     }, [productInfo.product.id]);
+
+    useEffect(() => {
+        if(productInfo.wrongSelectionCounter !== 0) {
+            setShowErrorMessage(true);
+
+            setTimeout(() => {
+                setShowErrorMessage(false);
+            }, 1200);
+        }
+    }, [productInfo.wrongSelectionCounter]);
 
 
     function isCorrectPosition() {
@@ -79,11 +90,11 @@ const ProductDetailTab = ({ productInfo, closeProductDetailTab, pDetailRightPosi
                     <h3 className="recovery-text">{productInfo.product.title}</h3>
                     <p className="recovery-text">{productInfo.product.description}</p>
                 </div>
-                <div>
-                    {productInfo.wrongSelection ? 'The tab is open' : ''}
-                </div>
             </div>
             <div className="product-detail-button">
+                <div className={`error-detail-message ${ showErrorMessage ? "show-detail-error-message" : "" }`}>
+                    Tab open, Select the product here
+                </div>
                 <button onClick={updateProductSelection} className="general-button green--btn">
                     <img className="normal--size" src={iconSelected} alt="image of shopping car" />
                     <span className="product-detail-button__text">{productSelected ? "Remove from cart" : "Add to cart" }</span>
