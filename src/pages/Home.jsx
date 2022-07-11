@@ -19,7 +19,7 @@ const Home = () => {
     const [ rightPosition, setRightPosition ] = React.useState("0px");
     const refHeader = React.useRef();
 
-    const { products, updateProducts, filteredProducts, updateFilteredProducts, loadingProducts } = useProducts(); // using custom hooks
+    const { filteringProductsByMaximum: products, updateProducts, filteredProducts, updateFilteredProducts, loadingProducts } = useProducts(); // using custom hooks
 
     
     function gettingResizedMargin() {

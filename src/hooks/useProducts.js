@@ -9,26 +9,34 @@ function getEndpoint( categoryId ) {
     }
 }
 
-/* function getRightAmount( categoryId, productList ) {
-    if(categoryId === 0) {
-        return productList.splice(50, productList.length - 50);
+/**
+ * @param  {number} limit
+ * @param  {array} productList
+ * @returns {array}
+ * It filters the array you pass as the productList parameter and returns and array with 
+ * the amount of elements you indicate in the limit parameter.
+ */
+function limitByAmount( limit, productList ) {
+    if(productList.length > limit) {
+        const copyArray = [...productList];
+        return copyArray.splice(0, limit);
     } else {
         return productList;
     }
-} */
+}
 
 const useProducts = () => {
-    const [ products, setProducts ] = useState([]);
-    const [ filteredProducts, setFilteredProducts ] = useState(null);
+    const [ products, setProducts ] = useState([]); // general product info
+    const [ filteredProducts, setFilteredProducts ] = useState(null); // products filtered by a search parameter.
     const [ loadingProducts, setLoadingProducts ] = useState(true);
 
-    /* const [ currentCategoryProducts, setCurrentCategoryProducts ] = useState(0);
-    const productsToShow = getRightAmount(currentCategoryProducts, products); */
+    const [ filteringProductsByMaximum, setFilteringProductsByMaximum ] = useState([]); // maximum amount of products is 50.
     
     useEffect(() => {
         const productRequest = async () => {
             const response = await axios(getEndpoint(0));
             setProducts(response.data);
+            setFilteringProductsByMaximum(limitByAmount(50, response.data));
             setLoadingProducts(false);
         };
         productRequest();
@@ -40,6 +48,7 @@ const useProducts = () => {
             const response = await axios(getEndpoint(categoryId));
             setFilteredProducts(null);
             setProducts(response.data);
+            setFilteringProductsByMaximum(limitByAmount(50, response.data));
             setLoadingProducts(false);
         };
         productRequest();
@@ -59,7 +68,7 @@ const useProducts = () => {
         setFilteredProducts(productResult);
     }
 
-    return { products, updateProducts, filteredProducts, updateFilteredProducts, loadingProducts };
+    return { filteringProductsByMaximum, updateProducts, filteredProducts, updateFilteredProducts, loadingProducts };
 }
 
 export { useProducts };
