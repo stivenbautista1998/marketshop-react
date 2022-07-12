@@ -44,12 +44,10 @@ const ShoppingCardTab = ({ showShoppingCardTab, shoppingCardRightPosition, refHe
     }
 
     return (
-        <div 
-            id="js-shopping-card-tab" 
-            className={`shopping-card-tab ${showShoppingCardTab ? "menu-active" : ""}`} 
+        <div className={`shopping-card-tab ${showShoppingCardTab ? "menu-active" : ""}`} 
             style={{ right: (isCorrectPosition() ? shoppingCardRightPosition : getRightPosition()) }}>
 
-            <div id="js-shopping-container-items" className="shopping-card-top">
+            <div className="shopping-card-top">
                 {state.cart.map((product) => (
                     <ProductOrdered
                         key={product.id}
@@ -63,13 +61,11 @@ const ShoppingCardTab = ({ showShoppingCardTab, shoppingCardRightPosition, refHe
             <div className="shopping-card-bottom">
                 <div className="shopping-card-total">
                     <span className="login-section__label shopping-card-total__text">Total</span>
-                    <span 
-                        id="js-shopping-total" 
-                        className="price-product shopping-card-total__price">
+                    <span className="price-product shopping-card-total__price">
                         {totalSelectedProducts()}
                     </span>
                 </div>
-                <button id="checkout-btn" className="general-button green--btn">
+                <button className="general-button green--btn">
                     Checkout
                 </button>
             </div>

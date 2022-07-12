@@ -25,7 +25,7 @@ const MenuTab = ({ userEmail, showMenuTab, setShowMenuTab, setCanScrollHome }) =
     }
 
     return (
-        <div id="js-menu-tab" className={`menu-tab ${showMenuTab ? "menu-active" : ""}`}>
+        <div className={`menu-tab ${showMenuTab ? "menu-active" : ""}`}>
             <img onClick={hideMenu} className="close-icon" src={closeIconSvg} alt="close icon" />
             <div>
                 <h2 className="menu-tab__tittle">CATEGORIES</h2>

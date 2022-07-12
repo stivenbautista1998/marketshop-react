@@ -139,8 +139,8 @@ class Header extends Component {
                 <nav className="nav-section">
                     <div ref={this.props.refHeader} className="header-home-nav">
                         <img className="menu-icon" onClick={this.showMenu} src={menuSvg} alt="menu icon" />
-                        <div id="js-left-nav" className={`left-nav ${this.state.showLogoApp ? "" : "hide-logo"}`}>
-                            <img id="js-link-logo" className="logo-icon-small" src={logoSvg} alt="logo of the webpage" />
+                        <div className={`left-nav ${this.state.showLogoApp ? "" : "hide-logo"}`}>
+                            <img className="logo-icon-small" src={logoSvg} alt="logo of the webpage" />
                             <ListMenu
                                 mobile={false}
                                 menuTab={false}
@@ -156,7 +156,7 @@ class Header extends Component {
                                 )}
                             />
                         </div>
-                        <h2 id="js-tittle-logo" className={this.state.showLogoApp ? "hide-logo" : ""}>Shopping cart</h2>
+                        <h2 className={this.state.showLogoApp ? "hide-logo" : ""}>Shopping cart</h2>
                         <div className="right-nav">
                             <UserMenu
                                 userEmail={userEmail}

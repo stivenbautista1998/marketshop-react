@@ -17,7 +17,7 @@ const PassRecovery = () => {
                 <label className="login-section__label" htmlFor="user-txt">Email address</label>
                 <input className="general-input login-section__recovery" id="user-txt" placeholder="stivenb1994@gmail.com" type="text" />
                 <Link to="/success-email">
-                    <button id="login-btn" className="general-button green--btn">
+                    <button className="general-button green--btn">
                         Submit
                     </button>
                 </Link>

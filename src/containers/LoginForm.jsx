@@ -10,7 +10,7 @@ const LoginForm = ({ formRef, handlerSubmit }) => {
                 <input className="general-input login-section__input" name="user-txt" type="text" />
                 <label className="login-section__label" htmlFor="password-txt">Password</label>
                 <input className="general-input login-section__input" name="password-txt" type="password" />
-                <div id="js-error-message" className="error-message">Invalid user ID and password combination</div>
+                <div className="error-message">Invalid user ID and password combination</div>
                 <GeneralButton 
                     buttonText="Log in" 
                     color="green" 

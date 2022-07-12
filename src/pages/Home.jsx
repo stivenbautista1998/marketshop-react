@@ -64,7 +64,7 @@ const Home = () => {
 
 
     return (
-        <section id="body-home" className={canScroll ? "" : "no-scroll"}>
+        <section className={canScroll ? "" : "no-scroll"}>
             <Header 
                 setShowMenuTab={setShowMenuTab} 
                 setCanScrollHome={setCanScroll} 

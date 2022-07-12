@@ -31,7 +31,7 @@ const CreateAccount = () => {
                 </main>
             </div>
             <div className="section-down">
-                <button id="create-account-btn" onClick={showLogin} className="general-button green--btn">
+                <button onClick={showLogin} className="general-button green--btn">
                     Create
                 </button>
             </div>

@@ -679,19 +679,13 @@ a.grey__message:hover, a.green__message:hover {
     transform: translate3d(0, 0, 0);
 }
 
+.general-message-link.green__message {
+    margin-left: .5em;
+}
+
 .skeleton-style {
     background-color: #404040;
     animation: loading-skeleton 300ms linear infinite alternate;
-}
-
-@keyframes loading-skeleton {
-    0% {        
-        background-color: hsl(180, 75%, 48%);
-    }
-
-    100% {
-        background-color: hsl(177, 67%, 47%);
-    }
 }
 
 .skeleton-style.price-product {
@@ -710,7 +704,15 @@ a.grey__message:hover, a.green__message:hover {
     border-radius: 50%;
 }
 
+@keyframes loading-skeleton {
+    0% {        
+        background-color: hsl(180, 75%, 48%);
+    }
 
+    100% {
+        background-color: hsl(177, 67%, 47%);
+    }
+}
 
 @keyframes shake {
     10%, 90% {

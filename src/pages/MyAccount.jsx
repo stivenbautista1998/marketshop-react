@@ -31,7 +31,7 @@ const MyAccount = () => {
                 </main>
             </div>
             <div className="section-down">
-                <button id="create-account-btn" onClick={editAccount} className="general-button white--btn">
+                <button onClick={editAccount} className="general-button white--btn">
                     Edit
                 </button>
             </div>

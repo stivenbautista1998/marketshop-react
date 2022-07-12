@@ -10,7 +10,7 @@ const UserMenu = ({ userEmail, showNav, handleMenuNav }) => {
                 <span className="email-menu__text">{userEmail}</span>
                 <img className="arrow-down-icon" src={arrowDownSvg} alt="arrow down image" />
             </div>
-            <div id="js-menu-nav" className={`email-menu__list ${showNav ? "show-section" : ""}` }>
+            <div className={`email-menu__list ${showNav ? "show-section" : ""}` }>
                 <ul className="email-list-ul">
                     <li className="email-list-ul__item"><Link to="/my-orders" className="style-no-link">My orders</Link></li>
                     <li className="email-list-ul__item"><Link to="/my-account" className="style-no-link">My account</Link></li>
