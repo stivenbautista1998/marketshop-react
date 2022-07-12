@@ -7,10 +7,7 @@ import { CartCircle } from "@components/CartCircle";
 
 import logoSvg from "@icons/logo.svg";
 import menuSvg from "@icons/menu-icon.svg";
-// import shopeCartSvg from "@icons/shopping-cart.svg";
 import shoppingIconSvg from "@icons/shopping-icon.svg";
-
-
 const userEmail = "stivenb1994@gmail.com";
 
 const initialNavItems = [
@@ -21,6 +18,7 @@ const initialNavItems = [
 	{ selected: false, name: 'shoes', categoryId: 4 },
 	{ selected: false, name: 'others', categoryId: 5 }
 ];
+
 
 class Header extends Component {
     constructor(props) {
@@ -40,7 +38,6 @@ class Header extends Component {
         this.showMenu = this.showMenu.bind(this);
         this.handleMenuNav = this.handleMenuNav.bind(this);
         this.removeShoppingTabStyle = this.removeShoppingTabStyle.bind(this);
-        this.showProductsSelected = this.showProductsSelected.bind(this);
         this.showShoppingCard = this.showShoppingCard.bind(this);
     }
 
@@ -104,10 +101,6 @@ class Header extends Component {
         this.setState({ showLogoApp: true });
     }
 
-    showProductsSelected() {
-        console.log("showProductsSelected message");
-    }
-
     showShoppingCard() {
         if(window.innerWidth < 500) { // if the screen size is more less than 500px then work with the mobile class for menu.  
             if(this.props.showShoppingCardTab === true) {
@@ -116,14 +109,12 @@ class Header extends Component {
                 this.props.setShowShoppingCardTab(true);
                 this.props.setCanScrollHome(false);
                 this.setState({ showLogoApp: false });
-                this.showProductsSelected();
             }
         } else { // if screen size >= 500px then work with the menu class for larger devices.
             if(this.props.showShoppingCardTab === true) {
                 this.removeShoppingTabStyle();
             } else {
                 this.props.setShowShoppingCardTab(true);
-                this.showProductsSelected();
             }
         }
     }

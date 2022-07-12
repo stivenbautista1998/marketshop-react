@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useId } from 'react';
 import AppContext from '../context/AppContext';
 import { ProductOrdered } from '../components/ProductOrdered';
 import { becomeDollar } from '@helpers/format';
@@ -10,7 +10,7 @@ const NoProductSelected = () => (
 );
 
 const ShoppingCardTab = ({ showShoppingCardTab, shoppingCardRightPosition, refHeader }) => {
-    const { state, removeFromCart } = useContext(AppContext);
+    const { state, removeFromCart, addOrder } = useContext(AppContext);
 
     // checking if the rightPosition given is correct or just a wrong value.
     function isCorrectPosition() {
@@ -43,6 +43,23 @@ const ShoppingCardTab = ({ showShoppingCardTab, shoppingCardRightPosition, refHe
         return becomeDollar(total);
     }
 
+    function generateId() {
+        return parseInt(Date.now() * (Math.random() * 10));
+    }
+
+    function buyOrder() {
+        const currentDate = new Date();
+        addOrder({
+            id: `key-order-${ generateId() }`,
+            date: `${currentDate.getDate()}.${currentDate.getMonth() + 1}.${currentDate.getFullYear()} ${currentDate.getHours()}:${currentDate.getMinutes()}`,
+            productsOrdered: [
+                ...state.cart
+            ]
+        });
+
+        console.log("ORDER! COMPLETED!");
+    }
+
     return (
         <div className={`shopping-card-tab ${showShoppingCardTab ? "menu-active" : ""}`} 
             style={{ right: (isCorrectPosition() ? shoppingCardRightPosition : getRightPosition()) }}>
@@ -65,7 +82,7 @@ const ShoppingCardTab = ({ showShoppingCardTab, shoppingCardRightPosition, refHe
                         {totalSelectedProducts()}
                     </span>
                 </div>
-                <button className="general-button green--btn">
+                <button className="general-button green--btn" onClick={buyOrder}>
                     Checkout
                 </button>
             </div>

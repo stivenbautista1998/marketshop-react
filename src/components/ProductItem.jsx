@@ -25,7 +25,11 @@ const ProductItem = ({ product, setProductDetailTab }) => {
     // if lastRemoved is equal to this product id then the product has be unselected.
     useEffect(() => {
         // the first time state.lastRemoved is equal to null .id doesn't exist that's why I use the sign "?."
-        if(state.lastRemoved?.id === product.id) setIsSelected(false);
+        if(state.lastRemoved.length !== 0) {
+            state.lastRemoved.forEach((deletedProduct) => {
+                if(deletedProduct.id === product.id) setIsSelected(false);
+            });
+        }
     }, [state.lastRemoved]);
 
 
