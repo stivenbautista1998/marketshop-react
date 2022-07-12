@@ -5,7 +5,7 @@ import { Home } from "@pages/Home";
 import { PassRecovery } from '@pages/PassRecovery';
 import { CreateAccount } from '@pages/CreateAccount';
 import { MyAccount } from "@pages/myAccount";
-import { MyOrder } from "@pages/MyOrder";
+import { MyOrderDetail } from "@pages/MyOrderDetail";
 import { MyOrders } from "@pages/MyOrders";
 import { SuccessEmail } from "@pages/SuccessEmail";
 import { NotFound } from "@pages/NotFound";
@@ -29,7 +29,7 @@ const App = () => {
                     <Route exact path="/password-recovery" element={<PassRecovery />} />
                     <Route exact path="/create-account" element={<CreateAccount />} />
                     <Route exact path="/my-account" element={<MyAccount />} />
-                    <Route exact path="/my-order" element={<MyOrder />} />
+                    <Route exact path="/my-order" element={<MyOrderDetail />} />
                     <Route exact path="/my-orders" element={<MyOrders />} />
                     <Route exact path="/success-email" element={<SuccessEmail />} />
                     <Route path="*" element={<NotFound />} />

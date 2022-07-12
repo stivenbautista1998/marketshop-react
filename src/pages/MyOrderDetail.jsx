@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import menuSvg from "@icons/menu-icon.svg";
 import shoppingCartSvg from "@icons/shopping-cart.svg";
 
-const MyOrder = () => {
+const MyOrderDetail = () => {
     return (
         <div className="wrapper-login">
             <header className="header-my-order">
@@ -75,4 +75,4 @@ const MyOrder = () => {
     )
 }
 
-export { MyOrder };
+export { MyOrderDetail };

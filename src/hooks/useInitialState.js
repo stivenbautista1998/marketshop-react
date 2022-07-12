@@ -1,10 +1,5 @@
 import React, { useState, useEffect } from 'react';
-
-/* const defaultOrderValue = {
-    id: "key-order-1",
-    date: "04.25.2021",
-    productsOrdered: [8, 10, 16, 24]
-}; */
+import { becomeDollar } from '@helpers/format';
 
 const initialState = {
     cart: [],
@@ -71,12 +66,19 @@ const useInitialState = () => {
 
     };
 
+    const totalSelectedProducts = ( productList ) => {
+        const reducerFunction = (accumulator, currentValue) => accumulator + currentValue.price;
+        const total = productList.reduce(reducerFunction, 0);
+        return becomeDollar(total);
+    }
+
     return {
         state, 
         addToCart,
         removeFromCart,
         updateProductDetailOpen,
-        addOrder
+        addOrder,
+        totalSelectedProducts
     };
 }
 

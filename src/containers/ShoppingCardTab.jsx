@@ -1,7 +1,6 @@
-import React, { useContext, useId } from 'react';
+import React, { useContext } from 'react';
 import AppContext from '../context/AppContext';
 import { ProductOrdered } from '../components/ProductOrdered';
-import { becomeDollar } from '@helpers/format';
 
 import noShopSvg from '@icons/no-shop.svg';
 
@@ -10,7 +9,7 @@ const NoProductSelected = () => (
 );
 
 const ShoppingCardTab = ({ showShoppingCardTab, shoppingCardRightPosition, refHeader }) => {
-    const { state, removeFromCart, addOrder } = useContext(AppContext);
+    const { state, removeFromCart, addOrder, totalSelectedProducts } = useContext(AppContext);
 
     // checking if the rightPosition given is correct or just a wrong value.
     function isCorrectPosition() {
@@ -35,12 +34,6 @@ const ShoppingCardTab = ({ showShoppingCardTab, shoppingCardRightPosition, refHe
         } else {
             return "0px";
         }
-    }
-
-    function totalSelectedProducts() {
-        const reducerFunction = (accumulator, currentValue) => accumulator + currentValue.price;
-        const total = state.cart.reduce(reducerFunction, 0);
-        return becomeDollar(total);
     }
 
     function generateId() {
@@ -79,7 +72,7 @@ const ShoppingCardTab = ({ showShoppingCardTab, shoppingCardRightPosition, refHe
                 <div className="shopping-card-total">
                     <span className="login-section__label shopping-card-total__text">Total</span>
                     <span className="price-product shopping-card-total__price">
-                        {totalSelectedProducts()}
+                        {totalSelectedProducts(state.cart)}
                     </span>
                 </div>
                 <button className="general-button green--btn" onClick={buyOrder}>
