@@ -29,8 +29,8 @@ const App = () => {
                     <Route exact path="/password-recovery" element={<PassRecovery />} />
                     <Route exact path="/create-account" element={<CreateAccount />} />
                     <Route exact path="/my-account" element={<MyAccount />} />
-                    <Route exact path="/my-order" element={<MyOrderDetail />} />
                     <Route exact path="/my-orders" element={<MyOrders />} />
+                    <Route exact path="/my-order/:id" element={<MyOrderDetail />} />
                     <Route exact path="/success-email" element={<SuccessEmail />} />
                     <Route path="*" element={<NotFound />} />
                 </Routes>

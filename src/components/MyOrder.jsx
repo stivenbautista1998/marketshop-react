@@ -18,7 +18,10 @@ const MyOrder = ({ orderInfo, totalOrdered }) => {
             </div>
             <div className="back-container part-down">
                 <span className="price-product">{totalOrdered()}</span>
-                <Link to="/my-order">
+                <Link
+                    to={`/my-order/${orderInfo.id}`}
+                    state={orderInfo}
+                >
                     <img onClick={showDetails}
                         className="close-icon close-item" 
                         src={arrowRightSvg} 

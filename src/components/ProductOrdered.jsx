@@ -3,7 +3,7 @@ import { capitalizeAll, becomeDollar } from '@helpers/format';
 
 import xIconSvg from '@icons/x-icon.svg';
 
-const ProductOrdered = ({ productInfo, deleteItem }) => {
+const ProductOrdered = ({ productInfo, deleteItem = null }) => {
     const [ removeProduct, setRemoveProduct ] = useState(false);
 
     function deleteProductOrdered() {
@@ -21,7 +21,11 @@ const ProductOrdered = ({ productInfo, deleteItem }) => {
                 </div>
                 <div className='back-container'>
                     <span className='price-product'>{becomeDollar(productInfo.price)} </span>
-                    <img onClick={deleteProductOrdered} className='close-icon close-item' src={xIconSvg} alt='close item' />
+                    {   
+                        deleteItem !== null ? 
+                        <img onClick={deleteProductOrdered} className='close-icon close-item' src={xIconSvg} alt='close item' /> 
+                        : ""
+                    }
                 </div>
             </article>
         </div>
