@@ -48,7 +48,7 @@ const MenuTab = ({ userEmail, showMenuTab, setShowMenuTab, setCanScrollHome }) =
             </div>
             <div>
                 <span className="menu-tab__email">{userEmail}</span>
-                <Link to="/" className="menu-tab__logging">Sign out</Link>
+                <Link to="/login" className="menu-tab__logging">Sign out</Link>
             </div>
         </div>
     );

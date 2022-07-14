@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { IconApp } from '@components/IconApp';
 
-import logoSvg from '@icons/logo.svg';
 import smsIconSvg from '@icons/sms-icon.svg';
 
 const SuccessEmail = () => {
@@ -9,7 +9,7 @@ const SuccessEmail = () => {
         <div className="wrapper-recovery">
             <header className="header-section-recovery">
                 <nav>
-                    <img className="logo-icon" src={logoSvg} alt="logo of the webpage" />
+                    <IconApp bigSize={true} />
                 </nav>
             </header>
             <main>

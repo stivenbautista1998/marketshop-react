@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { IconApp } from '@components/IconApp';
 
 import menuSvg from "@icons/menu-icon.svg";
-import logoSvg from "@icons/logo.svg";
 import shoppingCartSvg from "@icons/shopping-cart.svg";
 
 const editAccount = () => {
@@ -16,7 +16,9 @@ const MyAccount = () => {
                 <header>
                     <nav className="header-home-nav no-fixed">
                         <img className="menu-icon" src={menuSvg} alt="menu icon" />
-                        <Link to="/"><img className="logo-icon-small" src={logoSvg} alt="logo of the webpage" /></Link>
+                        <Link to="/">
+                            <IconApp />
+                        </Link>
                         <img className="shopping-cart" src={shoppingCartSvg} alt="icon of a shopping cart" />
                     </nav>
                 </header>

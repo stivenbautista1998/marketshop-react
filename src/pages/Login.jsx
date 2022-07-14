@@ -2,9 +2,8 @@ import React, { useRef } from "react";
 import { Link } from "react-router-dom";
 import { LoginForm } from "@containers/LoginForm";
 import { GeneralButton } from "@components/GeneralButton";
+import { IconApp } from '@components/IconApp';
 import '@styles/components/Login.scss';
-
-import logoSvg from '@icons/logo.svg';
 
 function showMyAccount() {
     console.log("just showMyAccount");
@@ -28,7 +27,7 @@ const Login = () => {
             <div className="section-up">
                 <header className="header-section-login">
                     <nav>
-                        <img className="logo-icon" src={logoSvg} alt="logo of the webpage" />
+                        <IconApp bigSize={true} />
                     </nav>
                 </header>
                 <LoginForm 

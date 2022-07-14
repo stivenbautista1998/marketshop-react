@@ -4,8 +4,8 @@ import { ListMenu } from '@components/ListMenu';
 import { ListMenuItem } from '@components/ListMenuItem';
 import { UserMenu } from '@components/UserMenu';
 import { CartCircle } from "@components/CartCircle";
+import { IconApp } from '@components/IconApp';
 
-import logoSvg from "@icons/logo.svg";
 import menuSvg from "@icons/menu-icon.svg";
 import shoppingIconSvg from "@icons/shopping-icon.svg";
 const userEmail = "stivenb1994@gmail.com";
@@ -131,7 +131,7 @@ class Header extends Component {
                     <div ref={this.props.refHeader} className="header-home-nav">
                         <img className="menu-icon" onClick={this.showMenu} src={menuSvg} alt="menu icon" />
                         <div className={`left-nav ${this.state.showLogoApp ? "" : "hide-logo"}`}>
-                            <img className="logo-icon-small" src={logoSvg} alt="logo of the webpage" />
+                            <IconApp />
                             <ListMenu
                                 mobile={false}
                                 menuTab={false}
