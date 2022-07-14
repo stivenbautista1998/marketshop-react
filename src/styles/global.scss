@@ -704,6 +704,10 @@ a.grey__message:hover, a.green__message:hover {
     border-radius: 50%;
 }
 
+.general-button.green--btn:disabled {
+    background-color: #CCC;
+}
+
 @keyframes loading-skeleton {
     0% {        
         background-color: hsl(180, 75%, 48%);

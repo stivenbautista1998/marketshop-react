@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import AppContext from '../context/AppContext';
 import { ProductOrdered } from '../components/ProductOrdered';
 
@@ -10,6 +10,7 @@ const NoProductSelected = () => (
 
 const ShoppingCardTab = ({ showShoppingCardTab, shoppingCardRightPosition, refHeader }) => {
     const { state, removeFromCart, addOrder, totalSelectedProducts } = useContext(AppContext);
+    const [ btnClickable, setBtnClickable ] = useState(false);
 
     // checking if the rightPosition given is correct or just a wrong value.
     function isCorrectPosition() {
@@ -40,17 +41,20 @@ const ShoppingCardTab = ({ showShoppingCardTab, shoppingCardRightPosition, refHe
         return parseInt(Date.now() * (Math.random() * 10));
     }
 
-    function buyOrder() {
-        const currentDate = new Date();
-        addOrder({
-            id: `key-order-${ generateId() }`,
-            date: `${currentDate.getDate()}.${currentDate.getMonth() + 1}.${currentDate.getFullYear()} ${currentDate.getHours()}:${currentDate.getMinutes()}`,
-            productsOrdered: [
-                ...state.cart
-            ]
-        });
+    function buyOrder() {        
+        if(state.cart.length) {
+            setBtnClickable(true);
+            const currentDate = new Date();
 
-        console.log("ORDER! COMPLETED!");
+            addOrder({
+                id: `key-order-${ generateId() }`,
+                date: `${currentDate.getDate()}.${currentDate.getMonth() + 1}.${currentDate.getFullYear()} ${currentDate.getHours()}:${currentDate.getMinutes()}`,
+                productsOrdered: [
+                    ...state.cart
+                ]
+            });
+            setBtnClickable(false);
+        }
     }
 
     return (
@@ -75,7 +79,11 @@ const ShoppingCardTab = ({ showShoppingCardTab, shoppingCardRightPosition, refHe
                         {totalSelectedProducts(state.cart)}
                     </span>
                 </div>
-                <button className="general-button green--btn" onClick={buyOrder}>
+                <button 
+                    className="general-button green--btn" 
+                    onClick={buyOrder} 
+                    disabled={btnClickable}
+                >
                     Checkout
                 </button>
             </div>
