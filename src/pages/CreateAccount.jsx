@@ -13,7 +13,7 @@ const CreateAccount = () => {
     return (
         <div className="wrapper-login">
             <div className="section-up">
-                <header>
+                <header className="box-shadow-header">
                     <nav className="header-home-nav no-fixed">
                         <img className="menu-icon" src={menuSvg} alt="menu icon" />
                         <Link className="no-underline" to="/login">

@@ -5,6 +5,7 @@ import { ListMenuItem } from '@components/ListMenuItem';
 import { UserMenu } from '@components/UserMenu';
 import { CartCircle } from "@components/CartCircle";
 import { IconApp } from '@components/IconApp';
+import { JustIcon } from '@components/JustIcon';
 
 import menuSvg from "@icons/menu-icon.svg";
 import shoppingIconSvg from "@icons/shopping-icon.svg";
@@ -128,7 +129,10 @@ class Header extends Component {
                                 )}
                             />
                         </div>
-                        <h2 className={this.state.showLogoApp ? "hide-logo" : ""}>Shopping cart</h2>
+                        <h2 className={this.state.showLogoApp ? "hide-logo" : "front-container"}>
+                            <JustIcon size="small" />
+                            Shopping cart
+                        </h2>
                         <div className="right-nav">
                             <UserMenu
                                 userEmail={userEmail}

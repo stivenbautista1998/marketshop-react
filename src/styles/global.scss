@@ -144,7 +144,12 @@ a.grey__message:hover, a.green__message:hover {
     max-width: 1180px;
     margin: 0 auto;
     justify-content: space-between;
-    padding: 1.4em;
+    align-items: center;
+    padding: .6em;
+}
+
+.box-shadow-header {
+    box-shadow: 0px 2px 4px rgb(0 0 0 / 5%);
 }
 
 .header-home-section__search {
@@ -721,22 +726,21 @@ a.grey__message:hover, a.green__message:hover {
 }
 
 .logo-icon-small {
-    height: 25px;
+    height: 41px;
     display: flex;
     align-items: center;
 }
 
 .text-logo {
-    margin-left: 0.3em;    
     font-weight: bold;
 }
 
 .normal-logo-text {
-    font-size: 1.6rem;
+    font-size: 1.8rem;
 }
 
 .big-logo-text {
-    font-size: 2.2rem;
+    font-size: 3rem;
 }
 
 .menu-tab-selected-item {
@@ -745,6 +749,8 @@ a.grey__message:hover, a.green__message:hover {
     border-radius: 2px;
     color: var(--hospital-green);
 }
+
+
 
 @keyframes loading-skeleton {
     0% {        
@@ -855,10 +861,6 @@ a.grey__message:hover, a.green__message:hover {
         overflow: scroll;
     }
 
-    .counter-circle {
-        top: -4px;
-    }
-
     .menu-icon {
         display: none;
     }
@@ -872,7 +874,7 @@ a.grey__message:hover, a.green__message:hover {
     .email-menu {
         position: relative;
         display: inline-block;
-        margin-right: 1.5em;
+        margin-right: 1.2em;
     }
 
     .email-menu__front {
@@ -919,7 +921,7 @@ a.grey__message:hover, a.green__message:hover {
         max-width: 320px;
         max-height: 500px;
         right: 5px;
-        top: 54px;
+        top: 55px;
         box-shadow: 0px 2px 4px rgb(0 0 0 / 10%);
         border-radius: 10px;
         transform: translateX(0);
@@ -976,7 +978,7 @@ a.grey__message:hover, a.green__message:hover {
 
 @media (min-width: 765px) {
     .logo-icon-small {
-        height: 33px;
+        height: 48px;
     }
 
     .left-nav {
@@ -993,7 +995,7 @@ a.grey__message:hover, a.green__message:hover {
         width: auto;
         margin-bottom: 0;
         overflow: unset;
-        margin-left: 2em;
+        margin-left: 1.6em;
     }
 
     .search-home-section {
@@ -1006,10 +1008,6 @@ a.grey__message:hover, a.green__message:hover {
 
     .shopping-card-tab {
         top: 65px;
-    }
-
-    .counter-circle {
-        top: 2px;
     }
 
     .menu-tab + .product-detail-tab {

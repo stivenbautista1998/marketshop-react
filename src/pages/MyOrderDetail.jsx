@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ProductOrdered } from '@components/ProductOrdered';
+import { JustIcon } from '@components/JustIcon';
 import AppContext from '../context/AppContext';
 
 import menuSvg from "@icons/menu-icon.svg";
@@ -9,14 +10,18 @@ import shoppingCartSvg from "@icons/shopping-cart.svg";
 const MyOrderDetail = () => {
     const { totalSelectedProducts } = useContext(AppContext);
     const { state } = useLocation();
-    console.log(state);
 
     return (
         <div className="wrapper-login">
             <header className="header-my-order">
                 <nav className="header-home-nav nav--my-orders">
                     <img className="menu-icon" src={menuSvg} alt="menu icon" />
-                    <Link className="style-no-link" to="/"><h2>My order</h2></Link>
+                    <Link className="style-no-link" to="/">
+                        <h2 className="front-container">
+                            <JustIcon responsiveSize={true} />
+                            My order
+                        </h2>
+                    </Link>
                     <img className="shopping-cart" src={shoppingCartSvg} alt="icon of a shopping cart" />
                 </nav>
             </header>
