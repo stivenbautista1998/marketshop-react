@@ -16,7 +16,7 @@ const MyAccount = () => {
                 <header>
                     <nav className="header-home-nav no-fixed">
                         <img className="menu-icon" src={menuSvg} alt="menu icon" />
-                        <Link to="/">
+                        <Link className="style-no-link" to="/">
                             <IconApp />
                         </Link>
                         <img className="shopping-cart" src={shoppingCartSvg} alt="icon of a shopping cart" />

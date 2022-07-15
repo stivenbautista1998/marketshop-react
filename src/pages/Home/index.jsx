@@ -5,6 +5,7 @@ import { ProductDetailTab } from '@containers/ProductDetailTab';
 import { ShoppingCardTab } from "@containers/ShoppingCardTab";
 import { ProductList } from "@components/ProductList";
 import { useProducts } from '@hooks/useProducts';
+import { useNavList } from "./hooks/useNavList";
 
 const userEmail = "stivenb1994@gmail.com";
 
@@ -13,13 +14,20 @@ const Home = () => {
     const [ canScroll, setCanScroll ] = React.useState(true);
     const [ showShoppingCardTab, setShowShoppingCardTab ] = React.useState(false);
     const [ showProductDetail, setShowProductDetail ] = React.useState(false);
-    const [ productSelectedInfo, setProductSelectedInfo ] = React.useState({});    
+    const [ productSelectedInfo, setProductSelectedInfo ] = React.useState({});
 
     const [ searchLeftPosition, setSearchLeftPosition ] = React.useState("5%");
     const [ rightPosition, setRightPosition ] = React.useState("0px");
     const refHeader = React.useRef();
 
-    const { filteringProductsByMaximum: products, updateProducts, filteredProducts, updateFilteredProducts, loadingProducts } = useProducts(); // using custom hooks
+    const { 
+        filteringProductsByMaximum: products,
+        filteredProducts, 
+        updateFilteredProducts,
+        updateProducts,
+        loadingProducts 
+    } = useProducts(); // using custom hooks
+    const { navListItems, updateList } = useNavList();
 
     
     function gettingResizedMargin() {
@@ -71,8 +79,10 @@ const Home = () => {
                 showShoppingCardTab={showShoppingCardTab}
                 setShowShoppingCardTab={setShowShoppingCardTab}
                 searchLeftPosition={searchLeftPosition}
-                updateProducts={updateProducts}
                 filterBySearch={updateFilteredProducts}
+                navListItems={navListItems}
+                updateList={updateList}
+                updateProducts={updateProducts}
                 refHeader={refHeader}
             />
             <MenuTab 
@@ -80,6 +90,9 @@ const Home = () => {
                 showMenuTab={showMenuTab} 
                 setShowMenuTab={setShowMenuTab}
                 setCanScrollHome={setCanScroll}
+                navListItems={navListItems}
+                updateList={updateList}
+                updateProducts={updateProducts}
             />
             {showProductDetail && <ProductDetailTab
                 closeProductDetailTab={closeProductDetailTab}

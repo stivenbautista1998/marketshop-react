@@ -1,27 +1,43 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ListMenu } from '../components/ListMenu';
-import { ListMenuItem } from '../components/ListMenuItem';
+import { ListMenu } from '@components/ListMenu';
+import { ListMenuItem } from '@components/ListMenuItem';
 
 import closeIconSvg from "@icons/x-icon.svg";
 
-function changeFilterSinceNav(event) {
-    console.log(event.target.innerText);
-}
-
-const navListItems = [
-	{selected: true, name: 'all'},
-	{selected: false, name: 'closes'},
-	{selected: false, name: 'electronics'},
-	{selected: false, name: 'furnitures'},
-	{selected: false, name: 'shoes'},
-	{selected: false, name: 'others'}
+const defaultListItems = [
+	{ selected: true, name: 'all', categoryId: 0 },
+	{ selected: false, name: 'closes', categoryId: 1 },
+	{ selected: false, name: 'electronics', categoryId: 2 },
+	{ selected: false, name: 'furnitures', categoryId: 3 },
+	{ selected: false, name: 'shoes', categoryId: 4 },
+	{ selected: false, name: 'others', categoryId: 5 }
 ];
 
-const MenuTab = ({ userEmail, showMenuTab, setShowMenuTab, setCanScrollHome }) => {
+const MenuTab = ({ 
+        userEmail, 
+        showMenuTab, 
+        setShowMenuTab, 
+        setCanScrollHome,
+        navListItems,
+        updateList,
+        updateProducts
+    }) => {
     function hideMenu() {
         setShowMenuTab(false);
         setCanScrollHome(true);
+    }
+
+    function changeFilterSinceNav(event) {
+        console.log(event.target.innerText);
+        
+        if(event.target.classList[1] !== "menu-tab-selected-item") {
+            const itemToSelect = event.target.innerText.toLowerCase();            
+            const idCategory = updateList(itemToSelect);
+            updateProducts(idCategory);
+            // event.target.classList.add("menu-tab-selected-item");
+            hideMenu();
+        }
     }
 
     return (

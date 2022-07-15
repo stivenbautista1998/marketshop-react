@@ -10,15 +10,6 @@ import menuSvg from "@icons/menu-icon.svg";
 import shoppingIconSvg from "@icons/shopping-icon.svg";
 const userEmail = "stivenb1994@gmail.com";
 
-const initialNavItems = [
-	{ selected: true, name: 'all', categoryId: 0 },
-	{ selected: false, name: 'closes', categoryId: 1 },
-	{ selected: false, name: 'electronics', categoryId: 2 },
-	{ selected: false, name: 'furnitures', categoryId: 3 },
-	{ selected: false, name: 'shoes', categoryId: 4 },
-	{ selected: false, name: 'others', categoryId: 5 }
-];
-
 
 class Header extends Component {
     constructor(props) {
@@ -28,8 +19,7 @@ class Header extends Component {
             showNav: false,
             showLogoApp: true,
             headerLoaded: false,
-            searchValue: '',
-            navListItems: initialNavItems
+            searchValue: ''
         };
 
         this.handleHomeList = this.handleHomeList.bind(this);
@@ -48,18 +38,9 @@ class Header extends Component {
     handleHomeList(event) {
         if(event.target.classList[1] !== "selected-item-desk") {
             const itemToSelect = event.target.innerText.toLowerCase();
-            let idCategory;
-            const newNavListState = this.state.navListItems.map((item) => {
-                if(item.name === itemToSelect) idCategory = item.categoryId;
-                return {
-                    selected: (item.selected === true || item.name !== itemToSelect ? false : true),
-                    name: item.name,
-                    categoryId: item.categoryId
-                };
-            });
-            this.setState({ navListItems: newNavListState });
-            this.setState({ searchValue: '' });
+            const idCategory = this.props.updateList(itemToSelect);
             this.props.updateProducts(idCategory);
+            this.setState({ searchValue: '' });
         }
     }
 
@@ -135,7 +116,7 @@ class Header extends Component {
                             <ListMenu
                                 mobile={false}
                                 menuTab={false}
-                                listInfo={this.state.navListItems}
+                                listInfo={this.props.navListItems}
                                 render={(item, index) => (
                                     <ListMenuItem 
                                         key={index} 
@@ -172,7 +153,7 @@ class Header extends Component {
                 <ListMenu 
                     mobile={true}
                     menuTab={false}
-                    listInfo={this.state.navListItems}
+                    listInfo={this.props.navListItems}
                     render={(item, index) => (
                         <ListMenuItem 
                             key={index} 

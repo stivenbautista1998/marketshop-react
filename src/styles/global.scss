@@ -171,7 +171,7 @@ a.grey__message:hover, a.green__message:hover {
 .search-home-section {
     position: fixed;
     z-index: 6;
-    top: 50px;
+    top: 54px;
     left: 5%;
     max-width: 450px;
     transition: transform .2s; /* time of transitions */
@@ -321,7 +321,7 @@ a.grey__message:hover, a.green__message:hover {
 .menu-tab__tittle {
     font-size: 1.4rem;
     font-weight: 700;
-    margin-bottom: 2.85em;
+    margin-bottom: 2em;
 }
 
 .menu-tab__main-list, .menu-tab__logged {
@@ -329,12 +329,15 @@ a.grey__message:hover, a.green__message:hover {
     font-size: 1.3rem;
     font-weight: 700;
     border-bottom: 1px solid rgba(151, 151, 151, 0.1);
-    margin-bottom: 2.85em;
+    margin-bottom: 2em;
+    padding-bottom: 2em;
 }
 
 .menu-tab__main-list__item, .menu-tab__logged__item {
-    margin-bottom: 2.85em;
     cursor: pointer;
+    height: 50px;
+    display: flex;
+    align-items: center;
 }
 
 .menu-tab__logged {
@@ -488,6 +491,7 @@ a.grey__message:hover, a.green__message:hover {
 
 .header-my-orders, .header-my-order {
     width: 100%;
+    box-shadow: 0px 2px 4px rgb(0 0 0 / 5%);
 }
 
 .my-orders-section {
@@ -733,6 +737,13 @@ a.grey__message:hover, a.green__message:hover {
 
 .big-logo-text {
     font-size: 2.2rem;
+}
+
+.menu-tab-selected-item {
+    border-left: 5px solid var(--hospital-green);
+    padding-left: 1em;
+    border-radius: 2px;
+    color: var(--hospital-green);
 }
 
 @keyframes loading-skeleton {
