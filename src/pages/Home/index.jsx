@@ -4,18 +4,12 @@ import { MenuTab } from '@containers/MenuTab';
 import { ProductDetailTab } from '@containers/ProductDetailTab';
 import { ShoppingCardTab } from "@containers/ShoppingCardTab";
 import { ProductList } from "@components/ProductList";
-import { useNavigate } from "react-router-dom";
 import { useProducts } from '@hooks/useProducts';
 import { useNavList } from "./hooks/useNavList";
 import { useHome } from "./hooks/useHome";
 
 
 const Home = ({ currentUser, setCurrentUser }) => {
-
-    if(currentUser === null) { // complete this code later.
-        const navigation = useNavigate();
-        navigation("/login", { replace: true });
-    }
 
     const {
         showMenuTab, 

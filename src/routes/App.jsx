@@ -9,6 +9,7 @@ import { MyOrderDetail } from "@pages/MyOrderDetail";
 import { MyOrders } from "@pages/MyOrders";
 import { SuccessEmail } from "@pages/SuccessEmail";
 import { NotFound } from "@pages/NotFound";
+import { ProtectedRoute } from "@components/ProtectedRoute";
 
 import AppContext from "@context/AppContext";
 import { useInitialState } from "@hooks/useInitialState";
@@ -27,7 +28,11 @@ const App = () => {
             <BrowserRouter>
                 <Routes>
                     <Route exact path="/" 
-                        element={<Home currentUser={currentUser} setCurrentUser={setCurrentUser} />} 
+                        element={
+                            <ProtectedRoute currentUser={currentUser}>
+                                <Home currentUser={currentUser} setCurrentUser={setCurrentUser} />
+                            </ProtectedRoute>
+                        }
                     />
                     <Route exact path="/login" 
                         element={<Login validateUser={validateUser} setCurrentUser={setCurrentUser} />}
