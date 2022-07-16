@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 const defaultUser = [
     {
+        id: "key-12343582774",
         username: "stivenbautista",
         image: "",
         email: "root@gmail.com",
@@ -9,7 +10,7 @@ const defaultUser = [
     }
 ];
 
-const useUser = () => {
+const useAuth = () => {
     const [ userInfo, setUserInfo ] = useState(defaultUser);
     const [ currentUser, setCurrentUser ] = useState(null);
 
@@ -30,4 +31,4 @@ const useUser = () => {
     return { userInfo, currentUser, setCurrentUser, validateUser, addNewUser };
 };
 
-export { useUser };
+export { useAuth };

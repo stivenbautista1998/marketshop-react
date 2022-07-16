@@ -13,7 +13,7 @@ import { ProtectedRoute } from "@components/ProtectedRoute";
 
 import AppContext from "@context/AppContext";
 import { useInitialState } from "@hooks/useInitialState";
-import { useUser } from "@hooks/useUser";
+import { useAuth } from "@hooks/useAuth";
 
 import '@styles/global.scss';
 import '@styles/icon-styles.scss';
@@ -21,27 +21,45 @@ import '@styles/icon-styles.scss';
 
 const App = () => {
     const initialState = useInitialState();
-    const { currentUser, setCurrentUser, validateUser, addNewUser } = useUser();
+    const { currentUser, setCurrentUser, validateUser, addNewUser } = useAuth();
 
     return (
         <AppContext.Provider value={initialState}>
             <BrowserRouter>
                 <Routes>
-                    <Route exact path="/" 
+                    <Route exact path="/"
                         element={
                             <ProtectedRoute currentUser={currentUser}>
                                 <Home currentUser={currentUser} setCurrentUser={setCurrentUser} />
                             </ProtectedRoute>
                         }
                     />
-                    <Route exact path="/login" 
+                    <Route exact path="/login"
                         element={<Login validateUser={validateUser} setCurrentUser={setCurrentUser} />}
                     />
                     <Route exact path="/password-recovery" element={<PassRecovery />} />
                     <Route exact path="/create-account" element={<CreateAccount addNewUser={addNewUser} />} />
-                    <Route exact path="/my-account" element={<MyAccount />} />
-                    <Route exact path="/my-orders" element={<MyOrders />} />
-                    <Route exact path="/my-order/:id" element={<MyOrderDetail />} />
+                    <Route exact path="/my-account" 
+                        element={
+                            <ProtectedRoute currentUser={currentUser}>
+                                <MyAccount />
+                            </ProtectedRoute>
+                        }
+                    />
+                    <Route exact path="/my-orders"
+                        element={
+                            <ProtectedRoute currentUser={currentUser}>
+                                <MyOrders />
+                            </ProtectedRoute>
+                        }
+                    />
+                    <Route exact path="/my-order/:id"
+                        element={
+                            <ProtectedRoute currentUser={currentUser}>
+                                <MyOrderDetail />
+                            </ProtectedRoute>
+                        }
+                    />
                     <Route exact path="/success-email" element={<SuccessEmail />} />
                     <Route path="*" element={<NotFound />} />
                 </Routes>
