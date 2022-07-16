@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import AppContext from '../context/AppContext';
 import { ProductOrdered } from '../components/ProductOrdered';
+import { generateId } from '@helpers/format';
 
 import noShopSvg from '@icons/no-shop.svg';
 
@@ -9,7 +10,7 @@ const NoProductSelected = () => (
 );
 
 const ShoppingCardTab = ({ showShoppingCardTab, shoppingCardRightPosition, refHeader }) => {
-    const { state, removeFromCart, addOrder, totalSelectedProducts } = useContext(AppContext);
+    const { currentState, removeFromCart, addOrder, totalSelectedProducts } = useContext(AppContext);
     const [ btnClickable, setBtnClickable ] = useState(false);
 
     // checking if the rightPosition given is correct or just a wrong value.
@@ -37,12 +38,8 @@ const ShoppingCardTab = ({ showShoppingCardTab, shoppingCardRightPosition, refHe
         }
     }
 
-    function generateId() {
-        return parseInt(Date.now() * (Math.random() * 10));
-    }
-
     function buyOrder() {        
-        if(state.cart.length) {
+        if(currentState.cart.length) {
             setBtnClickable(true);
             const currentDate = new Date();
 
@@ -50,7 +47,7 @@ const ShoppingCardTab = ({ showShoppingCardTab, shoppingCardRightPosition, refHe
                 id: `key-order-${ generateId() }`,
                 date: `${currentDate.getDate()}.${currentDate.getMonth() + 1}.${currentDate.getFullYear()} ${currentDate.getHours()}:${currentDate.getMinutes()}`,
                 productsOrdered: [
-                    ...state.cart
+                    ...currentState.cart
                 ]
             });
             setBtnClickable(false);
@@ -62,21 +59,21 @@ const ShoppingCardTab = ({ showShoppingCardTab, shoppingCardRightPosition, refHe
             style={{ right: (isCorrectPosition() ? shoppingCardRightPosition : getRightPosition()) }}>
 
             <div className="shopping-card-top">
-                {state.cart.map((product) => (
+                {currentState.cart.map((product) => (
                     <ProductOrdered
                         key={product.id}
                         productInfo={product}
                         deleteItem={() => removeFromCart(product)}
                     />
                 ))}
-                {state.cart.length === 0 && <NoProductSelected />}
+                {currentState.cart.length === 0 && <NoProductSelected />}
             </div>
 
             <div className="shopping-card-bottom">
                 <div className="shopping-card-total">
                     <span className="login-section__label shopping-card-total__text">Total</span>
                     <span className="price-product shopping-card-total__price">
-                        {totalSelectedProducts(state.cart)}
+                        {totalSelectedProducts(currentState.cart)}
                     </span>
                 </div>
                 <button 

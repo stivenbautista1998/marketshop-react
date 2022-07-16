@@ -1,16 +1,19 @@
-import React, { useRef } from "react";
+import React, { useRef, useContext } from 'react';
 import { Link } from "react-router-dom";
 import { LoginForm } from "@containers/LoginForm";
 import { GeneralButton } from "@components/GeneralButton";
 import { IconApp } from '@components/IconApp';
 import { useNavigate } from "react-router-dom";
+import AppContext from "@context/AppContext";
+
 import '@styles/components/Login.scss';
 
 function showMyAccount() {
     console.log("just showMyAccount");
 }
 
-const Login = ({ validateUser, setCurrentUser }) => {
+const Login = ({ currentUser, validateUser, setCurrentUser }) => {
+    const { getUserCurrentState } = useContext(AppContext);
     const formRef = useRef(null);
     let navigation = useNavigate();
 
@@ -25,6 +28,7 @@ const Login = ({ validateUser, setCurrentUser }) => {
             const userInfo = validateUser(data.user, data.password);
             if(userInfo) {
                 setCurrentUser(userInfo);
+                getUserCurrentState(userInfo);
                 navigation("/", { replace: true });
             } else {
                 console.log("wrong info!");
@@ -34,6 +38,11 @@ const Login = ({ validateUser, setCurrentUser }) => {
         }
         console.log(data);
     };
+
+    // if the user is logged in, then redirect to the home page.
+    if(currentUser) {
+        return navigation("/", { replace: true });
+    }
 
     return (
         <div className="wrapper-login">

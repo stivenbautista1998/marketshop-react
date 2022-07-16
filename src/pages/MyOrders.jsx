@@ -8,9 +8,9 @@ import menuSvg from "@icons/menu-icon.svg";
 import shoppingCartSvg from "@icons/shopping-cart.svg";
 
 const MyOrders = () => {
-    const { state, totalSelectedProducts } = useContext(AppContext);
+    const { currentState, totalSelectedProducts } = useContext(AppContext);
 
-    const orderList = state.orders.map((order) => 
+    const orderList = currentState.orders.map((order) => 
         <MyOrder 
             key={order.id} 
             orderInfo={order} 
@@ -33,7 +33,7 @@ const MyOrders = () => {
                 </nav>
             </header>
             <main className="my-orders-section">
-                {state.orders.length > 0 ? orderList : <div>No Orders Made</div>}
+                {currentState.orders.length > 0 ? orderList : <div>No Orders Made</div>}
             </main>
         </div>
     );

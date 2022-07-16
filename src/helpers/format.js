@@ -26,4 +26,8 @@ function becomeDollar(value) {
     return formatter.format(value);  
 }
 
-export { capitalize, capitalizeAll, becomeDollar };
+function generateId() {
+    return parseInt(Date.now() * (Math.random() * 10));
+}
+
+export { capitalize, capitalizeAll, becomeDollar, generateId };

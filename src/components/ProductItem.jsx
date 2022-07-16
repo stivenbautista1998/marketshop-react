@@ -9,35 +9,35 @@ import selectedCartSvg from "@icons/selected-to-buy.svg";
 const ProductItem = ({ product, setProductDetailTab }) => {
     const [ isSelected, setIsSelected ] = useState(false);
     const [ wrongSelectionCounter, setWrongSelectionCounter ] = useState(0);
-    const { state, addToCart } = useContext(AppContext); // removeFromCart
+    const { currentState, addToCart } = useContext(AppContext); // removeFromCart
 
 
     let imgUrl = (isSelected ? selectedCartSvg : addToCartSvg);
 
     // when the page is loaded then we check if this product is one of the selected products on the shopping cart tab.
     useEffect(() => {
-        state.cart.forEach((productItem) => {
+        currentState.cart.forEach((productItem) => {
             if(productItem.id === product.id) setIsSelected(true);
         });
-    }, [state.cart]);
+    }, [currentState.cart]);
 
 
     // if lastRemoved is equal to this product id then the product has be unselected.
     useEffect(() => {
-        // the first time state.lastRemoved is equal to null .id doesn't exist that's why I use the sign "?."
-        if(state.lastRemoved.length !== 0) {
-            state.lastRemoved.forEach((deletedProduct) => {
+        // the first time currentState.lastRemoved is equal to null .id doesn't exist that's why I use the sign "?."
+        if(currentState.lastRemoved.length !== 0) {
+            currentState.lastRemoved.forEach((deletedProduct) => {
                 if(deletedProduct.id === product.id) setIsSelected(false);
             });
         }
-    }, [state.lastRemoved]);
+    }, [currentState.lastRemoved]);
 
 
-    // it updates the product selection state, receiving the new selection value 
+    // it updates the product selection currentState, receiving the new selection value 
     // and the info about if the it comes from the component or outside.
     function selectProduct() {
         if(isSelected !== true) {
-            if(state.productDetailOpen?.id !== product.id) {
+            if(currentState.productDetailOpen?.id !== product.id) {
                 addToCart(product);
                 setProductDetailTab({ product, isSelected: true, showDetailTab: false, wrongSelectionCounter: 0 });
                 if(wrongSelectionCounter !== 0) setWrongSelectionCounter(0);

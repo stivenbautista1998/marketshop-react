@@ -35,10 +35,12 @@ const App = () => {
                         }
                     />
                     <Route exact path="/login"
-                        element={<Login validateUser={validateUser} setCurrentUser={setCurrentUser} />}
+                        element={<Login validateUser={validateUser} currentUser={currentUser} setCurrentUser={setCurrentUser} />}
                     />
                     <Route exact path="/password-recovery" element={<PassRecovery />} />
-                    <Route exact path="/create-account" element={<CreateAccount addNewUser={addNewUser} />} />
+                    <Route exact path="/create-account"
+                        element={<CreateAccount validateUser={validateUser} addNewUser={addNewUser} />} 
+                    />
                     <Route exact path="/my-account" 
                         element={
                             <ProtectedRoute currentUser={currentUser}>
