@@ -135,8 +135,9 @@ class Header extends Component {
                         </h2>
                         <div className="right-nav">
                             <UserMenu
-                                userEmail={userEmail}
+                                userEmail={ this.props.userInfo?.username ? this.props.userInfo.username : "No selected" }
                                 showNav={this.state.showNav}
+                                setCurrentUser={this.props.setCurrentUser}
                                 handleMenuNav={this.handleMenuNav}
                             />
                             <CartCircle />

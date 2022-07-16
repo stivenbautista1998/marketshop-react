@@ -145,7 +145,7 @@ a.grey__message:hover, a.green__message:hover {
     margin: 0 auto;
     justify-content: space-between;
     align-items: center;
-    padding: .6em;
+    padding: 0.6em 1.2em;
 }
 
 .box-shadow-header {
@@ -361,7 +361,7 @@ a.grey__message:hover, a.green__message:hover {
 
 .menu-tab__logging, .menu-tab__email {
     font-size: 1.2rem;
-    display: block;
+    display: inline-block;
     margin-bottom: .5em;
 }
 
@@ -905,6 +905,9 @@ a.grey__message:hover, a.green__message:hover {
         padding: 1.5em;
         margin: 0 1em;
         font-weight: bold;
+        border: none;
+        background: none;
+        cursor: pointer;
     }
 
     .email-list-ul__item:nth-child(2n) {

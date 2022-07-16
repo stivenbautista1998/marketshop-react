@@ -12,6 +12,7 @@ import { NotFound } from "@pages/NotFound";
 
 import AppContext from "@context/AppContext";
 import { useInitialState } from "@hooks/useInitialState";
+import { useUser } from "@hooks/useUser";
 
 import '@styles/global.scss';
 import '@styles/icon-styles.scss';
@@ -19,15 +20,20 @@ import '@styles/icon-styles.scss';
 
 const App = () => {
     const initialState = useInitialState();
+    const { currentUser, setCurrentUser, validateUser, addNewUser } = useUser();
 
     return (
         <AppContext.Provider value={initialState}>
             <BrowserRouter>
                 <Routes>
-                    <Route exact path="/" element={<Home />} />
-                    <Route exact path="/login" element={<Login />} />
+                    <Route exact path="/" 
+                        element={<Home currentUser={currentUser} setCurrentUser={setCurrentUser} />} 
+                    />
+                    <Route exact path="/login" 
+                        element={<Login validateUser={validateUser} setCurrentUser={setCurrentUser} />}
+                    />
                     <Route exact path="/password-recovery" element={<PassRecovery />} />
-                    <Route exact path="/create-account" element={<CreateAccount />} />
+                    <Route exact path="/create-account" element={<CreateAccount addNewUser={addNewUser} />} />
                     <Route exact path="/my-account" element={<MyAccount />} />
                     <Route exact path="/my-orders" element={<MyOrders />} />
                     <Route exact path="/my-order/:id" element={<MyOrderDetail />} />
