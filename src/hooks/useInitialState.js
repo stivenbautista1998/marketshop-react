@@ -13,18 +13,11 @@ const useInitialState = () => {
     const [ state, setState ] = useState(initialState);
     const [ currentState, setCurrentState ] = useState({});
 
-    console.log(state);
-    console.log(currentState.orders);
-
-
     useEffect(() => {
-        // cleaning the cart information from the current state.
-        removeAllFromCart();
-
         // synchronizing the state with the current state.
         const updatedState = state.map((item) => {
             if(item.userId === currentState.userId) {
-                return currentState;
+                return { ...currentState, lastRemoved: [] };
             } else {
                 return item;
             }
@@ -85,13 +78,6 @@ const useInitialState = () => {
         });
     };
 
-    const removeAllFromCart = () => {
-        setCurrentState({
-            ...currentState,
-            cart: []
-        });
-    }
-
     const updateProductDetailOpen = ( productInfo ) => {
         setCurrentState({
             ...currentState,
@@ -108,7 +94,8 @@ const useInitialState = () => {
             orders: [
                 ...currentState.orders,
                 newOrder
-            ]
+            ],
+            cart: []
         });
     };
 

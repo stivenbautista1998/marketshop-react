@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { IconApp } from '@components/IconApp';
+import { GeneralButton } from "@components/GeneralButton";
 
 import menuSvg from "@icons/menu-icon.svg";
 import shoppingCartSvg from "@icons/shopping-cart.svg";
@@ -22,20 +23,22 @@ const MyAccount = () => {
                         <img className="shopping-cart" src={shoppingCartSvg} alt="icon of a shopping cart" />
                     </nav>
                 </header>
-                <main className="main-my-account">
-                        <h2 className="myaccount-tittle">My account</h2>
-                        <label className="login-section__label" htmlFor="name-txt">Name</label>
-                        <input className="general-input login-section__input" id="name-txt" readOnly placeholder="Stiven Bautista" type="text" />
-                        <label className="login-section__label" htmlFor="email-txt">Email address</label>
-                        <input className="general-input login-section__input" id="email-txt" readOnly placeholder="stivenb1994@gmail.com" type="text" />
-                        <label className="login-section__label" htmlFor="password-txt">Password</label>
-                        <input className="general-input login-section__input" id="password-txt" readOnly placeholder="************" type="password" />
-                </main>
+                <form className="main-my-account" action="/">
+                    <h2 className="myaccount-tittle">My account Carajo</h2>
+                    <label className="login-section__label" htmlFor="name-txt">Username</label>
+                    <input className="general-input login-section__input" name="name-txt" readOnly placeholder="StivenBautista" type="text" />
+                    <label className="login-section__label" htmlFor="email-txt">Email address</label>
+                    <input className="general-input login-section__input" name="email-txt" readOnly placeholder="stivenb1994@gmail.com" type="text" />
+                    <label className="login-section__label" htmlFor="password-txt">Password</label>
+                    <input className="general-input login-section__input" name="password-txt" readOnly placeholder="************" type="password" />
+                </form>
             </div>
             <div className="section-down">
-                <button onClick={editAccount} className="general-button white--btn">
-                    Edit
-                </button>
+                <GeneralButton
+                    buttonText="Edit"
+                    color="white"
+                    clickHandler={editAccount}
+                />
             </div>
         </div>
     );
