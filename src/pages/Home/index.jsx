@@ -64,7 +64,7 @@ const Home = ({ currentUser, setCurrentUser }) => {
                 setCurrentUser={setCurrentUser}
                 refHeader={refHeader}
             />
-            <MenuTab 
+            <MenuTab
                 userEmail={currentUser?.username}
                 showMenuTab={showMenuTab} 
                 setShowMenuTab={setShowMenuTab}
@@ -72,6 +72,7 @@ const Home = ({ currentUser, setCurrentUser }) => {
                 navListItems={navListItems}
                 updateList={updateList}
                 updateProducts={updateProducts}
+                setCurrentUser={setCurrentUser}
             />
             {showProductDetail && <ProductDetailTab
                 closeProductDetailTab={closeProductDetailTab}

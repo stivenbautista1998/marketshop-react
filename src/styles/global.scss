@@ -357,6 +357,9 @@ a.grey__message:hover, a.green__message:hover {
     font-weight: 500;
     text-decoration: none;
     color: var(--hospital-green);
+    border: none;
+    background: none;
+    cursor: pointer;
 }
 
 .menu-tab__logging, .menu-tab__email {

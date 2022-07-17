@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { ListMenu } from '@components/ListMenu';
 import { ListMenuItem } from '@components/ListMenuItem';
 
@@ -14,15 +14,24 @@ const defaultListItems = [
 	{ selected: false, name: 'others', categoryId: 5 }
 ];
 
-const MenuTab = ({ 
+const MenuTab = ({
         userEmail, 
         showMenuTab, 
         setShowMenuTab, 
         setCanScrollHome,
         navListItems,
         updateList,
-        updateProducts
+        updateProducts,
+        setCurrentUser
     }) => {
+
+    const navigation = useNavigate();
+
+    const singOut = () => {
+        setCurrentUser(null);
+        navigation("/login", { replace: true });
+    };
+
     function hideMenu() {
         setShowMenuTab(false);
         setCanScrollHome(true);
@@ -64,7 +73,9 @@ const MenuTab = ({
             </div>
             <div>
                 <span className="menu-tab__email">{userEmail}</span>
-                <Link to="/login" className="menu-tab__logging">Sign out</Link>
+                <button onClick={singOut} className="menu-tab__logging">
+                    Sign out
+                </button>
             </div>
         </div>
     );
