@@ -32,13 +32,22 @@ const useAuth = () => {
      * Call this function when you want to authenticate the user,
      * It returns an object with all the user info if it does exist. Otherwise, it will return false.
      */
-    const validateUser = ( email, password ) => {
+    const validateUser = ( email, password, login = false ) => {
         let authentic = false;
-        userInfo.forEach((user) => {
-            if(user.email === email && user.passWord === password) {
-                authentic = user;
-            }
-        });
+        if(login) { // this validates if the login info is right
+            userInfo.forEach((user) => {
+                if(user.email === email && user.passWord === password) {
+                    authentic = user;
+                }
+            });
+        } else { // this just validate if there is a user with the same email
+            userInfo.forEach((user) => {
+                if(user.email === email) {
+                    authentic = user;
+                }
+            });
+        }
+        
         return authentic;
     };
 

@@ -20,10 +20,10 @@ const Login = ({ currentUser, validateUser, setCurrentUser }) => {
             password: formData.get('password-txt')
         };
         if(data.user !== "" && data.password !== "") {
-            const userInfo = validateUser(data.user, data.password);
+            const userInfo = validateUser(data.user, data.password, true);
             if(userInfo) {
-                setCurrentUser(userInfo);
-                getUserCurrentState(userInfo);
+                setCurrentUser(userInfo); // set this user as the current one
+                getUserCurrentState(userInfo); // get all the state info for that user.
                 navigation("/", { replace: true });
             } else {
                 console.log("wrong info!");
