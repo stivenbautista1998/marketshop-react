@@ -48,13 +48,13 @@ const CreateAccount = ({ validateUser, addNewUser }) => {
                     </nav>
                 </header>
                 <form className="login-section" action="/login" ref={formRef}>
-                        <h2 className="myaccount-tittle">My account</h2>
+                        <h2 className="myaccount-tittle">Create Account</h2>
                         <label className="login-section__label" htmlFor="name-txt">Username</label>
-                        <input className="general-input login-section__input" name="username-txt" placeholder="ElenaLender" type="text" />
+                        <input className="general-input login-section__input" name="username-txt" placeholder="UserExample" type="text" />
                         <label className="login-section__label" htmlFor="email-txt">Email address</label>
-                        <input className="general-input login-section__input" name="email-txt" placeholder="elenalender@gmail.com" type="text" />
+                        <input className="general-input login-section__input" name="email-txt" placeholder="example@gmail.com" type="text" />
                         <label className="login-section__label" htmlFor="password-txt">Password</label>
-                        <input className="general-input login-section__input" name="password-txt" placeholder="************" type="password" />
+                        <input className="general-input login-section__input" name="password-txt" type="password" />
                 </form>
             </div>
             <div className="section-down">

@@ -12,13 +12,8 @@ const Login = ({ currentUser, validateUser, setCurrentUser }) => {
     const formRef = useRef(null);
     let navigation = useNavigate();
 
-
-    // if the user is logged in, then redirect to the home page.
-    if(currentUser) {
-        return navigation("/", { replace: true });
-    }
-
-    const handlerSubmit = () => {
+    const handlerSubmit = (event) => {
+        event.preventDefault();
         const formData = new FormData(formRef.current); // FormData: native object used to get info from forms easily.
         const data = {
             user: formData.get('user-txt'),
@@ -41,6 +36,11 @@ const Login = ({ currentUser, validateUser, setCurrentUser }) => {
 
     function showMyAccount() {
         navigation("/create-account");
+    }
+
+    // if the user is logged in, then redirect to the home page.
+    if(currentUser) {
+        return navigation("/", { replace: true });
     }
 
     return (
