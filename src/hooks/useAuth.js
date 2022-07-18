@@ -15,6 +15,7 @@ const useAuth = () => {
     const [ currentUser, setCurrentUser ] = useState(null);
 
     console.log({ userInfo });
+    console.log({ currentUser });
 
     /**
      * @param  {object} newUserInfo
@@ -40,8 +41,27 @@ const useAuth = () => {
         });
         return authentic;
     };
+
+    const editCurrentUserInfo = ( editedUserInfo ) => {
+        setCurrentUser({ 
+            ...editedUserInfo,
+            id: currentUser.id
+        });
+
+        const updatedUsersInfo = userInfo.map((item) => {
+            if(item.id === currentUser.id) {
+                return { 
+                    ...editedUserInfo,
+                    id: currentUser.id
+                }
+            } else {
+                return item;
+            }
+        })
+        setUserInfo(updatedUsersInfo);
+    }
     
-    return { userInfo, currentUser, setCurrentUser, validateUser, addNewUser };
+    return { userInfo, currentUser, setCurrentUser, validateUser, addNewUser, editCurrentUserInfo };
 };
 
 export { useAuth };

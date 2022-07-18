@@ -21,7 +21,7 @@ import '@styles/icon-styles.scss';
 
 const App = () => {
     const initialState = useInitialState();
-    const { currentUser, setCurrentUser, validateUser, addNewUser } = useAuth();
+    const { currentUser, setCurrentUser, validateUser, addNewUser, editCurrentUserInfo } = useAuth();
 
     return (
         <AppContext.Provider value={initialState}>
@@ -44,7 +44,10 @@ const App = () => {
                     <Route exact path="/my-account" 
                         element={
                             <ProtectedRoute currentUser={currentUser}>
-                                <MyAccount />
+                                <MyAccount 
+                                    currentUser={currentUser}
+                                    editCurrentUserInfo={editCurrentUserInfo} 
+                                />
                             </ProtectedRoute>
                         }
                     />
