@@ -30,7 +30,6 @@ const MyAccount = ({ currentUser, editCurrentUserInfo }) => {
 
     const onChangeHandler = (event) => {
         const { name, value } = event.target;
-
         if(name === "username-txt") {
             setUsername(value);
         } else if(name === "email-txt") {
@@ -38,8 +37,6 @@ const MyAccount = ({ currentUser, editCurrentUserInfo }) => {
         } else if(name === "password-txt") {
             setUserPassWord(value);
         }
-
-        console.log(name, value);
     }
     
     return (
@@ -62,7 +59,7 @@ const MyAccount = ({ currentUser, editCurrentUserInfo }) => {
                         style={ isEditable ? activeField : null }
                         onChange={onChangeHandler}
                         readOnly={ isEditable ? false : true }
-                        placeholder="StivenBautista" 
+                        placeholder="UserExample"
                         value={userName}
                         type="text" 
                     />
@@ -72,7 +69,7 @@ const MyAccount = ({ currentUser, editCurrentUserInfo }) => {
                         style={ isEditable ? activeField : null }
                         onChange={onChangeHandler}
                         readOnly={ isEditable ? false : true }
-                        placeholder="stivenb1994@gmail.com"
+                        placeholder="explample@gmail.com"
                         value={userEmail}
                         type="text" 
                     />
@@ -82,9 +79,8 @@ const MyAccount = ({ currentUser, editCurrentUserInfo }) => {
                         style={ isEditable ? activeField : null }
                         onChange={onChangeHandler}
                         readOnly={ isEditable ? false : true }
-                        placeholder="************"
                         value={userPassWord}
-                        type="password" 
+                        type="password"
                     />
                 </form>
             </div>
