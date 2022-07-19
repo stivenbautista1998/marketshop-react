@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { becomeDollar } from '@helpers/format';
+import { useStorageState } from './useStorageState';
 
 const initialState = [{
     userId: "user-key-995701412669",
@@ -10,8 +11,10 @@ const initialState = [{
 }];
 
 const useInitialState = () => {
-    const [ state, setState ] = useState(initialState);
-    const [ currentState, setCurrentState ] = useState({});
+    // const [ state, setState ] = useState(initialState);
+    const { items: state, saveItems: setState } = useStorageState("ORDERS_V1", initialState);
+    const { items: currentState, saveItems: setCurrentState } = useStorageState("CURRENT_ORDER_V1", {});
+    // const [ currentState, setCurrentState ] = useState({});
 
     useEffect(() => {
         // synchronizing the state with the current state.

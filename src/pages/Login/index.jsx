@@ -6,8 +6,8 @@ import { useLogin } from './hooks/useLogin';
 
 import '@styles/components/Login.scss';
 
-const Login = ({ currentUser, validateUser, setCurrentUser }) => {
-    const { formRef, handlerSubmit, showMyAccount } = useLogin(currentUser, validateUser, setCurrentUser);
+const Login = ({ validateUser, setCurrentUser }) => {
+    const { formRef, handlerSubmit, showMyAccount } = useLogin(validateUser, setCurrentUser);
 
     return (
         <div className="wrapper-login">

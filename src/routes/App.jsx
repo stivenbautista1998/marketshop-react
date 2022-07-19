@@ -10,6 +10,7 @@ import { MyOrders } from "@pages/MyOrders";
 import { SuccessEmail } from "@pages/SuccessEmail";
 import { NotFound } from "@pages/NotFound";
 import { ProtectedRoute } from "@components/ProtectedRoute";
+import { LoginProtectedRoute } from "@components/LoginProtectedRoute";
 
 import AppContext from "@context/AppContext";
 import { useInitialState } from "@hooks/useInitialState";
@@ -35,7 +36,11 @@ const App = () => {
                         }
                     />
                     <Route exact path="/login"
-                        element={<Login validateUser={validateUser} currentUser={currentUser} setCurrentUser={setCurrentUser} />}
+                        element={
+                            <LoginProtectedRoute currentUser={currentUser}>
+                                <Login validateUser={validateUser} setCurrentUser={setCurrentUser} />
+                            </LoginProtectedRoute>
+                        }
                     />
                     <Route exact path="/password-recovery" element={<PassRecovery />} />
                     <Route exact path="/create-account"

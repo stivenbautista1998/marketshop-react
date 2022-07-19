@@ -2,7 +2,7 @@ import { useRef, useContext } from 'react';
 import { useNavigate } from "react-router-dom";
 import AppContext from "@context/AppContext";
 
-const useLogin = (currentUser, validateUser, setCurrentUser) => {
+const useLogin = (validateUser, setCurrentUser) => {
     const { getUserCurrentState } = useContext(AppContext);
     const formRef = useRef(null);
     let navigation = useNavigate();
@@ -31,11 +31,6 @@ const useLogin = (currentUser, validateUser, setCurrentUser) => {
 
     function showMyAccount() {
         navigation("/create-account");
-    }
-
-    // if the user is logged in, then redirect to the home page.
-    if(currentUser) {
-        return navigation("/", { replace: true });
     }
 
     return { formRef, handlerSubmit, showMyAccount };
