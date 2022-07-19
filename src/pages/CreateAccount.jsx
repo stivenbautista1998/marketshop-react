@@ -80,9 +80,17 @@ const CreateAccount = ({ validateUser, addNewUser }) => {
                 <form id="create-account-form" className="login-section" action="/login" ref={formRef}>
                     <h2 className="myaccount-tittle">Create Account</h2>
                     <label className="login-section__label" htmlFor="name-txt">Username</label>
-                    <input className="general-input login-section__input" name="username-txt" placeholder="UserExample" type="text" />
+                    <input className="general-input login-section__input" 
+                        name="username-txt" 
+                        placeholder="UserExample" 
+                        type="text" 
+                    />
                     <label className="login-section__label" htmlFor="email-txt">Email address</label>
-                    <input className="general-input login-section__input" name="email-txt" placeholder="example@gmail.com" type="text" />
+                    <input className="general-input login-section__input" 
+                        name="email-txt" 
+                        placeholder="example@gmail.com" 
+                        type="text" 
+                    />
                     <label className="login-section__label" htmlFor="password-txt">Password</label>
                     <input className="general-input login-section__input" 
                         onChange={passwordOnChangeHandler}

@@ -46,7 +46,8 @@ const App = () => {
                             <ProtectedRoute currentUser={currentUser}>
                                 <MyAccount 
                                     currentUser={currentUser}
-                                    editCurrentUserInfo={editCurrentUserInfo} 
+                                    editCurrentUserInfo={editCurrentUserInfo}
+                                    validateUser={validateUser}
                                 />
                             </ProtectedRoute>
                         }

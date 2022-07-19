@@ -8,24 +8,42 @@ import shoppingCartSvg from "@icons/shopping-cart.svg";
 
 const activeField = { backgroundColor: "rgb(247, 247, 247)", paddingLeft: "0.7em" }
 
-const MyAccount = ({ currentUser, editCurrentUserInfo }) => {
+const MyAccount = ({ currentUser, editCurrentUserInfo, validateUser }) => {
     const [ isEditable, setIsEditable ] = useState(false);
     const [ userName, setUsername ] = useState(currentUser.username);
     const [ userEmail, setUserEmail ] = useState(currentUser.email);
     const [ userPassWord, setUserPassWord ] = useState(currentUser.passWord);
+    const [ confirmPassword, setConfirmPassword ] = useState("");
+    const [ showPassConfirm, setShowPassConfirm ] = useState(false);
 
     const editAccount = () => {
         if(isEditable) {
-            editCurrentUserInfo({
-                username: userName,
-                email: userEmail,
-                passWord: userPassWord,
-                image: ""
-            });
-            setIsEditable(false);
+            // we validate if the password fields are the same or if the password has not been changed. otherwise, won't save changes
+            if((userPassWord === confirmPassword) || (userPassWord > 0 && !showPassConfirm)) {
+                // if the email is different and already exist then show the message and won't save changes.
+                if(userEmail !== currentUser.email && validateUser(userEmail, "", false)) {
+                    console.log("email already exist!");
+                } else {
+                    editCurrentUserInfo({
+                        username: userName,
+                        email: userEmail,
+                        passWord: userPassWord,
+                        image: ""
+                    });
+                    coldFields();
+                }
+            } else {
+                console.log("the password is not the same");
+            }
         } else {
             setIsEditable(true);
         }
+    }
+
+    const coldFields = () => {
+        setIsEditable(false);
+        setConfirmPassword("");
+        setShowPassConfirm(false);
     }
 
     const onChangeHandler = (event) => {
@@ -36,6 +54,13 @@ const MyAccount = ({ currentUser, editCurrentUserInfo }) => {
             setUserEmail(value);
         } else if(name === "password-txt") {
             setUserPassWord(value);
+            if(value.length > 0) {
+                setShowPassConfirm(true);
+            } else {
+                setShowPassConfirm(false);
+            }
+        } else if(name === "repeat-password-txt") {
+            setConfirmPassword(value);
         }
     }
     
@@ -80,6 +105,18 @@ const MyAccount = ({ currentUser, editCurrentUserInfo }) => {
                         onChange={onChangeHandler}
                         readOnly={ isEditable ? false : true }
                         value={userPassWord}
+                        type="password"
+                    />
+                    <label style={ showPassConfirm ? activeField : { display: "none" } }
+                        className="login-section__label" 
+                        htmlFor="repeat-password-txt">
+                        Repeat Password
+                    </label>
+                    <input style={ showPassConfirm ? activeField : { display: "none" } }
+                        className="general-input login-section__input" 
+                        name="repeat-password-txt"
+                        value={confirmPassword}
+                        onChange={onChangeHandler}
                         type="password"
                     />
                 </form>
