@@ -1,13 +1,8 @@
-import React, { useRef, useContext } from 'react';
-import { LoginForm } from "@containers/LoginForm";
-import { GeneralButton } from "@components/GeneralButton";
-import { IconApp } from '@components/IconApp';
+import { useRef, useContext } from 'react';
 import { useNavigate } from "react-router-dom";
 import AppContext from "@context/AppContext";
 
-import '@styles/components/Login.scss';
-
-const Login = ({ currentUser, validateUser, setCurrentUser }) => {
+const useLogin = (currentUser, validateUser, setCurrentUser) => {
     const { getUserCurrentState } = useContext(AppContext);
     const formRef = useRef(null);
     let navigation = useNavigate();
@@ -43,28 +38,7 @@ const Login = ({ currentUser, validateUser, setCurrentUser }) => {
         return navigation("/", { replace: true });
     }
 
-    return (
-        <div className="wrapper-login">
-            <div className="section-up">
-                <header className="header-section-login">
-                    <nav>
-                        <IconApp bigSize={true} />
-                    </nav>
-                </header>
-                <LoginForm 
-                    formRef={formRef} 
-                    handlerSubmit={handlerSubmit} 
-                />
-            </div>
-            <div className="section-down">
-                <GeneralButton 
-                    buttonText="Sign up" 
-                    color="white" 
-                    clickHandler={showMyAccount} 
-                />
-            </div>
-        </div>
-    );
-}
+    return { formRef, handlerSubmit, showMyAccount };
+};
 
-export { Login };
+export { useLogin };
