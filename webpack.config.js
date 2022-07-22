@@ -1,8 +1,9 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const Dotenv = require('dotenv-webpack');
 
-module.exports = {
+module.exports = (env) => ({
     // ... Configuración de empaquetado
     entry: './src/index.js',
     output: {
@@ -10,8 +11,8 @@ module.exports = {
         filename: 'bundle.js',
         publicPath: '/'
     },
-    devtool: 'source-map',
-    mode: "development",
+    devtool: env.development ? 'eval-cheap-module-source-map' : 'source-map',
+    mode: env.development ? 'development' : 'production',
     resolve: {
         extensions: ['.js', '.jsx'],
         alias: {
@@ -65,6 +66,10 @@ module.exports = {
         }),
         new MiniCssExtractPlugin({
             filename: '[name].css'
+        }),
+        new Dotenv({
+            path: path.resolve(__dirname,`.env${env.development ? ".development" : ".production" }`),
+            systemvars: true,
         })
     ],
     devServer: {
@@ -75,4 +80,4 @@ module.exports = {
         historyApiFallback: true,
         port: 3005
     }
-}
+});

@@ -7,6 +7,7 @@ import { ProductList } from "@components/ProductList";
 import { useProducts } from '@hooks/useProducts';
 import { useNavList } from "./hooks/useNavList";
 import { useHome } from "./hooks/useHome";
+import { AppBtn } from "@components/AppBtn";
 
 
 const Home = ({ currentUser, setCurrentUser }) => {
@@ -46,7 +47,6 @@ const Home = ({ currentUser, setCurrentUser }) => {
             window.removeEventListener("resize", gettingResizedMargin);
         }
     }, []);
-    
 
     return (
         <section className={canScroll ? "" : "no-scroll"}>
@@ -90,6 +90,7 @@ const Home = ({ currentUser, setCurrentUser }) => {
                 setProductDetailTab={getProductDetailInfo}
                 loadingProducts={loadingProducts}
             />
+            <AppBtn />
         </section>
     );
 }
