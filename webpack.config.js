@@ -5,11 +5,13 @@ const Dotenv = require('dotenv-webpack');
 
 module.exports = (env) => ({
     // ... Configuración de empaquetado
-    entry: './src/index.js',
+    entry: {
+        bundle: './src/index.js'
+    },
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: 'bundle.js',
-        publicPath: '/'
+        filename: '[name].js',
+        publicPath: '/',
     },
     devtool: env.development ? 'eval-cheap-module-source-map' : 'source-map',
     mode: env.development ? 'development' : 'production',

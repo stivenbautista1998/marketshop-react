@@ -4,7 +4,7 @@
   "description": "A react project to master all the basis of react and work with a real environment.",
   "main": "src/index.js",
   "scripts": {
-    "clean": "rm -rf dist",
+    "clean": "rm dist",
     "start": "webpack-dev-server --env development --mode development",
     "build": "webpack --env production --mode production"
   },
@@ -15,12 +15,7 @@
     "axios": "0.27.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-router-dom": "6.3.0",
-    "workbox-core": "6.5.3",
-    "workbox-expiration": "6.5.3",
-    "workbox-precaching": "6.5.3",
-    "workbox-routing": "6.5.3",
-    "workbox-strategies": "6.5.3"
+    "react-router-dom": "6.3.0"
   },
   "devDependencies": {
     "@babel/core": "7.18.5",
