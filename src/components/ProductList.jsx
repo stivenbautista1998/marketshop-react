@@ -1,10 +1,11 @@
 import React from 'react';
 import { ProductItem } from './ProductItem';
 import { LoadingSkeleton } from './LoadingSkeleton';
+import { ErrorMessage } from './ErrorMessage';
 
 import notFoundImg from '@img/no-results.png';
 
-const ProductList = ({ products, setProductDetailTab, loadingProducts }) => {
+const ProductList = ({ products, setProductDetailTab, loadingProducts, productError }) => {
     const fiveTails = (
         <>
             <div className="filler"></div>
@@ -23,7 +24,7 @@ const ProductList = ({ products, setProductDetailTab, loadingProducts }) => {
     );
 
     const productItems = products.map((product) => (
-        <ProductItem 
+        <ProductItem
             key={product.id}
             product={product}
             setProductDetailTab={setProductDetailTab}
@@ -31,7 +32,15 @@ const ProductList = ({ products, setProductDetailTab, loadingProducts }) => {
     ));
 
     const productItemsSection = (
-        productItems.length > 0 ? fiveTails : <img className='not-found-icon' src={notFoundImg} alt="Product not found." />
+        productItems.length > 0 ? fiveTails : 
+        (productError === false ? 
+            <img
+                className='not-found-icon' 
+                src={notFoundImg} 
+                alt="Product not found." 
+            /> : 
+            <ErrorMessage />
+        )
     );
 
     return (

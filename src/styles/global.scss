@@ -757,6 +757,15 @@ a.grey__message:hover, a.green__message:hover {
     color: var(--hospital-green);
 }
 
+.error-app {
+    font-size: 1.5rem;
+    padding: 0.5em;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    background-color: #C7C7C7;
+    max-width: 250px;
+}
 
 
 @keyframes loading-skeleton {
@@ -960,6 +969,12 @@ a.grey__message:hover, a.green__message:hover {
         width: 360px;
         height: 360px;
     }
+
+    .error-app {
+        font-size: 1.8rem;
+        padding: 0.7em;
+        max-width: 380px;
+    }
 }
 
 @media (min-width: 415px) {
@@ -1022,5 +1037,11 @@ a.grey__message:hover, a.green__message:hover {
 
     .menu-tab + .product-detail-tab {
         top: 65px;
+    }
+
+    .error-app {
+        font-size: 2rem;
+        padding: 1em;
+        max-width: 500px;
     }
 }

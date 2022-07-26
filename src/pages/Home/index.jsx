@@ -31,7 +31,8 @@ const Home = ({ currentUser, setCurrentUser }) => {
         filteredProducts, 
         updateFilteredProducts,
         updateProducts,
-        loadingProducts 
+        loadingProducts,
+        error
     } = useProducts(); // using custom hooks
 
     const { navListItems, updateList } = useNavList();
@@ -84,6 +85,7 @@ const Home = ({ currentUser, setCurrentUser }) => {
                 products={filteredProducts === null ? products : filteredProducts} 
                 setProductDetailTab={getProductDetailInfo}
                 loadingProducts={loadingProducts}
+                productError={error}
             />
         </section>
     );
