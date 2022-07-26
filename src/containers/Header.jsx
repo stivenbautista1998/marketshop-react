@@ -9,7 +9,6 @@ import { JustIcon } from '@components/JustIcon';
 
 import menuSvg from "@icons/menu-icon.svg";
 import shoppingIconSvg from "@icons/shopping-icon.svg";
-const userEmail = "stivenb1994@gmail.com";
 
 
 class Header extends Component {

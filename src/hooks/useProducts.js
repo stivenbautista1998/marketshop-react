@@ -29,15 +29,20 @@ const useProducts = () => {
     const [ products, setProducts ] = useState([]); // general product info
     const [ filteredProducts, setFilteredProducts ] = useState(null); // products filtered by a search parameter.
     const [ loadingProducts, setLoadingProducts ] = useState(true);
+    let controller = null;
 
     const [ filteringProductsByMaximum, setFilteringProductsByMaximum ] = useState([]); // maximum amount of products is 50.
     
     useEffect(() => {
         const productRequest = async () => {
-            const response = await axios(getEndpoint(0));
+            // cancel pending request if any
+            if(controller) controller.abort();
+            controller = new AbortController(); // make our request cancellable
+            const response = await axios(getEndpoint(0), { signal: controller.signal });
             setProducts(response.data);
             setFilteringProductsByMaximum(limitByAmount(50, response.data));
             setLoadingProducts(false);
+            controller = null;
         };
         productRequest();
     }, []);
@@ -45,11 +50,14 @@ const useProducts = () => {
     function updateProducts( categoryId ) {
         setLoadingProducts(true);
         const productRequest = async () => {
-            const response = await axios(getEndpoint(categoryId));
+            if(controller) controller.abort();
+            controller = new AbortController();
+            const response = await axios(getEndpoint(categoryId), { signal: controller.signal });
             setFilteredProducts(null);
             setProducts(response.data);
             setFilteringProductsByMaximum(limitByAmount(50, response.data));
             setLoadingProducts(false);
+            controller = null;
         };
         productRequest();
     }
