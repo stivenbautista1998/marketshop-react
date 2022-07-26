@@ -13,9 +13,7 @@ const Home = ({ currentUser, setCurrentUser }) => {
 
     const {
         showMenuTab, 
-        setShowMenuTab, 
-        canScroll,
-        setCanScroll,
+        setShowMenuTab,
         showShoppingCardTab,
         setShowShoppingCardTab,
         showProductDetail,
@@ -48,10 +46,9 @@ const Home = ({ currentUser, setCurrentUser }) => {
     }, []);
 
     return (
-        <section className={canScroll ? "" : "no-scroll"}>
+        <section>
             <Header 
-                setShowMenuTab={setShowMenuTab} 
-                setCanScrollHome={setCanScroll} 
+                setShowMenuTab={setShowMenuTab}
                 showShoppingCardTab={showShoppingCardTab}
                 setShowShoppingCardTab={setShowShoppingCardTab}
                 searchLeftPosition={searchLeftPosition}
@@ -67,7 +64,6 @@ const Home = ({ currentUser, setCurrentUser }) => {
                 userEmail={currentUser?.username}
                 showMenuTab={showMenuTab} 
                 setShowMenuTab={setShowMenuTab}
-                setCanScrollHome={setCanScroll}
                 navListItems={navListItems}
                 updateList={updateList}
                 updateProducts={updateProducts}

@@ -17,8 +17,7 @@ const defaultListItems = [
 const MenuTab = ({
         userEmail, 
         showMenuTab, 
-        setShowMenuTab, 
-        setCanScrollHome,
+        setShowMenuTab,
         navListItems,
         updateList,
         updateProducts,
@@ -34,7 +33,7 @@ const MenuTab = ({
 
     function hideMenu() {
         setShowMenuTab(false);
-        setCanScrollHome(true);
+        document.body.classList.remove("no-scroll");
     }
 
     function changeFilterSinceNav(event) {

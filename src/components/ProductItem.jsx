@@ -48,7 +48,10 @@ const ProductItem = ({ product, setProductDetailTab }) => {
         }
     }
 
-    function openDetailTab() {        
+    function openDetailTab() {
+        if(window.innerWidth < 500) {
+            if(document.body.classList[0] !== "no-scroll") document.body.classList.add("no-scroll");
+        }
         setProductDetailTab({ product, isSelected, showDetailTab: true, wrongSelectionCounter: 0 });
         if(wrongSelectionCounter !== 0) setWrongSelectionCounter(0);
     }

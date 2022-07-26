@@ -70,7 +70,7 @@ class Header extends Component {
 
     showMenu() {
         this.props.setShowMenuTab(true);
-        this.props.setCanScrollHome(false);
+        document.body.classList.add("no-scroll");
     }
 
     handleMenuNav() {
@@ -79,7 +79,7 @@ class Header extends Component {
 
     removeShoppingTabStyle() {
         this.props.setShowShoppingCardTab(false);
-        this.props.setCanScrollHome(true);
+        document.body.classList.remove("no-scroll");
         this.setState({ showLogoApp: true });
     }
 
@@ -89,7 +89,7 @@ class Header extends Component {
                 this.removeShoppingTabStyle();
             } else {
                 this.props.setShowShoppingCardTab(true);
-                this.props.setCanScrollHome(false);
+                document.body.classList.add("no-scroll");
                 this.setState({ showLogoApp: false });
             }
         } else { // if screen size >= 500px then work with the menu class for larger devices.
