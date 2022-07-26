@@ -32,13 +32,12 @@ const useHome = () => {
 
     function controlScrollOnMobile() {
         // useRef hook was the only way I could find to use the current state values of the three states below.
+        // I fixed the problem by using a reference to a mutable object which is ref. info: stackoverflow.com/a/62453660/11250643
         const { showShoppingCardTab, showProductDetail, showMenuTab } = refTabState.current;
 
         if(showShoppingCardTab === true || showProductDetail === true || showMenuTab == true) {
-            console.log({ showShoppingCardTab, showProductDetail, showMenuTab });
             if(document.body.classList[0] !== "no-scroll") document.body.classList.add("no-scroll");
         } else {
-            console.log({ showShoppingCardTab, showProductDetail, showMenuTab });
             if(document.body.classList[0] === "no-scroll") document.body.classList.remove("no-scroll");
         }
     }
