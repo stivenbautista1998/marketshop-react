@@ -5,15 +5,6 @@ import { ListMenuItem } from '@components/ListMenuItem';
 
 import closeIconSvg from "@icons/x-icon.svg";
 
-const defaultListItems = [
-	{ selected: true, name: 'all', categoryId: 0 },
-	{ selected: false, name: 'closes', categoryId: 1 },
-	{ selected: false, name: 'electronics', categoryId: 2 },
-	{ selected: false, name: 'furnitures', categoryId: 3 },
-	{ selected: false, name: 'shoes', categoryId: 4 },
-	{ selected: false, name: 'others', categoryId: 5 }
-];
-
 const MenuTab = ({
         userEmail, 
         showMenuTab, 
@@ -31,6 +22,16 @@ const MenuTab = ({
         navigation("/login", { replace: true });
     };
 
+    const goToMyOrders = () => {
+        document.body.classList.remove("no-scroll");
+        navigation("/my-orders");
+    };
+
+    const goToMyAccount = () => {
+        document.body.classList.remove("no-scroll");
+        navigation("/my-account");
+    };
+
     function hideMenu() {
         setShowMenuTab(false);
         document.body.classList.remove("no-scroll");
@@ -43,7 +44,6 @@ const MenuTab = ({
             const itemToSelect = event.target.innerText.toLowerCase();            
             const idCategory = updateList(itemToSelect);
             updateProducts(idCategory);
-            // event.target.classList.add("menu-tab-selected-item");
             hideMenu();
         }
     }
@@ -66,8 +66,12 @@ const MenuTab = ({
                     )}
                 />
                 <ul className="menu-tab__logged">
-                    <li className="menu-tab__logged__item"><Link className="style-no-link" to="/my-orders">My orders</Link></li>
-                    <li className="menu-tab__logged__item"><Link className="style-no-link" to="/my-account">My account</Link></li>
+                    <li onClick={goToMyOrders} className="menu-tab__logged__item">
+                        My orders
+                    </li>
+                    <li onClick={goToMyAccount} className="menu-tab__logged__item">
+                        My account
+                    </li>
                 </ul>
             </div>
             <div>
