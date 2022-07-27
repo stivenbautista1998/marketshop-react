@@ -1,4 +1,4 @@
-import { useStorageState } from './useStorageState';
+import { useStorageAuth } from './useStorageAuth';
 
 const defaultUser = [
     {
@@ -11,8 +11,13 @@ const defaultUser = [
 ];
 
 const useAuth = () => {
-    const { items: userInfo, saveItems: setUserInfo } = useStorageState("USERS_V1", defaultUser);
-    const { items: currentUser, saveItems: setCurrentUser } = useStorageState("CURRENT_USER_V1", null);
+    const { 
+        usersInfo: userInfo,
+        currentUser,
+        saveUsersInfo: setUserInfo,
+        saveCurrentUser: setCurrentUser,
+        setSyncAuth
+    } = useStorageAuth("USERS_V1", "CURRENT_USER_V1", defaultUser);
 
     console.log({ userInfo });
     console.log({ currentUser });
@@ -70,7 +75,15 @@ const useAuth = () => {
         setUserInfo(updatedUsersInfo);
     }
     
-    return { userInfo, currentUser, setCurrentUser, validateUser, addNewUser, editCurrentUserInfo };
+    return { 
+        userInfo, 
+        currentUser, 
+        setCurrentUser, 
+        validateUser, 
+        addNewUser, 
+        editCurrentUserInfo, 
+        setSyncAuth 
+    };
 };
 
 export { useAuth };
