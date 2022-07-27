@@ -22,7 +22,7 @@ const withStorageListener = (WrapperElement) => {
         }, []);
 
         function toggleSync() {
-            props.syncHandler;
+            props.synchronize(false);
             setVisibility(false);
         }
 

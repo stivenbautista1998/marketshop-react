@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { becomeDollar } from '@helpers/format';
-import { useStorageState } from './useStorageState';
+import { useStorageUserOrders } from './useStorageUserOrders';
 
 const initialState = [{
     userId: "user-key-995701412669",
@@ -11,13 +11,19 @@ const initialState = [{
 }];
 
 const useInitialState = () => {
-    const { items: state, saveItems: setState } = useStorageState("ORDERS_V1", initialState);
-    const { items: currentState, saveItems: setCurrentState } = useStorageState("CURRENT_ORDER_V1", {});
+    const { 
+        usersOrderLists: state,
+        currentUserOrders: currentState,
+        saveUsersOrderLists: setState,
+        saveCurrentUserOrders: setCurrentState,
+        setSyncOfCurrentUser
+    } = useStorageUserOrders("ORDERS_V1", initialState);
+
 
     useEffect(() => {
         // synchronizing the state with the current state.
         const updatedState = state.map((item) => {
-            if(item.userId === currentState.userId) {
+            if(item.userId === currentState?.userId) {
                 return { ...currentState, lastRemoved: [] };
             } else {
                 return item;
@@ -25,7 +31,7 @@ const useInitialState = () => {
         });
         setState(updatedState);
 
-    }, [currentState.orders]);
+    }, [currentState?.orders]);
 
 
     /**
@@ -114,7 +120,8 @@ const useInitialState = () => {
         removeFromCart,
         updateProductDetailOpen,
         addOrder,
-        totalSelectedProducts
+        totalSelectedProducts,
+        setSyncOfCurrentUser
     };
 }
 

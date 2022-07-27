@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Header } from "@containers/Header";
 import { MenuTab } from '@containers/MenuTab';
 import { ProductDetailTab } from '@containers/ProductDetailTab';
 import { ShoppingCardTab } from "@containers/ShoppingCardTab";
 import { ProductList } from "@components/ProductList";
 import { SyncAlertWithProps } from "@components/SyncAlert";
+import AppContext from '../../context/AppContext';
 import { useProducts } from '@hooks/useProducts';
 import { useNavList } from "./hooks/useNavList";
 import { useHome } from "./hooks/useHome";
@@ -35,6 +36,8 @@ const Home = ({ currentUser, setCurrentUser }) => {
         loadingProducts,
         error
     } = useProducts(); // using custom hooks
+
+    const { setSyncOfCurrentUser } = useContext(AppContext);
 
     const { navListItems, updateList } = useNavList();
 
@@ -89,7 +92,7 @@ const Home = ({ currentUser, setCurrentUser }) => {
                 productError={error}
             />
 
-            <SyncAlertWithProps synchronize={() => console.log("just testing!")} />
+            <SyncAlertWithProps synchronize={setSyncOfCurrentUser} />
         </section>
     );
 }
