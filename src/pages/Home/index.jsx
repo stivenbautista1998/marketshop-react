@@ -4,6 +4,7 @@ import { MenuTab } from '@containers/MenuTab';
 import { ProductDetailTab } from '@containers/ProductDetailTab';
 import { ShoppingCardTab } from "@containers/ShoppingCardTab";
 import { ProductList } from "@components/ProductList";
+import { SyncAlertWithProps } from "@components/SyncAlert";
 import { useProducts } from '@hooks/useProducts';
 import { useNavList } from "./hooks/useNavList";
 import { useHome } from "./hooks/useHome";
@@ -87,6 +88,8 @@ const Home = ({ currentUser, setCurrentUser }) => {
                 loadingProducts={loadingProducts}
                 productError={error}
             />
+
+            <SyncAlertWithProps synchronize={() => console.log("just testing!")} />
         </section>
     );
 }

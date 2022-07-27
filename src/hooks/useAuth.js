@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useStorageState } from './useStorageState';
 
 const defaultUser = [
@@ -12,8 +11,6 @@ const defaultUser = [
 ];
 
 const useAuth = () => {
-    // const [ userInfo, setUserInfo ] = useState(defaultUser);
-    // const [ currentUser, setCurrentUser ] = useState(null);
     const { items: userInfo, saveItems: setUserInfo } = useStorageState("USERS_V1", defaultUser);
     const { items: currentUser, saveItems: setCurrentUser } = useStorageState("CURRENT_USER_V1", null);
 

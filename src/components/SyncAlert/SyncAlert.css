@@ -1,0 +1,19 @@
+.sync-alert-wrapper {
+    border: 1px solid rgb(196, 176, 151);
+    padding: 1em;
+    background-color: bisque;
+    border-radius: 5px;
+    width: 300px;
+    margin: 1em auto;
+    font-size: var(--size-normal);
+}
+
+.sync-alert-wrapper__button {
+    border: 1px solid;
+    padding: .5em;
+    background-color: blueviolet;
+    color: #FFF;
+    border-radius: 5px;
+    margin: 0 .5em;
+    cursor: pointer;
+}

@@ -9,6 +9,7 @@
     justify-content: center;
     background-color: rgba(31%, 34%, 37%, .8);
     font-size: var(--size-big);
+    z-index: 7;
 }
 
 .box-standard {
