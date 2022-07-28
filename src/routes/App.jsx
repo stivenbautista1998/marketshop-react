@@ -60,7 +60,7 @@ const App = () => {
                     <Route exact path="/my-orders"
                         element={
                             <ProtectedRoute currentUser={currentUser}>
-                                <MyOrders />
+                                <MyOrders setSyncAuth={setSyncAuth} />
                             </ProtectedRoute>
                         }
                     />

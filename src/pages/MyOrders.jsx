@@ -3,12 +3,13 @@ import AppContext from '../context/AppContext';
 import { MyOrder } from '@components/MyOrder';
 import { Link } from 'react-router-dom';
 import { JustIcon } from '@components/JustIcon';
+import { SyncAlertWithProps } from "@components/SyncAlert";
 
 import menuSvg from "@icons/menu-icon.svg";
 import shoppingCartSvg from "@icons/shopping-cart.svg";
 
-const MyOrders = () => {
-    const { currentState, totalSelectedProducts } = useContext(AppContext);
+const MyOrders = ({ setSyncAuth }) => {
+    const { currentState, totalSelectedProducts, setSyncOfCurrentUser } = useContext(AppContext);
 
     const orderList = currentState.orders.map((order) => 
         <MyOrder 
@@ -35,6 +36,10 @@ const MyOrders = () => {
             <main className="my-orders-section">
                 {currentState.orders.length > 0 ? orderList : <div>No Orders Made</div>}
             </main>
+            <SyncAlertWithProps 
+                synchronize={setSyncOfCurrentUser} 
+                setSyncAuth={setSyncAuth} 
+            />
         </div>
     );
 }

@@ -92,7 +92,10 @@ const Home = ({ currentUser, setCurrentUser, setSyncAuth }) => {
                 productError={error}
             />
 
-            <SyncAlertWithProps synchronize={setSyncOfCurrentUser} setSyncAuth={setSyncAuth} />
+            <SyncAlertWithProps 
+                synchronize={setSyncOfCurrentUser} 
+                setSyncAuth={setSyncAuth} 
+            />
         </section>
     );
 }

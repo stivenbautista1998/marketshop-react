@@ -27,11 +27,11 @@ const withStorageListener = (WrapperElement) => {
         }, []);
 
         function toggleSync() {
-            if(cacheInfo.key === "ORDERS_V1") {
+            if(cacheInfo.key === "ORDERS_V1") { // general user orders list.
                 props.synchronize(false);
                 setVisibility(false);
             };
-            if(cacheInfo.key === "CURRENT_USER_V1") {
+            if(cacheInfo.key === "CURRENT_USER_V1") { // current logged user info.
                 props.setSyncAuth(false);
                 setVisibility(false);
                 if(JSON.parse(cacheInfo.newValue) === null) {
