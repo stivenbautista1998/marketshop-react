@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useStorageAuth } from './useStorageAuth';
 
 const defaultUser = [
@@ -16,11 +17,26 @@ const useAuth = () => {
         currentUser,
         saveUsersInfo: setUserInfo,
         saveCurrentUser: setCurrentUser,
-        setSyncAuth
+        syncAuth,
+        synchronizeCurrentUser
     } = useStorageAuth("USERS_V1", "CURRENT_USER_V1", defaultUser);
 
     console.log({ userInfo });
     console.log({ currentUser });
+
+    useEffect(() => {
+        // synchronizing the global users state with the currently updated logged user info.
+        const updatedUserInfo = userInfo.map((item) => {
+            if(item.id === currentUser?.id) {
+                return { ...currentUser };
+            } else {
+                return item;
+            }
+        });
+        setUserInfo(updatedUserInfo);
+
+    }, [currentUser]);
+    
 
     /**
      * @param  {object} newUserInfo
@@ -81,8 +97,9 @@ const useAuth = () => {
         setCurrentUser, 
         validateUser, 
         addNewUser, 
-        editCurrentUserInfo, 
-        setSyncAuth 
+        editCurrentUserInfo,
+        syncAuth,
+        synchronizeCurrentUser 
     };
 };
 

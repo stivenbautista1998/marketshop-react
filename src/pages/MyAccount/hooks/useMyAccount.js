@@ -56,6 +56,12 @@ const useMyAccount = (currentUser, editCurrentUserInfo, validateUser) => {
         }
     }
 
+    const syncUserData = () => {
+        setUsername(currentUser.username);
+        setUserEmail(currentUser.email);
+        setUserPassWord(currentUser.passWord);
+    }
+
     return {
         isEditable, 
         userName, 
@@ -64,7 +70,8 @@ const useMyAccount = (currentUser, editCurrentUserInfo, validateUser) => {
         confirmPassword, 
         showPassConfirm, 
         onChangeHandler, 
-        editAccount 
+        editAccount,
+        syncUserData
     };
 };
 

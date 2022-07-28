@@ -82,6 +82,20 @@ const useStorageAuth = (nameItem, nameCurrentItem, initialValue) => {
         }
     }
 
+    const synchronizeCurrentUser = ( lastUserInfo = null ) => {
+        if(lastUserInfo) {
+            const updatedUserInfo = usersInfo.map((item) => {
+                if(item.id === lastUserInfo?.id) {
+                    return { ...lastUserInfo };
+                } else {
+                    return item;
+                }
+            });
+            saveUsersInfo(updatedUserInfo);
+        }
+        setSyncAuth(false);
+    }
+
 
     return { 
         usersInfo,
@@ -92,7 +106,8 @@ const useStorageAuth = (nameItem, nameCurrentItem, initialValue) => {
         loadingCurrentUser,
         errorUsersInfo,
         errorCurrentUser,
-        setSyncAuth
+        syncAuth,
+        synchronizeCurrentUser
     };
 };
 

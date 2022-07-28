@@ -13,6 +13,7 @@ import { ProtectedRoute } from "@components/ProtectedRoute";
 import { LoginProtectedRoute } from "@components/LoginProtectedRoute";
 
 import AppContext from "@context/AppContext";
+import { SyncInfoProvider } from "@context/SyncContext";
 import { useInitialState } from "@hooks/useInitialState";
 import { useAuth } from "@hooks/useAuth";
 
@@ -22,59 +23,71 @@ import '@styles/icon-styles.scss';
 
 const App = () => {
     const initialState = useInitialState();
-    const { currentUser, setCurrentUser, validateUser, addNewUser, editCurrentUserInfo, setSyncAuth } = useAuth();
+    const { 
+        currentUser, 
+        setCurrentUser, 
+        validateUser, 
+        addNewUser, 
+        editCurrentUserInfo, 
+        syncAuth, 
+        synchronizeCurrentUser 
+    } = useAuth();
 
     return (
         <AppContext.Provider value={initialState}>
-            <BrowserRouter>
-                <Routes>
-                    <Route exact path="/"
-                        element={
-                            <ProtectedRoute currentUser={currentUser}>
-                                <Home currentUser={currentUser} setCurrentUser={setCurrentUser} setSyncAuth={setSyncAuth} />
-                            </ProtectedRoute>
-                        }
-                    />
-                    <Route exact path="/login"
-                        element={
-                            <LoginProtectedRoute currentUser={currentUser}>
-                                <Login validateUser={validateUser} setCurrentUser={setCurrentUser} />
-                            </LoginProtectedRoute>
-                        }
-                    />
-                    <Route exact path="/password-recovery" element={<PassRecovery />} />
-                    <Route exact path="/create-account"
-                        element={<CreateAccount validateUser={validateUser} addNewUser={addNewUser} />} 
-                    />
-                    <Route exact path="/my-account" 
-                        element={
-                            <ProtectedRoute currentUser={currentUser}>
-                                <MyAccount 
-                                    currentUser={currentUser}
-                                    editCurrentUserInfo={editCurrentUserInfo}
-                                    validateUser={validateUser}
-                                />
-                            </ProtectedRoute>
-                        }
-                    />
-                    <Route exact path="/my-orders"
-                        element={
-                            <ProtectedRoute currentUser={currentUser}>
-                                <MyOrders setSyncAuth={setSyncAuth} />
-                            </ProtectedRoute>
-                        }
-                    />
-                    <Route exact path="/my-order/:id"
-                        element={
-                            <ProtectedRoute currentUser={currentUser}>
-                                <MyOrderDetail />
-                            </ProtectedRoute>
-                        }
-                    />
-                    <Route exact path="/success-email" element={<SuccessEmail />} />
-                    <Route path="*" element={<NotFound />} />
-                </Routes>
-            </BrowserRouter>
+            <SyncInfoProvider>
+                <BrowserRouter>
+                    <Routes>
+                        <Route exact path="/"
+                            element={
+                                <ProtectedRoute currentUser={currentUser}>
+                                    <Home currentUser={currentUser} setCurrentUser={setCurrentUser} synchronizeCurrentUser={synchronizeCurrentUser} />
+                                </ProtectedRoute>
+                            }
+                        />
+                        <Route exact path="/login"
+                            element={
+                                <LoginProtectedRoute currentUser={currentUser}>
+                                    <Login validateUser={validateUser} setCurrentUser={setCurrentUser} />
+                                </LoginProtectedRoute>
+                            }
+                        />
+                        <Route exact path="/password-recovery" element={<PassRecovery />} />
+                        <Route exact path="/create-account"
+                            element={<CreateAccount validateUser={validateUser} addNewUser={addNewUser} />} 
+                        />
+                        <Route exact path="/my-account" 
+                            element={
+                                <ProtectedRoute currentUser={currentUser}>
+                                    <MyAccount 
+                                        currentUser={currentUser}
+                                        editCurrentUserInfo={editCurrentUserInfo}
+                                        validateUser={validateUser}
+                                        syncAuth={syncAuth}
+                                        synchronizeCurrentUser={synchronizeCurrentUser}
+                                    />
+                                </ProtectedRoute>
+                            }
+                        />
+                        <Route exact path="/my-orders"
+                            element={
+                                <ProtectedRoute currentUser={currentUser}>
+                                    <MyOrders synchronizeCurrentUser={synchronizeCurrentUser} />
+                                </ProtectedRoute>
+                            }
+                        />
+                        <Route exact path="/my-order/:id"
+                            element={
+                                <ProtectedRoute currentUser={currentUser}>
+                                    <MyOrderDetail />
+                                </ProtectedRoute>
+                            }
+                        />
+                        <Route exact path="/success-email" element={<SuccessEmail />} />
+                        <Route path="*" element={<NotFound />} />
+                    </Routes>
+                </BrowserRouter>
+            </SyncInfoProvider>
         </AppContext.Provider>
     );
 }

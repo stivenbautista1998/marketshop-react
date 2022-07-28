@@ -8,7 +8,7 @@ import { SyncAlertWithProps } from "@components/SyncAlert";
 import menuSvg from "@icons/menu-icon.svg";
 import shoppingCartSvg from "@icons/shopping-cart.svg";
 
-const MyOrders = ({ setSyncAuth }) => {
+const MyOrders = ({ synchronizeCurrentUser }) => {
     const { currentState, totalSelectedProducts, setSyncOfCurrentUser } = useContext(AppContext);
 
     const orderList = currentState.orders.map((order) => 
@@ -38,7 +38,7 @@ const MyOrders = ({ setSyncAuth }) => {
             </main>
             <SyncAlertWithProps 
                 synchronize={setSyncOfCurrentUser} 
-                setSyncAuth={setSyncAuth} 
+                synchronizeCurrentUser={synchronizeCurrentUser} 
             />
         </div>
     );

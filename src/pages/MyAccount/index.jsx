@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { IconApp } from '@components/IconApp';
 import { GeneralButton } from "@components/GeneralButton";
+import { SyncAlertWithProps } from "@components/SyncAlert";
+import AppContext from '../../context/AppContext';
 import { useMyAccount } from './hooks/useMyAccount';
 
 import menuSvg from "@icons/menu-icon.svg";
@@ -9,7 +11,7 @@ import shoppingCartSvg from "@icons/shopping-cart.svg";
 
 const activeField = { backgroundColor: "rgb(247, 247, 247)", paddingLeft: "0.7em" }
 
-const MyAccount = ({ currentUser, editCurrentUserInfo, validateUser }) => {
+const MyAccount = ({ currentUser, editCurrentUserInfo, validateUser, syncAuth, synchronizeCurrentUser }) => {
     const {
         isEditable,
         userName,
@@ -18,8 +20,15 @@ const MyAccount = ({ currentUser, editCurrentUserInfo, validateUser }) => {
         confirmPassword,
         showPassConfirm,
         onChangeHandler,
-        editAccount
+        editAccount,
+        syncUserData
     } = useMyAccount(currentUser, editCurrentUserInfo, validateUser);
+
+    const { setSyncOfCurrentUser } = useContext(AppContext);
+
+    useEffect(() => {
+        syncUserData();
+    }, [syncAuth]);
     
     return (
         <div className="wrapper-login">
@@ -85,6 +94,10 @@ const MyAccount = ({ currentUser, editCurrentUserInfo, validateUser }) => {
                     clickHandler={editAccount}
                 />
             </div>
+            <SyncAlertWithProps 
+                synchronize={setSyncOfCurrentUser} 
+                synchronizeCurrentUser={synchronizeCurrentUser} 
+            />
         </div>
     );
 }
