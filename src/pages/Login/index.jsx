@@ -7,7 +7,7 @@ import { useLogin } from './hooks/useLogin';
 import '@styles/components/Login.scss';
 
 const Login = ({ validateUser, setCurrentUser }) => {
-    const { formRef, handlerSubmit, showMyAccount } = useLogin(validateUser, setCurrentUser);
+    const { formRef, handlerSubmit, showMyAccount, errorState } = useLogin(validateUser, setCurrentUser);
 
     return (
         <div className="wrapper-login">
@@ -17,9 +17,10 @@ const Login = ({ validateUser, setCurrentUser }) => {
                         <IconApp bigSize={true} />
                     </nav>
                 </header>
-                <LoginForm 
-                    formRef={formRef} 
-                    handlerSubmit={handlerSubmit} 
+                <LoginForm
+                    formRef={formRef}
+                    handlerSubmit={handlerSubmit}
+                    errorState={errorState}
                 />
             </div>
             <div className="section-down">

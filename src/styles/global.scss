@@ -32,7 +32,6 @@ html {
     margin-left: 1.5em;
     font-size: 1.2rem;
     font-weight: 700;
-    /* display: inline-block; */
     margin-bottom: 0.5em;
 }
 
@@ -45,6 +44,13 @@ html {
     padding: 0.8em 0.7em;
     border-radius: 7px;
     border: none;
+}
+
+.general-input:-webkit-autofill,
+.general-input:-webkit-autofill:hover,
+.general-input:-webkit-autofill:focus,
+.general-input:-webkit-autofill:active  {
+  box-shadow: 0 0 0 30px var(--text-input) inset;
 }
 
 .login-section__input {
@@ -767,6 +773,13 @@ a.grey__message:hover, a.green__message:hover {
     max-width: 250px;
 }
 
+.red-letters {
+    color: red;
+}
+
+.red-borders {
+    border: 1px solid red;
+}
 
 @keyframes loading-skeleton {
     0% {        
