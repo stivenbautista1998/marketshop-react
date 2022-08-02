@@ -41,8 +41,9 @@ const useLogin = (validateUser, setCurrentUser) => {
             } else {
                 console.log("please provide a valid email.");
                 setErrorState({
-                    ...errorState,
-                    email: { error: true, text: "Enter a valid email address" }
+                    email: { error: true, text: "Enter a valid email address" },
+                    pass: { error: false, text: "" },
+                    errorMessage: ""
                 });
             }
         } else {
@@ -55,24 +56,64 @@ const useLogin = (validateUser, setCurrentUser) => {
                 });
             } else if(data.user === "") {
                 setErrorState({
-                    ...errorState,
-                    email: { error: true, text: "Email is empty" }
+                    email: { error: true, text: "Email is empty" },
+                    pass: { error: false, text: "" },
+                    errorMessage: ""
                 });
             } else if(data.password === "") {
                 setErrorState({
-                    ...errorState,
-                    pass: { error: true, text: "Password is empty" }
+                    email: { error: false, text: "" },
+                    pass: { error: true, text: "Password is empty" },
+                    errorMessage: ""
                 });
             }
         }
         console.log(data);
     };
 
+    function loginOnChange() {
+        if(errorState.email.error) {
+            // if the condition is true it means that all the fields are set as error, so this will set errors to false.
+            if(errorState.errorMessage === "Invalid username or password") {
+                setErrorState({
+                    ...errorState,
+                    email: { error: false, text: "" },
+                    pass: { error: false, text: "" }
+                });
+            } else {
+                // if condition is false it will only remove the error on the password field.
+                setErrorState({
+                    ...errorState,
+                    email: { error: false, text: "" }
+                });
+            }
+        }
+    }
+    
+    function passOnChange() {
+        if(errorState.pass.error) {
+            // if the condition is true it means that all the fields are set as error, so this will set errors to false.
+            if(errorState.errorMessage === "Invalid username or password") {
+                setErrorState({
+                    ...errorState,
+                    email: { error: false, text: "" },
+                    pass: { error: false, text: "" }
+                });
+            } else {
+                // if condition is false it will only remove the error on the password field.
+                setErrorState({
+                    ...errorState,
+                    pass: { error: false, text: "" }
+                });
+            }
+        }
+    }
+
     function showMyAccount() {
         navigation("/create-account");
     }
 
-    return { formRef, handlerSubmit, showMyAccount, errorState };
+    return { formRef, handlerSubmit, showMyAccount, loginOnChange, passOnChange, errorState };
 };
 
 export { useLogin };

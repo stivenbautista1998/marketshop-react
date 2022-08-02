@@ -7,7 +7,7 @@ import { useLogin } from './hooks/useLogin';
 import '@styles/components/Login.scss';
 
 const Login = ({ validateUser, setCurrentUser }) => {
-    const { formRef, handlerSubmit, showMyAccount, errorState } = useLogin(validateUser, setCurrentUser);
+    const { formRef, handlerSubmit, showMyAccount, loginOnChange, passOnChange, errorState } = useLogin(validateUser, setCurrentUser);
 
     return (
         <div className="wrapper-login">
@@ -20,6 +20,8 @@ const Login = ({ validateUser, setCurrentUser }) => {
                 <LoginForm
                     formRef={formRef}
                     handlerSubmit={handlerSubmit}
+                    loginOnChange={loginOnChange}
+                    passOnChange={passOnChange}
                     errorState={errorState}
                 />
             </div>

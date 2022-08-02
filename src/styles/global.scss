@@ -19,7 +19,10 @@ html {
 }
 
 .login-section, .header-section-login, .wrapper-recovery, .main-my-account {
-    text-align: center;
+    text-align: center;    
+}
+.login-section, .main-my-account {
+    position: relative;
 }
 
 .header-section-login {
@@ -55,6 +58,10 @@ html {
 
 .login-section__input {
     margin-bottom: 1em;
+}
+
+.login-section__input[type="password"] {
+    margin-bottom: 1.5em;
 }
 
 .general-input:focus-visible {
@@ -640,8 +647,17 @@ a.grey__message:hover, a.green__message:hover {
     position: absolute;
     color: #D25050;
     font-size: 1.1rem;
-    left: calc(50% - 106.5px);
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
     visibility: hidden;
+    background-color: red;
+    max-width: 250px;
+    padding: 0.2em;
+    color: var(--white);
+    border-radius: 5px;
+    font-weight: bold;
 }
 
 .deleted-item {
@@ -658,7 +674,7 @@ a.grey__message:hover, a.green__message:hover {
     overflow: hidden;
 }
 
-.search-home-section .close-visible, .show-error-message, .show-section {
+.search-home-section .close-visible, .show-section {
     visibility: visible;
 }
 
@@ -960,7 +976,7 @@ a.grey__message:hover, a.green__message:hover {
         visibility: hidden;
     }
 
-    .search-home-section .close-visible, .show-error-message, .show-section, .menu-active {
+    .search-home-section .close-visible, .show-section, .menu-active {
         visibility: visible;
     }
 

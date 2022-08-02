@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { GeneralButton } from "@components/GeneralButton";
 
-const LoginForm = ({ formRef, handlerSubmit, errorState }) => {
+const LoginForm = ({ formRef, handlerSubmit, loginOnChange, passOnChange, errorState }) => {
     return (
         <main>
             <form className="login-section" action="/" ref={formRef}>
@@ -13,6 +13,7 @@ const LoginForm = ({ formRef, handlerSubmit, errorState }) => {
                 </label>
                 <input 
                     className={`general-input login-section__input ${errorState.email.error ? "red-borders" : "" }`} 
+                    onChange={loginOnChange}
                     name="user-txt"
                     type="text"
                 />
@@ -23,11 +24,12 @@ const LoginForm = ({ formRef, handlerSubmit, errorState }) => {
                 </label>
                 <input 
                     className={`general-input login-section__input ${errorState.pass.error ? "red-borders" : "" }`} 
+                    onChange={passOnChange}
                     name="password-txt"
                     type="password"
                 />
                 <div 
-                    className={`error-message ${ errorState.errorMessage !== "" ? "show-error-message" : "" }`}>
+                    className={`error-message ${ errorState.errorMessage !== "" ? "show-detail-error-message" : "" }`}>
                     { errorState.errorMessage !== "" ? errorState.errorMessage : "" }
                 </div>
 
@@ -40,6 +42,6 @@ const LoginForm = ({ formRef, handlerSubmit, errorState }) => {
             </form>
         </main>
     );
-} // Invalid user ID and password combination
+}
 
 export { LoginForm };
