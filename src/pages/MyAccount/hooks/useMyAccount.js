@@ -78,6 +78,15 @@ const useMyAccount = (currentUser, editCurrentUserInfo, validateUser) => {
                 errorMessage: "Any field should be empty."
             });
             result = true;
+        } else if(userInfo === currentUser.username && emailInfo === currentUser.email && passInfo === currentUser.passWord) {
+            setErrorState({
+                username: { error: false, text: "" },
+                email: { error: false, text: "" },
+                pass: { error: false, text: "" },
+                passConfirm: { error: false, text: "" },
+                errorMessage: "The user information is the same"
+            });
+            result = true;
         }
 
         return result;

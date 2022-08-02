@@ -84,7 +84,7 @@ const MyAccount = ({ currentUser, editCurrentUserInfo, validateUser, syncAuth, s
                         value={userPassWord}
                         type="password"
                     />
-                    <label style={ showPassConfirm ? activeField : { display: "none" } }
+                    <label style={ showPassConfirm ? null : { display: "none" } }
                         className={`login-section__label ${ errorState.passConfirm.error ? "red-letters" : "" }`}
                         htmlFor="repeat-password-txt">
                         { errorState.passConfirm.text !== "" ? errorState.passConfirm.text : "Repeat Password" }
