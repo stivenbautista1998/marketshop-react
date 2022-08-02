@@ -21,11 +21,13 @@ const MyAccount = ({ currentUser, editCurrentUserInfo, validateUser, syncAuth, s
         showPassConfirm,
         onChangeHandler,
         editAccount,
-        syncUserData
+        syncUserData,
+        errorState
     } = useMyAccount(currentUser, editCurrentUserInfo, validateUser);
 
     const { setSyncOfCurrentUser } = useContext(AppContext);
 
+    // show user info updated every time the user information is updated for another tab.
     useEffect(() => {
         syncUserData();
     }, [syncAuth]);
@@ -44,8 +46,11 @@ const MyAccount = ({ currentUser, editCurrentUserInfo, validateUser, syncAuth, s
                 </header>
                 <form className="main-my-account" action="/">
                     <h2 className="myaccount-tittle">My account</h2>
-                    <label className="login-section__label" htmlFor="name-txt">Username</label>
-                    <input className="general-input login-section__input" 
+                    <label className={`login-section__label ${ errorState.username.error ? "red-letters" : "" }`} 
+                        htmlFor="name-txt">
+                        { errorState.username.text !== "" ? errorState.username.text : "Username" }
+                    </label>
+                    <input className={`general-input login-section__input ${ errorState.username.error ? "red-borders" : "" }`} 
                         name="username-txt"
                         style={ isEditable ? activeField : null }
                         onChange={onChangeHandler}
@@ -54,8 +59,11 @@ const MyAccount = ({ currentUser, editCurrentUserInfo, validateUser, syncAuth, s
                         value={userName}
                         type="text" 
                     />
-                    <label className="login-section__label" htmlFor="email-txt">Email address</label>
-                    <input className="general-input login-section__input" 
+                    <label className={`login-section__label ${ errorState.email.error ? "red-letters" : "" }`} 
+                        htmlFor="email-txt">
+                        { errorState.email.text !== "" ? errorState.email.text : "Email address" }
+                    </label>
+                    <input className={`general-input login-section__input ${ errorState.email.error ? "red-borders" : "" }`} 
                         name="email-txt"
                         style={ isEditable ? activeField : null }
                         onChange={onChangeHandler}
@@ -64,8 +72,11 @@ const MyAccount = ({ currentUser, editCurrentUserInfo, validateUser, syncAuth, s
                         value={userEmail}
                         type="text" 
                     />
-                    <label className="login-section__label" htmlFor="password-txt">Password</label>
-                    <input className="general-input login-section__input" 
+                    <label className={`login-section__label ${ errorState.pass.error ? "red-letters" : "" }`}
+                        htmlFor="password-txt">
+                        { errorState.pass.text !== "" ? errorState.pass.text : "Password" }
+                    </label>
+                    <input className={`general-input login-section__input ${ errorState.pass.error ? "red-borders" : "" }`} 
                         name="password-txt"
                         style={ isEditable ? activeField : null }
                         onChange={onChangeHandler}
@@ -74,17 +85,21 @@ const MyAccount = ({ currentUser, editCurrentUserInfo, validateUser, syncAuth, s
                         type="password"
                     />
                     <label style={ showPassConfirm ? activeField : { display: "none" } }
-                        className="login-section__label"
+                        className={`login-section__label ${ errorState.passConfirm.error ? "red-letters" : "" }`}
                         htmlFor="repeat-password-txt">
-                        Repeat Password
+                        { errorState.passConfirm.text !== "" ? errorState.passConfirm.text : "Repeat Password" }
                     </label>
                     <input style={ showPassConfirm ? activeField : { display: "none" } }
-                        className="general-input login-section__input" 
+                        className={`general-input login-section__input ${ errorState.passConfirm.error ? "red-borders" : "" }`} 
                         name="repeat-password-txt"
                         value={confirmPassword}
                         onChange={onChangeHandler}
                         type="password"
                     />
+                    <div 
+                        className={`error-message ${ errorState.errorMessage !== "" ? "show-detail-error-message" : "" }`}>
+                        { errorState.errorMessage !== "" ? errorState.errorMessage : "" }
+                    </div>
                 </form>
             </div>
             <div className="section-down">
