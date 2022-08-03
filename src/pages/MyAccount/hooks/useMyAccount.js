@@ -31,7 +31,7 @@ const useMyAccount = (currentUser, editCurrentUserInfo, validateUser) => {
                             email: { error: true, text: "Existing Email address" },
                             pass: { error: false, text: "" },
                             passConfirm: { error: false, text: "" },
-                            errorMessage: "The email is already registered, please enter another one"
+                            errorMessage: "The email belongs to an existing user"
                         });
                     } else if(!validateEmail(userEmail)) {
                         setErrorState({
@@ -75,7 +75,7 @@ const useMyAccount = (currentUser, editCurrentUserInfo, validateUser) => {
                 email: { error: (emailInfo === ""), text: "" },
                 pass: { error: (passInfo === ""), text: "" },
                 passConfirm: { error: ((passConfirmInfo === "") && showPassConfirm), text: "" },
-                errorMessage: "Any field should be empty."
+                errorMessage: "No field should be empty."
             });
             result = true;
         } else if(userInfo === currentUser.username && emailInfo === currentUser.email && passInfo === currentUser.passWord) {

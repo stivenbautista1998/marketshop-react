@@ -653,8 +653,8 @@ a.grey__message:hover, a.green__message:hover {
     margin-right: auto;
     visibility: hidden;
     background-color: red;
-    max-width: 250px;
-    padding: 0.2em;
+    max-width: fit-content;
+    padding: 0.2em 0.5em;
     color: var(--white);
     border-radius: 5px;
     font-weight: bold;
@@ -885,7 +885,7 @@ a.grey__message:hover, a.green__message:hover {
     }
 
     .general-button.white--btn, .general-button.green--btn {
-        margin-top: 2.5em;
+        margin-top: 2.8em;
     }
 
     .shopping-card-bottom .green--btn {
