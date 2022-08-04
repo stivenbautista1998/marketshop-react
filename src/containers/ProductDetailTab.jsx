@@ -5,12 +5,14 @@ import { becomeDollar } from '../helpers/format';
 import addShopCartSvg from "@icons/add-cart.svg";
 import removeShopCartSvg from "@icons/remove-cart.svg";
 import xIconSvg from "@icons/x-icon.svg";
+import arrowRightSvg from "@icons/arrow-right.svg";
 
 const ProductDetailTab = ({ productInfo, closeProductDetailTab, pDetailRightPosition, refHeader }) => {
     const [ showTab, setShowTab ] = useState(false);    
     const [ productSelected, setProductSelected ] = useState(productInfo.isSelected);
     const [ showErrorMessage, setShowErrorMessage ] = useState(false);
     const { addToCart, removeFromCart, updateProductDetailOpen } = useContext(AppContext);
+    const [ selectedImage, setSelectedImage ] = useState(0);
 
     const iconSelected = (productSelected ? removeShopCartSvg : addShopCartSvg);
 
@@ -20,10 +22,11 @@ const ProductDetailTab = ({ productInfo, closeProductDetailTab, pDetailRightPosi
         }, 100);
     }, []);
 
-    // every time the a new product is selected and the ProductDetailTab is active, then update the product selection
+    // every time a new product is selected and the ProductDetailTab is active, then update the product selection
     useEffect(() => {
         setProductSelected(productInfo.isSelected);
         updateProductDetailOpen(productInfo.product);
+        setSelectedImage(0);
     }, [productInfo.product.id]);
 
     useEffect(() => {
@@ -71,20 +74,64 @@ const ProductDetailTab = ({ productInfo, closeProductDetailTab, pDetailRightPosi
         }
     }
 
+    function backProduct() {
+        console.log("product back");
+        if(selectedImage > 0) {
+            setSelectedImage(selectedImage - 1);
+        }
+    }
+
+    function nextProduct() {
+        // const elementWidth = refImageContainer.current.offsetWidth;
+        if(selectedImage < (productInfo.product.images.length - 1)) {
+            setSelectedImage(selectedImage + 1);
+        }
+    }
+
+    function ImagesList({ selected = 0 }) {
+        return productInfo.product.images.map(( imageLink, index ) => (
+            <div key={index} className="new-img image-detail-size fade"
+                style={{ backgroundImage: `url(${ imageLink })`, display: `${ selected === index ? "block" : "none" }` }}>
+            </div>
+        ));
+    }
+
+    function ImageDots({ selected = 0 }) {
+        const dotList = productInfo.product.images.map((img, index) => (
+            <div key={index} className={`point ${ selected === index ? "selected-point" : "" }`}></div>
+        ));
+
+        return (
+            <div className="points-wrapper">{dotList}</div>
+        );
+    }
+
     return (
         <div className={`product-detail-tab ${showTab ? 'show-product-detail' : ''}`} 
             style={{ right: (isCorrectPosition() ? pDetailRightPosition : getRightPosition()) }} >
             <div>
-                <div className="new-img product-detail-img" style={{ backgroundImage: `url(${productInfo.product.images[0]})` }}>
+                <div className="image-container product-detail-img">
+                    <ImagesList selected={selectedImage} />
+                    <div className="wrapper-back-btn">
+                        <img className="arrow-icon back-icon" 
+                            src={arrowRightSvg} 
+                            alt="arrow back" 
+                            onClick={backProduct}
+                        />
+                    </div>
+                    <div className="wrapper-next-btn">
+                        <img className="arrow-icon" 
+                            src={arrowRightSvg} 
+                            alt="arrow right" 
+                            onClick={nextProduct}
+                        />
+                    </div>
                     <div className="wrapper-close-btn"></div>
                     <img onClick={() => closeProductDetailTab(setShowTab, updateProductDetailOpen)} className="close-icon" src={xIconSvg} alt="close icon" />
-                    <div className="points-wrapper">
-                        <div className="point selected-point"></div>
-                        <div className="point"></div>
-                        <div className="point"></div>
-                    </div>
                 </div>
-                
+
+                <ImageDots selected={selectedImage} />
+
                 <div className="product-detail-info">
                     <span className="price-product">{becomeDollar(productInfo.product.price)}</span>
                     <h3 className="recovery-text">{productInfo.product.title}</h3>
