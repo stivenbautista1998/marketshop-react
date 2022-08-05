@@ -19,6 +19,14 @@ const MyOrders = ({ synchronizeCurrentUser }) => {
         />
     );
 
+    const NothingOrdered = () => {
+        return (
+            <div className="no-order">
+                No Orders Made
+            </div>
+        )
+    };
+
     return (
         <div className="wrapper-login">
             <header className="header-my-orders">
@@ -34,7 +42,7 @@ const MyOrders = ({ synchronizeCurrentUser }) => {
                 </nav>
             </header>
             <main className="my-orders-section">
-                {currentState.orders.length > 0 ? orderList : <div>No Orders Made</div>}
+                { currentState.orders.length > 0 ? orderList : <NothingOrdered /> }
             </main>
             <SyncAlertWithProps 
                 synchronize={setSyncOfCurrentUser} 
