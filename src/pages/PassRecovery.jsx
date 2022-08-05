@@ -10,7 +10,7 @@ const PassRecovery = () => {
                     <IconApp bigSize={true} />
                 </nav>
             </header>
-            <main>
+            <form>
                 <h2 className="recovery-tittle">Password recovery</h2>
                 <p className="recovery-text">Inform the email address used to create your account</p>
                 <label className="login-section__label" htmlFor="user-txt">Email address</label>
@@ -21,7 +21,7 @@ const PassRecovery = () => {
                     </button>
                 </Link>
                 <Link to="/login" className="general-message-link green__message">Back to log in</Link>
-            </main>
+            </form>
         </div>
     );
 }

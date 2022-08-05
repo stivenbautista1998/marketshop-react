@@ -211,7 +211,7 @@ a.grey__message:hover, a.green__message:hover {
     overflow-x: scroll;
 }
 
-.header-home-section__list::-webkit-scrollbar { /* hidding the scrollbar */
+.header-home-section__list::-webkit-scrollbar { /* hiding the scrollbar */
     width: 0;
 }
 
@@ -934,6 +934,7 @@ a.grey__message:hover, a.green__message:hover {
 
     form > .login-section__label {
         margin-left: 0;
+        font-size: 1.4em;
     }
 
     .general-button.white--btn, .general-button.green--btn {
@@ -950,6 +951,12 @@ a.grey__message:hover, a.green__message:hover {
 
     .myaccount-tittle {
         width: 100%;
+        font-size: 2.5rem;
+        margin-bottom: 2em;
+    }
+
+    .recovery-tittle {
+        font-size: 2.5rem;
     }
 }
 
