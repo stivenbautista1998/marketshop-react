@@ -587,7 +587,7 @@ a.grey__message:hover, a.green__message:hover {
     height: 320px;
     margin: 0 auto;
     border-bottom-right-radius: 20px;
-    border-bottom-left-radius: 20px;    
+    border-bottom-left-radius: 20px;
 }
 
 .image-detail-size {
@@ -683,7 +683,7 @@ a.grey__message:hover, a.green__message:hover {
     margin-right: auto;
     visibility: hidden;
     background-color: red;
-    max-width: fit-content;
+    max-width: 250px;
     padding: 0.2em 0.5em;
     color: var(--white);
     border-radius: 5px;
@@ -877,6 +877,18 @@ a.grey__message:hover, a.green__message:hover {
     }
 }
 
+@media not all and (min-resolution:.001dpcm) { 
+    @supports (-webkit-appearance:none) and (display:flow-root) { 
+        .nav-section { 
+            border-top: 1px solid #EEE;
+        } 
+
+        input:focus {
+            outline: none;
+        }
+    } 
+}
+
 @media (min-width: 415px) {
     .header-home-section__list-option:first-child.selected, .header-home-section__list-option:first-child {
         margin-left: 0;
@@ -1045,7 +1057,7 @@ a.grey__message:hover, a.green__message:hover {
 
     .menu-tab + .product-detail-tab {
         max-height: 680px;
-        top: 55px;
+        top: 57px;
         width: 365px;
         right: 0;
         border-radius: 10px;
@@ -1056,6 +1068,8 @@ a.grey__message:hover, a.green__message:hover {
     .product-detail-img, .image-detail-size {
         width: 360px;
         height: 360px;
+        border-bottom-right-radius: 20px;
+        border-bottom-left-radius: 20px;
     }
 
     .error-app {

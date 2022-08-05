@@ -89,6 +89,8 @@ const ProductDetailTab = ({ productInfo, closeProductDetailTab, pDetailRightPosi
     }
 
     function ImagesList({ selected = 0 }) {
+        const { images } = productInfo.product;
+        console.log({ images, selected });
         return productInfo.product.images.map(( imageLink, index ) => (
             <div key={index} className="new-img image-detail-size fade"
                 style={{ backgroundImage: `url(${ imageLink })`, display: `${ selected === index ? "block" : "none" }` }}>
