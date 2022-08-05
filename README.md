@@ -21,7 +21,7 @@ MarketShop is a Single Page Application built with React, using the most advance
 
 https://62ec1b8be9b20f1dd73aae2b--marketshop-test.netlify.app/
 
-Email address: root@gmail.com
+Email address: root@gmail.com <br/>
 Password:      1234567
 
 ## Tech
