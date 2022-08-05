@@ -1,21 +1,25 @@
 # MarketShop React Project
-## Project to training programming skills.
+## Project to train my programming skills.
 
 [![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
 
-Created to work with the best practices and master the technologies learnt
+MarketShop is a Single Page Application built with React, using the most advanced web tools and a friendly design.
 
 ## Features
 
-- Import a HTML file and watch it magically convert to Markdown
-- Drag and drop images (requires your Dropbox account be linked)
-- Import and save files from GitHub, Dropbox, Google Drive and One Drive
-- Drag and drop markdown and HTML files into Dillinger
-- Export documents as Markdown, HTML and PDF
+- Great performance and full of functionalities.
+- The App is completely adaptable to all the screens and sizes.
+- filter products according to name and category.
+- It uses localStorage for data persistency.
+- Consumes an API that stores the product info.
+- It handles the orders done by users.
+- Create new users and save changes according to the logged user.
+- Forms with validations that shows you the problems.
+- It performs Asynchronous updates when a change is done through different tabs.
 
-This text you see here is *actually- written in Markdown! To get a feel
-for Markdown's syntax, type some text into the left window and
-watch the results in the right.
+## Project Running on the next link:
+
+https://62ec1b8be9b20f1dd73aae2b--marketshop-test.netlify.app/
 
 ## Tech
 
