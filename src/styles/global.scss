@@ -209,6 +209,7 @@ a.grey__message:hover, a.green__message:hover {
     justify-content: center;
     align-items: center;
     overflow-x: scroll;
+    scrollbar-width: none;
 }
 
 .header-home-section__list::-webkit-scrollbar { /* hiding the scrollbar */
