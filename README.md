@@ -9,7 +9,7 @@ MarketShop is a Single Page Application built with React, using the most advance
 
 - Great performance and full of functionalities.
 - The App is completely adaptable to all the screens and sizes.
-- filter products according to name and category.
+- Filter products according to name and category.
 - It uses localStorage for data persistency.
 - Consumes an API that stores the product info.
 - It handles the orders done by users.
@@ -20,6 +20,9 @@ MarketShop is a Single Page Application built with React, using the most advance
 ## Project Running on the next link:
 
 https://62ec1b8be9b20f1dd73aae2b--marketshop-test.netlify.app/
+
+### Email address: root@gmail.com
+### Password:      1234567
 
 ## Tech
 
