@@ -4,7 +4,7 @@ import { Login } from '@pages/Login';
 import { Home } from "@pages/Home";
 import { PassRecovery } from '@pages/PassRecovery';
 import { CreateAccount } from '@pages/CreateAccount';
-import { MyAccount } from "@pages/myAccount";
+import { MyAccount } from "@pages/MyAccount";
 import { MyOrderDetail } from "@pages/MyOrderDetail";
 import { MyOrders } from "@pages/MyOrders";
 import { SuccessEmail } from "@pages/SuccessEmail";
