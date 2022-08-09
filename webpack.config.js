@@ -13,6 +13,11 @@ module.exports = (env) => ({
         filename: '[name].js',
         publicPath: '/',
     },
+    optimization: {
+        splitChunks: {
+          chunks: 'all'
+        }
+    },
     devtool: env.development ? 'eval-cheap-module-source-map' : 'source-map',
     mode: env.development ? 'development' : 'production',
     resolve: {
