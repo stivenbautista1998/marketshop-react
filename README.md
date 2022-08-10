@@ -1,6 +1,7 @@
 # MarketShop React Project
 ## Project to train my programming skills.
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/b08415d9-0e98-4b8c-951d-6fcabac5086e/deploy-status)](https://app.netlify.com/sites/marketshop-online/deploys)
 [![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
 
 MarketShop is a Single Page Application built with React, using the most advanced web tools and a friendly design.
