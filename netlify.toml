@@ -1,4 +1,0 @@
-/*    /index.html    200
-[build]
-    publish = "dist"
-    command = "yarn build"
