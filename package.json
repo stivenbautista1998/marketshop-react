@@ -4,8 +4,8 @@
   "description": "A react project to master all the basis of react and work with a real environment.",
   "main": "src/index.js",
   "scripts": {
-    "start": "webpack-dev-server --config webpack-config/webpack.dev.js",
-    "build": "webpack --config webpack-config/webpack.prod.js"
+    "start": "webpack-dev-server --config webpack/webpack.dev.js",
+    "build": "webpack --config webpack/webpack.prod.js"
   },
   "repository": "https://github.com/stivenbautista1998/marketshop-react",
   "author": "Stiven Bautista <stivenb1994@gmail.com>",

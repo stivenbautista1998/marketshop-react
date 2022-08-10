@@ -60,13 +60,6 @@ module.exports = {
                     loader: 'html-loader'
                 }
             },
-            /* {
-                test: /\.(png|jp(e*)g|svg|gif)$/,
-                type: 'asset/resource',
-                generator: {
-                    filename: "assets/imgs/[name][ext]"
-                }
-            }, */
             {
                 test: /\.(woff|woff2|eot|ttf|otf)$/,
                 type: 'asset/resource',

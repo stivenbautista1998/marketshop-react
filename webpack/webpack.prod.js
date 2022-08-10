@@ -4,28 +4,28 @@ const { merge } = require('webpack-merge');
 const common = require('./webpack.common.js');
 
 module.exports = merge(common, {
-    mode: 'development',
-    devtool: 'eval-cheap-module-source-map',
+    mode: 'production',
+    optimization: {
+        minimize: true,
+        splitChunks: {
+          chunks: 'all'
+        }
+    },
     module: {
         rules: [
             {
                 test: /\.(png|jp(e*)g|svg|gif)$/,
-                type: 'asset'
+                type: 'asset/resource',
+                generator: {
+                    filename: "assets/imgs/[name][ext]"
+                }
             }
         ]
     },
     plugins: [
         new Dotenv({
-            path: path.resolve(__dirname, "../.env.development"),
+            path: path.resolve(__dirname, "../.env.production"),
             systemvars: true,
         })
-    ],
-    devServer: {
-        static: {
-            directory: path.join(__dirname, '../public')
-        },
-        compress: true,
-        historyApiFallback: true,
-        port: 3005
-    }
+    ]
 });
