@@ -1,5 +1,6 @@
 const path = require('path');
 const Dotenv = require('dotenv-webpack');
+const CopyPlugin = require('copy-webpack-plugin');
 const { merge } = require('webpack-merge');
 const common = require('./webpack.common.js');
 
@@ -26,6 +27,14 @@ module.exports = merge(common, {
         new Dotenv({
             path: path.resolve(__dirname, "../.env.production"),
             systemvars: true,
+        }),
+        new CopyPlugin({
+            patterns: [
+                {
+                    from: path.resolve(__dirname, "../_redirects"),
+                    to: './'
+                }
+            ]
         })
     ]
 });
