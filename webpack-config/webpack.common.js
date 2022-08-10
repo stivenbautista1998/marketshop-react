@@ -1,39 +1,37 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const Dotenv = require('dotenv-webpack');
 // copy-webpack-plugin : to move files from src/ to dist/
 
-module.exports = (env) => ({
+module.exports = {
     // ... Configuración de empaquetado
     entry: {
         bundle: './src/index.js'
     },
     output: {
-        path: path.resolve(__dirname, 'dist'),
+        path: path.resolve(__dirname, '../dist'),
         filename: '[name].[contenthash].js',
         assetModuleFilename: 'assets/fonts/[hash][ext][query]',
         publicPath: '/',
+        clean: true,
     },
-    optimization: {
-        splitChunks: {
-          chunks: 'all'
-        }
+    performance: {
+        hints: false,
+        maxEntrypointSize: 512000,
+        maxAssetSize: 512000,
     },
-    devtool: env.development ? 'eval-cheap-module-source-map' : 'source-map',
-    mode: env.development ? 'development' : 'production',
     resolve: {
         extensions: ['.js', '.jsx'],
         alias: {
-            '@components': path.resolve(__dirname, 'src/components/'),
-            '@containers': path.resolve(__dirname, 'src/containers/'),
-            '@styles': path.resolve(__dirname, 'src/styles/'),
-            '@icons': path.resolve(__dirname, 'src/assets/icons/'),
-            '@img': path.resolve(__dirname, 'src/assets/img/'),
-            '@pages': path.resolve(__dirname, 'src/pages/'),
-            '@hooks': path.resolve(__dirname, 'src/hooks/'),
-            '@context': path.resolve(__dirname, 'src/context/'),
-            '@helpers': path.resolve(__dirname, 'src/helpers/')
+            '@components': path.resolve(__dirname, '../src/components/'),
+            '@containers': path.resolve(__dirname, '../src/containers/'),
+            '@styles': path.resolve(__dirname, '../src/styles/'),
+            '@icons': path.resolve(__dirname, '../src/assets/icons/'),
+            '@img': path.resolve(__dirname, '../src/assets/img/'),
+            '@pages': path.resolve(__dirname, '../src/pages/'),
+            '@hooks': path.resolve(__dirname, '../src/hooks/'),
+            '@context': path.resolve(__dirname, '../src/context/'),
+            '@helpers': path.resolve(__dirname, '../src/helpers/')
         }
     },
     module: {
@@ -62,10 +60,13 @@ module.exports = (env) => ({
                     loader: 'html-loader'
                 }
             },
-            {
+            /* {
                 test: /\.(png|jp(e*)g|svg|gif)$/,
-                type: 'asset'
-            },
+                type: 'asset/resource',
+                generator: {
+                    filename: "assets/imgs/[name][ext]"
+                }
+            }, */
             {
                 test: /\.(woff|woff2|eot|ttf|otf)$/,
                 type: 'asset/resource',
@@ -82,18 +83,6 @@ module.exports = (env) => ({
         }),
         new MiniCssExtractPlugin({
             filename: '[name].css'
-        }),
-        new Dotenv({
-            path: path.resolve(__dirname,`.env${env.development ? ".development" : ".production" }`),
-            systemvars: true,
         })
-    ],
-    devServer: {
-        static: {
-            directory: path.join(__dirname, 'public')
-        },
-        compress: true,
-        historyApiFallback: true,
-        port: 3005
-    }
-});
+    ]
+};
