@@ -2,6 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const Dotenv = require('dotenv-webpack');
+// copy-webpack-plugin : to move files from src/ to dist/
 
 module.exports = (env) => ({
     // ... Configuración de empaquetado
@@ -10,7 +11,8 @@ module.exports = (env) => ({
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: '[name].js',
+        filename: '[name].[contenthash].js',
+        assetModuleFilename: 'assets/fonts/[hash][ext][query]',
         publicPath: '/',
     },
     optimization: {
@@ -63,6 +65,13 @@ module.exports = (env) => ({
             {
                 test: /\.(png|jp(e*)g|svg|gif)$/,
                 type: 'asset'
+            },
+            {
+                test: /\.(woff|woff2|eot|ttf|otf)$/,
+                type: 'asset/resource',
+                generator: {
+                    filename: "assets/fonts/[name][ext]"
+                }
             }
         ]
     },
