@@ -1,4 +1,5 @@
 import React, { useContext, useEffect } from 'react';
+import { CustomHelmet } from "@components/CustomHelmet";
 import { Link } from 'react-router-dom';
 import { IconApp } from '@components/IconApp';
 import { GeneralButton } from "@components/GeneralButton";
@@ -33,87 +34,90 @@ const MyAccount = ({ currentUser, editCurrentUserInfo, validateUser, syncAuth, s
     }, [syncAuth]);
     
     return (
-        <div className="wrapper-login">
-            <div className="section-up">
-                <header className="box-shadow-header">
-                    <nav className="header-home-nav no-fixed">
-                        <img className="menu-icon" src={menuSvg} alt="menu icon" />
-                        <Link className="style-no-link" to="/">
-                            <IconApp />
-                        </Link>
-                        <img className="shopping-cart" src={shoppingCartSvg} alt="icon of a shopping cart" />
-                    </nav>
-                </header>
-                <form className="main-my-account" action="/">
-                    <h2 className="myaccount-tittle">My account</h2>
-                    <label className={`login-section__label ${ errorState.username.error ? "red-letters" : "" }`} 
-                        htmlFor="name-txt">
-                        { errorState.username.text !== "" ? errorState.username.text : "Username" }
-                    </label>
-                    <input className={`general-input login-section__input ${ errorState.username.error ? "red-borders" : "" }`} 
-                        name="username-txt"
-                        style={ isEditable ? activeField : null }
-                        onChange={onChangeHandler}
-                        readOnly={ isEditable ? false : true }
-                        placeholder="UserExample"
-                        value={userName}
-                        type="text" 
+        <>
+            <CustomHelmet title="MarketShop - My Account" />
+            <div className="wrapper-login">
+                <div className="section-up">
+                    <header className="box-shadow-header">
+                        <nav className="header-home-nav no-fixed">
+                            <img className="menu-icon" src={menuSvg} alt="menu icon" />
+                            <Link className="style-no-link" to="/">
+                                <IconApp />
+                            </Link>
+                            <img className="shopping-cart" src={shoppingCartSvg} alt="icon of a shopping cart" />
+                        </nav>
+                    </header>
+                    <form className="main-my-account" action="/">
+                        <h2 className="myaccount-tittle">My account</h2>
+                        <label className={`login-section__label ${ errorState.username.error ? "red-letters" : "" }`} 
+                            htmlFor="name-txt">
+                            { errorState.username.text !== "" ? errorState.username.text : "Username" }
+                        </label>
+                        <input className={`general-input login-section__input ${ errorState.username.error ? "red-borders" : "" }`} 
+                            name="username-txt"
+                            style={ isEditable ? activeField : null }
+                            onChange={onChangeHandler}
+                            readOnly={ isEditable ? false : true }
+                            placeholder="UserExample"
+                            value={userName}
+                            type="text" 
+                        />
+                        <label className={`login-section__label ${ errorState.email.error ? "red-letters" : "" }`} 
+                            htmlFor="email-txt">
+                            { errorState.email.text !== "" ? errorState.email.text : "Email address" }
+                        </label>
+                        <input className={`general-input login-section__input ${ errorState.email.error ? "red-borders" : "" }`} 
+                            name="email-txt"
+                            style={ isEditable ? activeField : null }
+                            onChange={onChangeHandler}
+                            readOnly={ isEditable ? false : true }
+                            placeholder="explample@gmail.com"
+                            value={userEmail}
+                            type="text" 
+                        />
+                        <label className={`login-section__label ${ errorState.pass.error ? "red-letters" : "" }`}
+                            htmlFor="password-txt">
+                            { errorState.pass.text !== "" ? errorState.pass.text : "Password" }
+                        </label>
+                        <input className={`general-input login-section__input ${ errorState.pass.error ? "red-borders" : "" }`} 
+                            name="password-txt"
+                            style={ isEditable ? activeField : null }
+                            onChange={onChangeHandler}
+                            readOnly={ isEditable ? false : true }
+                            value={userPassWord}
+                            type="password"
+                        />
+                        <label style={ showPassConfirm ? null : { display: "none" } }
+                            className={`login-section__label ${ errorState.passConfirm.error ? "red-letters" : "" }`}
+                            htmlFor="repeat-password-txt">
+                            { errorState.passConfirm.text !== "" ? errorState.passConfirm.text : "Repeat Password" }
+                        </label>
+                        <input style={ showPassConfirm ? activeField : { display: "none" } }
+                            className={`general-input login-section__input ${ errorState.passConfirm.error ? "red-borders" : "" }`} 
+                            name="repeat-password-txt"
+                            value={confirmPassword}
+                            onChange={onChangeHandler}
+                            type="password"
+                        />
+                        <div 
+                            className={`error-message ${ errorState.errorMessage !== "" ? "show-detail-error-message" : "" }`}>
+                            { errorState.errorMessage !== "" ? errorState.errorMessage : "" }
+                        </div>
+                    </form>
+                </div>
+                <div className="section-down">
+                    <GeneralButton
+                        buttonText={ isEditable ? "Save" : "Edit" }
+                        color={ isEditable ? "green" : "white" }
+                        clickHandler={editAccount}
                     />
-                    <label className={`login-section__label ${ errorState.email.error ? "red-letters" : "" }`} 
-                        htmlFor="email-txt">
-                        { errorState.email.text !== "" ? errorState.email.text : "Email address" }
-                    </label>
-                    <input className={`general-input login-section__input ${ errorState.email.error ? "red-borders" : "" }`} 
-                        name="email-txt"
-                        style={ isEditable ? activeField : null }
-                        onChange={onChangeHandler}
-                        readOnly={ isEditable ? false : true }
-                        placeholder="explample@gmail.com"
-                        value={userEmail}
-                        type="text" 
-                    />
-                    <label className={`login-section__label ${ errorState.pass.error ? "red-letters" : "" }`}
-                        htmlFor="password-txt">
-                        { errorState.pass.text !== "" ? errorState.pass.text : "Password" }
-                    </label>
-                    <input className={`general-input login-section__input ${ errorState.pass.error ? "red-borders" : "" }`} 
-                        name="password-txt"
-                        style={ isEditable ? activeField : null }
-                        onChange={onChangeHandler}
-                        readOnly={ isEditable ? false : true }
-                        value={userPassWord}
-                        type="password"
-                    />
-                    <label style={ showPassConfirm ? null : { display: "none" } }
-                        className={`login-section__label ${ errorState.passConfirm.error ? "red-letters" : "" }`}
-                        htmlFor="repeat-password-txt">
-                        { errorState.passConfirm.text !== "" ? errorState.passConfirm.text : "Repeat Password" }
-                    </label>
-                    <input style={ showPassConfirm ? activeField : { display: "none" } }
-                        className={`general-input login-section__input ${ errorState.passConfirm.error ? "red-borders" : "" }`} 
-                        name="repeat-password-txt"
-                        value={confirmPassword}
-                        onChange={onChangeHandler}
-                        type="password"
-                    />
-                    <div 
-                        className={`error-message ${ errorState.errorMessage !== "" ? "show-detail-error-message" : "" }`}>
-                        { errorState.errorMessage !== "" ? errorState.errorMessage : "" }
-                    </div>
-                </form>
-            </div>
-            <div className="section-down">
-                <GeneralButton
-                    buttonText={ isEditable ? "Save" : "Edit" }
-                    color={ isEditable ? "green" : "white" }
-                    clickHandler={editAccount}
+                </div>
+                <SyncAlertWithProps 
+                    synchronize={setSyncOfCurrentUser} 
+                    synchronizeCurrentUser={synchronizeCurrentUser} 
                 />
             </div>
-            <SyncAlertWithProps 
-                synchronize={setSyncOfCurrentUser} 
-                synchronizeCurrentUser={synchronizeCurrentUser} 
-            />
-        </div>
+        </>
     );
 }
 

@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { CustomHelmet } from "@components/CustomHelmet";
 import { Header } from "@containers/Header";
 import { MenuTab } from '@containers/MenuTab';
 import { ProductDetailTab } from '@containers/ProductDetailTab';
@@ -51,52 +52,55 @@ const Home = ({ currentUser, setCurrentUser, synchronizeCurrentUser }) => {
     }, []);
 
     return (
-        <section>
-            <Header 
-                setShowMenuTab={setShowMenuTab}
-                showShoppingCardTab={showShoppingCardTab}
-                setShowShoppingCardTab={setShowShoppingCardTab}
-                searchLeftPosition={searchLeftPosition}
-                filterBySearch={updateFilteredProducts}
-                navListItems={navListItems}
-                updateList={updateList}
-                updateProducts={updateProducts}
-                userInfo={currentUser}
-                setCurrentUser={setCurrentUser}
-                refHeader={refHeader}
-            />
-            <MenuTab
-                userEmail={currentUser?.username}
-                showMenuTab={showMenuTab} 
-                setShowMenuTab={setShowMenuTab}
-                navListItems={navListItems}
-                updateList={updateList}
-                updateProducts={updateProducts}
-                setCurrentUser={setCurrentUser}
-            />
-            {showProductDetail && <ProductDetailTab
-                closeProductDetailTab={closeProductDetailTab}
-                pDetailRightPosition={rightPosition}
-                productInfo={productSelectedInfo}
-                refHeader={refHeader}
-            />}
-            <ShoppingCardTab
-                showShoppingCardTab={showShoppingCardTab}
-                shoppingCardRightPosition={rightPosition}
-                refHeader={refHeader}
-            />
-            <ProductList 
-                products={filteredProducts === null ? products : filteredProducts} 
-                setProductDetailTab={getProductDetailInfo}
-                loadingProducts={loadingProducts}
-                productError={error}
-            />
+        <>  
+            <CustomHelmet title="MarketShop - Home" />
+            <section>
+                <Header 
+                    setShowMenuTab={setShowMenuTab}
+                    showShoppingCardTab={showShoppingCardTab}
+                    setShowShoppingCardTab={setShowShoppingCardTab}
+                    searchLeftPosition={searchLeftPosition}
+                    filterBySearch={updateFilteredProducts}
+                    navListItems={navListItems}
+                    updateList={updateList}
+                    updateProducts={updateProducts}
+                    userInfo={currentUser}
+                    setCurrentUser={setCurrentUser}
+                    refHeader={refHeader}
+                />
+                <MenuTab
+                    userEmail={currentUser?.username}
+                    showMenuTab={showMenuTab} 
+                    setShowMenuTab={setShowMenuTab}
+                    navListItems={navListItems}
+                    updateList={updateList}
+                    updateProducts={updateProducts}
+                    setCurrentUser={setCurrentUser}
+                />
+                {showProductDetail && <ProductDetailTab
+                    closeProductDetailTab={closeProductDetailTab}
+                    pDetailRightPosition={rightPosition}
+                    productInfo={productSelectedInfo}
+                    refHeader={refHeader}
+                />}
+                <ShoppingCardTab
+                    showShoppingCardTab={showShoppingCardTab}
+                    shoppingCardRightPosition={rightPosition}
+                    refHeader={refHeader}
+                />
+                <ProductList 
+                    products={filteredProducts === null ? products : filteredProducts} 
+                    setProductDetailTab={getProductDetailInfo}
+                    loadingProducts={loadingProducts}
+                    productError={error}
+                />
 
-            <SyncAlertWithProps 
-                synchronize={setSyncOfCurrentUser} 
-                synchronizeCurrentUser={synchronizeCurrentUser} 
-            />
-        </section>
+                <SyncAlertWithProps 
+                    synchronize={setSyncOfCurrentUser} 
+                    synchronizeCurrentUser={synchronizeCurrentUser} 
+                />
+            </section>
+        </>
     );
 }
 
