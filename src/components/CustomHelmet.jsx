@@ -6,20 +6,20 @@ const CustomHelmet = ({ title }) => {
         <Helmet>
             <title>{title}</title>
             <meta name="description" content="MarketShop is a marketplace app with the best products of the market." />
-            <meta name="twitter:card" content="summary_large_image"/> {/* summary_large_image */}
+            <meta name="twitter:card" content="summary"/> {/* summary_large_image */}
             <meta name="twitter:site" content="@StivenDBautista"/>
             <meta name="twitter:creator" content="@StivenDBautista"/>
             <meta name="twitter:title" content={title}/>
             <meta name="twitter:description" content="MarketShop is a marketplace app with the best products on the market. Receive orders easily with your own online ordering app."/>
             <meta
                 name="twitter:image"
-                content="../../public/images/app-icon-228.png"
+                content="../../public/app-icons/app-icon-228.png"
             />
             <meta property="og:title" content={title} />
             <meta property="og:description" content="MarketShop is a marketplace app with the best products on the market. Receive orders easily with your own online ordering app." />
             <meta
             property="og:image"
-            content="../../public/images/app-icon-228.png"
+            content="../../public/app-icons/app-icon-228.png"
             />
             <meta property="og:url" content="https://marketshop-online.netlify.app/" />
             <meta property="og:site_name" content="MarketShop Online" />

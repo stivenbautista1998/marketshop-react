@@ -33,7 +33,10 @@ module.exports = merge(common, {
                 {
                     from: path.resolve(__dirname, "../_redirects"),
                     to: './'
-                }
+                },
+                { from: 'public/manifest.json', to: '' },
+                { from: 'public/service-worker.js', to: '' },
+                { from: 'public/app-icons', to: 'assets/app-icons' }
             ]
         })
     ]
